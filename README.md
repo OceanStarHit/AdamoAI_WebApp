@@ -1,6 +1,8 @@
 # Adamo AI Frontend Web Chat
 
 ## Screenshots Of Project 📸
+<img width="1440" alt="Screenshot 2023-08-02 at 7 32 16 PM" src="https://github.com/OceanStarHit/AdamoAI_WebApp/assets/121229393/2b4b04a0-1a0e-4ab9-88d9-9970d9218dfe">
+<img width="1440" alt="Screenshot 2023-08-02 at 7 32 55 PM" src="https://github.com/OceanStarHit/AdamoAI_WebApp/assets/121229393/f2e808a6-4078-4904-86ef-ad82061b3df7">
 
 ## Dev Link
 
