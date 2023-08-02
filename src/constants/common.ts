@@ -1,0 +1,9 @@
+export const IMAGE_URL =
+  'https://s3-alpha-sig.figma.com/img/6632/03be/91a92de67c0eedb1a2fc88c554cac425?Expires=1691971200&Signature=EeEAM75S8MhUxGq0ds3APIvVtIjaHVZxV8spr9smCfMJG7dLM0aQ8Esh9716xi5HVxhwWHhWqhmkmFE7Mm9InLgcdXFb6f1pC6vx6RuTU4FrYD3V5Q8TiTEzxXaHBP8Rmv0cdVdMJg9DbQadMCtklh5l-8FP0fcn9Lya64CkUE7U5l51zP7Jdzl3jsENUqEfhG2uspK0LYTV12axikX9dVSpBfUS2jbmSygQQjSpzNrjteGO-~~vlK~PSQLLLjNeETKmWsyGmOQP61SLUQ~A4YEvxHUZG6kRxIlbs7~rrqs4OsROS8f4xZSklTX7lFV7enjo2fHz3X17dPIehE3PZQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4';
+
+export const IMAGE_GIF =
+  'https://s3-alpha-sig.figma.com/img/e5c2/b213/71bbe166f7d5c1f533d34bfcbf74b69e?Expires=1691971200&Signature=cefcSjgFlyb7jAgQ-edDJiBixcZixhiK5pM5Mimk4r3L7Cl4ZG3AFryNcjnqFYxjxJUyuAhryL2Ka6-pUcOFA7IxdKgB4P43IWG1JmpP0VqyYe8kU3pMpg9RzYROaiAmf39GPAylrh3iPWMySn5rZPu1EISaAd6yAM5LG7nj4017ho~BZ6CAETVdrzKpHxHdbcVZaEpdoV2PGesSL22D~OVCATxE3lBNEsCH1eyVYpWrc3Id8phG8v5oPCNSXH3xyYp8tQd5m9taMfQ7UQk2~xs-As9SMEF7KsSBJldtKMdHdTg4d8lIIHCI~btqmEzzRqmUT5I2wQ~WXrMavWGZhw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4';
+
+export const toastCustomStyle = {
+  fontSize: 13,
+};
