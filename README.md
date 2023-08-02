@@ -25,7 +25,7 @@ Link will be share soon
 - ### Install Dependencies
       yarn
 - ### Project Run
-      yarn dev
+      yarn start
 - ### Access At
       localhost:3000/authentication
 
