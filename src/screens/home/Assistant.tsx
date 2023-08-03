@@ -1,21 +1,15 @@
 import { Heart } from 'assets/svgs';
-import { ASSISTANTS, COLORS } from 'constants/tools';
+import { ASSISTANTS } from 'constants/tools';
 
 const CardList = () => {
-  const backgroundColor = () => {
-    const random = Math.floor(Math.random() * COLORS.length);
-    return COLORS[random];
-  };
   return (
     <div className='overflow-x-auto'>
       <div className='flex px-4 py-2 space-x-2'>
         {ASSISTANTS.map((card) => {
-          const randomBackground = backgroundColor();
           return (
             <div
               key={card.persona}
-              style={{ backgroundColor: randomBackground }}
-              className={`flex-shrink-0 w-44 h-48 shadow-lg rounded-xl`}
+              className={`flex-shrink-0 w-44 h-48 shadow-lg rounded-xl ${card.gradientColor}`}
             >
               <div className='flex justify-between'>
                 <div className='mt-3 ml-1'>
