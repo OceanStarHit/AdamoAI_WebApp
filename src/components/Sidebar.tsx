@@ -3,21 +3,21 @@ import classNames from 'classnames';
 import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
 import { AllAssistants } from 'types/assistant';
-import { MenuIcon, SidebarDropdown } from 'assets/svgs';
 import SidebarList from 'components/Drawer/SidebarList';
 import AssistantServices from 'services/assistants/index';
 import { LOWER_SIDEBAR, UPPER_SIDEBAR } from 'constants/sidebar';
+import { DrawerClose, MenuIcon, SidebarDropdown } from 'assets/svgs';
+import useLayoutContext from 'hooks/useLayout';
 
 interface LayoutProps {
   children: React.ReactNode;
-  title?: string;
-  currentChat?: string;
-  setCurrentChat: React.Dispatch<React.SetStateAction<string>>;
 }
-const Layout: React.FC<LayoutProps> = ({ children, setCurrentChat }) => {
-  const [openDrawer, setOpenDrawer] = React.useState(false);
-  const [lowerSidebar, setLowerSidebar] = React.useState<AllAssistants[]>([]);
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [dropdown, setDropdown] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const { sidebarState, setSidebarState } = useLayoutContext();
+  const [lowerSidebar, setLowerSidebar] = React.useState<AllAssistants[]>([]);
+
   React.useEffect(() => {
     async function fetchListAssistant() {
       try {
@@ -45,29 +45,32 @@ const Layout: React.FC<LayoutProps> = ({ children, setCurrentChat }) => {
         aria-label='Sidebar'
       >
         <div className='h-full overflow-y-auto bg-slate-950 pb-4'>
-          <div className='flex'>
+          <div className='flex justify-between items-center'>
             <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
               <img src={IMAGE_URL} height={50} width={50} alt='Logo' />
               <p className='text-lg font-semibold text-white font-sans'>
                 ADAMO
               </p>
             </div>
+            <div className='flex justify-end mr-4 mt-6 cursor-pointer'>
+              <DrawerClose />
+            </div>
           </div>
           <div className='divide-y-[0.5px]'>
-            <div className='mb-1'>
+            <div className='mb-2'>
               <SidebarList lists={UPPER_SIDEBAR} />
             </div>
             <div className='px-3'>
               <div
-                className='flex items-center mt-1 cursor-pointer mb-2'
+                className='flex items-center mt-2 cursor-pointer mb-4'
                 onClick={() => setDropdown(!dropdown)}
               >
                 <div className='flex justify-start'>
-                  <p className='text-white text-lg relative left-8 font-medium'>
+                  <p className='text-white text-lg relative left-4 font-serif font-medium'>
                     Chat List
                   </p>
                 </div>
-                <div className='relative left-1/2'>
+                <div className='relative left-32'>
                   <SidebarDropdown />
                 </div>
               </div>
@@ -79,16 +82,22 @@ const Layout: React.FC<LayoutProps> = ({ children, setCurrentChat }) => {
                         <a
                           className={classNames(
                             'flex items-center rounded-lg p-2 text-white hover:black-gradient',
+                            { 'black-gradient': sidebarState === item.label },
                           )}
                         >
                           <div
-                            className='flex items-center space-x-2'
-                            onClick={() => setCurrentChat(item.label)}
+                            className='flex justify-between w-full'
+                            onClick={() => setSidebarState(item.label)}
                           >
-                            <span>{item.icon}</span>
-                            <span className='ml-3 flex-1 whitespace-nowrap'>
-                              {item.label}
-                            </span>
+                            <div className='flex items-center space-x-2'>
+                              <span>{item.icon}</span>
+                              <span>{item.label}</span>
+                            </div>
+                            <div
+                              className={`black-gradient ${item.color} rounded-md`}
+                            >
+                              <p className='px-2'>4</p>
+                            </div>
                           </div>
                         </a>
                       </li>
