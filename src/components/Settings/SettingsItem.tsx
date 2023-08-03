@@ -5,15 +5,16 @@ import React from 'react';
 type Props = {
   item: SettingsItemType;
   isLast: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
-const SettingsItem: React.FC<Props> = ({ item, isLast }) => {
+const SettingsItem: React.FC<Props> = ({ item, isLast, onClick }) => {
   return (
     <div
       className={`py-[24px] px-3 ${
         !isLast ? 'border-b' : ''
       } flex items-center justify-between hover:cursor-pointer`}
+      onClick={onClick}
     >
       <div className='flex items-center'>
         <item.icon />

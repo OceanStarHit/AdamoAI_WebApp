@@ -2,7 +2,7 @@ import { HeadPhone, Help, Info, Shield } from 'assets/svgs';
 
 export type SettingsItem = {
   icon: () => JSX.Element;
-  title: string;
+  title: ScreenName;
   hasMore: boolean;
 };
 
