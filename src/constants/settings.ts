@@ -1,24 +1,46 @@
 import { HeadPhone, Help, Info, Shield } from 'assets/svgs';
 
-export const helpAndSupportItems = [
+export type SettingsItem = {
+  icon: () => JSX.Element;
+  title: string;
+  hasMore: boolean;
+};
+
+export enum ScreenName {
+  SETTINGS = 'Settings',
+  FAQS = 'FAQs',
+  GET_HELP = 'Get Help',
+  TERMS_OF_SERVICE = 'Terms of Service',
+  PRIVACY_POLICY = 'Privacy Policy',
+}
+
+export const Screens = [
+  ScreenName.SETTINGS,
+  ScreenName.FAQS,
+  ScreenName.GET_HELP,
+  ScreenName.TERMS_OF_SERVICE,
+  ScreenName.PRIVACY_POLICY,
+];
+
+export const helpAndSupportItems: Array<SettingsItem> = [
   {
     icon: Help,
-    title: 'FAQs',
+    title: ScreenName.FAQS,
     hasMore: true,
   },
   {
     icon: HeadPhone,
-    title: 'Get Help',
+    title: ScreenName.GET_HELP,
     hasMore: true,
   },
   {
     icon: Info,
-    title: 'Terms of Service',
+    title: ScreenName.TERMS_OF_SERVICE,
     hasMore: true,
   },
   {
     icon: Shield,
-    title: 'Privacy Policy',
+    title: ScreenName.PRIVACY_POLICY,
     hasMore: true,
   },
 ];
