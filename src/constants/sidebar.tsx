@@ -2,13 +2,13 @@ import {
   Chat,
   Doctor,
   Favourite,
+  Fitness,
   Home,
   Nutritionist,
-  SidebarSetting,
-  Tools,
-  Therapist,
-  Fitness,
   SidebarBookmark,
+  SidebarSetting,
+  Therapist,
+  Tools,
 } from 'assets/svgs';
 
 export const UPPER_SIDEBAR = [

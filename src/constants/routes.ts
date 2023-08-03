@@ -3,4 +3,5 @@ export const ROUTES = {
   CHAT: '/chat',
   AUTH: '/authentication',
   FORGOT_PASSWORD: '/forgot-password',
+  TOOLS: '/tools',
 };

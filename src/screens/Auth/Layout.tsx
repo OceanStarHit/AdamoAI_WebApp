@@ -31,7 +31,7 @@ const AuthLayout: React.FC<LayoutProps> = ({ children }) => {
             <WordEffect
               text={ANIMATED_TEXT}
               delay={400}
-              className='text-white'
+              className='text-slate-400'
             />
           </p>
         </div>

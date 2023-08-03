@@ -52,7 +52,11 @@ const WordEffect: React.FC<WordEffectProps> = ({ text, delay, className }) => {
   }, [completed]);
 
   return (
-    <div className={`text-lg font-medium ${className}`}>{visibleText}</div>
+    <div
+      className={`text-sm md:text-lg font-medium ${className} text-gray-500`}
+    >
+      {visibleText}
+    </div>
   );
 };
 

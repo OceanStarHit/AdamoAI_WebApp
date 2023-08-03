@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
 import { AllAssistants } from 'types/assistant';
-import { DropdownIcon, MenuIcon } from 'assets/svgs';
+import { MenuIcon, SidebarDropdown } from 'assets/svgs';
 import SidebarList from 'components/Drawer/SidebarList';
 import AssistantServices from 'services/assistants/index';
 import { LOWER_SIDEBAR, UPPER_SIDEBAR } from 'constants/sidebar';
@@ -68,7 +68,7 @@ const Layout: React.FC<LayoutProps> = ({ children, setCurrentChat }) => {
                   </p>
                 </div>
                 <div className='relative left-1/2'>
-                  <DropdownIcon />
+                  <SidebarDropdown />
                 </div>
               </div>
               {dropdown && (

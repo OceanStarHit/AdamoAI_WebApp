@@ -1,6 +1,6 @@
+import AuthLayout from './Layout';
 import Tabs from 'components/Tabs';
 import Login from 'screens/Auth/Login';
-import AuthLayout from 'screens/Auth/Layout';
 import Register from 'screens/Auth/Register';
 import MainContainer from 'components/MainContainer';
 
@@ -30,6 +30,7 @@ const UserAuth = () => {
               options={tabs}
               selectedClassName='!bg-white'
               notSelectedClassName='!bg-gray-200'
+              variant='login'
             />
           </div>
         </div>

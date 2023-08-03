@@ -29,6 +29,15 @@ import Therapist from './therapist';
 import Fitness from './fitness';
 import SidebarSetting from './sidebarSettings';
 import SidebarBookmark from './sidebarBookmark';
+import Search from './Search';
+import Link from './Link';
+import ArrowForward from './ArrowForward';
+import Heart from './Heart';
+import Upload from './Upload';
+import Translator from './Translator';
+import Social from './Social';
+import Business from './Business';
+import SidebarDropdown from './sidebarDropdown';
 
 export {
   Avatar,
@@ -62,4 +71,13 @@ export {
   Fitness,
   SidebarSetting,
   SidebarBookmark,
+  Search,
+  Link,
+  ArrowForward,
+  Heart,
+  Upload,
+  Translator,
+  Social,
+  Business,
+  SidebarDropdown,
 };
