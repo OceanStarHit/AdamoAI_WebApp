@@ -6,6 +6,7 @@ import { ROUTES } from 'constants/routes';
 import UserAuthentication from 'screens/Auth';
 import { Routes, Route } from 'react-router-dom';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
+import Settings from 'screens/Settings';
 
 const MainRoutes = () => (
   <Routes>
@@ -15,6 +16,7 @@ const MainRoutes = () => (
       <Route path={ROUTES.AUTH} element={<UserAuthentication />} />
       <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
       <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
+      <Route path={ROUTES.SETTING} element={<Settings />} />
     </React.Fragment>
   </Routes>
 );

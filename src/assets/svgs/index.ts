@@ -38,6 +38,11 @@ import Translator from './Translator';
 import Social from './Social';
 import Business from './Business';
 import SidebarDropdown from './sidebarDropdown';
+import Help from './Help';
+import HeadPhone from './HeadPhones';
+import Info from './Info';
+import Shield from './Shield';
+import CarrotRight from './CarrotRight';
 
 export {
   Avatar,
@@ -80,4 +85,9 @@ export {
   Social,
   Business,
   SidebarDropdown,
+  Help,
+  HeadPhone,
+  Info,
+  Shield,
+  CarrotRight,
 };
