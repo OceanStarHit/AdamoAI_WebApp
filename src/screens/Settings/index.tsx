@@ -4,6 +4,7 @@ import Navbar from 'components/Navbar';
 import { ScreenName, helpAndSupportItems } from 'constants/settings';
 import SettingsItem from 'components/Settings/SettingsItem';
 import React from 'react';
+import FAQs from 'components/Settings/FAQs';
 
 const Settings = () => {
   const [selectedScreen, setSelectedScreen] = React.useState<ScreenName>(
@@ -16,7 +17,7 @@ const Settings = () => {
         <div>
           <Navbar title='Settings' />
           <div className='flex justify-center'>
-            <div className='w-full max-w-[595px] bg-card px-[24px] mt-5 rounded-xl shadow-md mx-5'>
+            <div className='w-full max-w-[595px] bg-card px-[15px] md:px-[24px] mt-5 rounded-xl shadow-md mx-5'>
               {helpAndSupportItems?.map((item, index) => {
                 const isLast = helpAndSupportItems.length - 1 === index;
                 return (
@@ -40,7 +41,7 @@ const Settings = () => {
             title={ScreenName.FAQS}
             onBackPress={() => setSelectedScreen(ScreenName.SETTINGS)}
           />
-          FAQs
+          <FAQs />
         </div>
       );
 

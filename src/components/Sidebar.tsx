@@ -136,7 +136,7 @@ const Layout: React.FC<LayoutProps> = ({ children, setCurrentChat }) => {
         <Drawer setOpenDrawer={setOpenDrawer} openDrawer={openDrawer} />
       ) : null}
       <div
-        className={`p-4 lg:ml-64 max-h-screen ${
+        className={`p-4 lg:ml-64 max-h-screen overflow-y-auto ${
           openDrawer ? 'hidden' : 'block'
         }`}
       >

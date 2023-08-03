@@ -11,14 +11,14 @@ type Props = {
 const SettingsItem: React.FC<Props> = ({ item, isLast, onClick }) => {
   return (
     <div
-      className={`py-[24px] px-3 ${
+      className={`py-[15px] md:py-[24px] px-1 md:px-3 ${
         !isLast ? 'border-b' : ''
       } flex items-center justify-between hover:cursor-pointer`}
       onClick={onClick}
     >
       <div className='flex items-center'>
         <item.icon />
-        <p className='ml-5 text-lg'>{item.title}</p>
+        <p className='ml-3 md:ml-5 text-sm md:text-lg'>{item.title}</p>
       </div>
       <CarrotRight />
     </div>
