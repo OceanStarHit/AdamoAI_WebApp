@@ -44,3 +44,23 @@ export const helpAndSupportItems: Array<SettingsItem> = [
     hasMore: true,
   },
 ];
+
+export const FAQItems = [
+  {
+    question: 'Can I try Adamo before committing to a paid plan?',
+    answer:
+      'Yes, we offer a free plan with limited access to AI capabilities. This plan is a great way to test the platform and see if it meets your needs before upgrading to a paid plan.',
+  },
+  {
+    question: 'Can I upgrade or downgrade my plan at any time?',
+    answer: '',
+  },
+  {
+    question: 'Is the Chat AI App available in different languages?',
+    answer: '',
+  },
+  {
+    question: 'What kinds of questions can I ask the Chat AI App?',
+    answer: '',
+  },
+];
