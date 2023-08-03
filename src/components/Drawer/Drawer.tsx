@@ -1,6 +1,9 @@
 import React from 'react';
 import SidebarList from 'components/Drawer/SidebarList';
 import { LOWER_SIDEBAR, UPPER_SIDEBAR } from 'constants/sidebar';
+import { IMAGE_URL } from 'constants/common';
+import classNames from 'classnames';
+import useLayoutContext from 'hooks/useLayout';
 
 interface DrawerType {
   openDrawer: boolean;
@@ -8,6 +11,7 @@ interface DrawerType {
 }
 
 const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
+  const { sidebarState, setSidebarState } = useLayoutContext();
   return (
     <div>
       <button
@@ -32,20 +36,47 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
         </svg>
       </button>
       <div className='h-full overflow-y-auto bg-slate-950 pb-4'>
-        <div className='flex'>
+        <div className='flex justify-center'>
           <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
-            <img
-              src='https://s3-alpha-sig.figma.com/img/6632/03be/91a92de67c0eedb1a2fc88c554cac425?Expires=1690761600&Signature=QVCIAQc0pkUa~1U4EPLZdacVUhljJb7tKa5thPGUUyLcp2VveWGi-RzJW9QbrLgC61KmeQFjGUas88t7Hgo6LF4cx1729ssmliuod1wsPCLU4mvb1LEwYD-Dgrezpc4Vxgi1dy2UV1B3ToUItaGQpQE9Jiy4yB1p8bIys5kG3CSkalMQXyQjBldfGbNy5AKRwB4QZLesZ1uy5WDLVr7uzL7SkCLANx5v8~bs8T97Uq338YvRL8xYAFgq4KtcGc8mEssAoqHPyLxoaozy0zHCQzEVAvGgjnV3lFVe2BXDh14YI3IOSDLol7ziS~SHqLw1uuKpdHzon-c2WR0kmLUMgg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'
-              height={100}
-              width={100}
-              alt={''}
-            />
+            <img src={IMAGE_URL} height={100} width={100} alt={''} />
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>
         <div className='divide-y-[0.5px]'>
-          <SidebarList lists={UPPER_SIDEBAR} />
-          <SidebarList lists={LOWER_SIDEBAR} />
+          <div className='mb-2'>
+            <SidebarList lists={UPPER_SIDEBAR} />
+          </div>
+          <div>
+            <ul className='space-y-1 font-helvetica font-medium cursor-pointer mt-4'>
+              {LOWER_SIDEBAR?.map((item) => {
+                return (
+                  <li key={item.label}>
+                    <a
+                      className={classNames(
+                        'flex items-center rounded-lg p-2 text-white hover:black-gradient',
+                        { 'black-gradient': sidebarState === item.label },
+                      )}
+                    >
+                      <div
+                        className='flex justify-between w-full'
+                        onClick={() => setSidebarState(item.label)}
+                      >
+                        <div className='flex items-center space-x-2'>
+                          <span>{item.icon}</span>
+                          <span>{item.label}</span>
+                        </div>
+                        <div
+                          className={`black-gradient ${item.color} rounded-md`}
+                        >
+                          <p className='px-2'>4</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
         <div className='p-2'>
           <div className='black-gradient text-white rounded-md py-2 px-2'>
