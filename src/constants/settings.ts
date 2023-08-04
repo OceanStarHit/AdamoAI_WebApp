@@ -104,26 +104,26 @@ export const PrivacyPolicy = {
     {
       title: 'Information We Collect',
       points: [
-        'Personal Information: We may collect personal information that you voluntarily provide when using the App, such as your name, email address, and any other information you choose to provide.',
-        'Usage Information: We may collect information about your interactions with the App, including log files, app usage data, and device information (e.g., device type, operating system, unique device identifiers).',
-        "Chat Data: When you engage in conversations or interact with the App, we may collect and retain the content of those communications for the purpose of improving the App's functionality and performance.",
+        'a. Personal Information: We may collect personal information that you voluntarily provide when using the App, such as your name, email address, and any other information you choose to provide.',
+        'b. Usage Information: We may collect information about your interactions with the App, including log files, app usage data, and device information (e.g., device type, operating system, unique device identifiers).',
+        "c. Chat Data: When you engage in conversations or interact with the App, we may collect and retain the content of those communications for the purpose of improving the App's functionality and performance.",
       ],
     },
     {
       title: 'Use of Information',
       points: [
-        "Provide and Improve the App: We may use the collected information to provide you with the App's services, personalize your experience, improve the App's features, and develop new functionalities.",
-        'Communication: We may use your contact information to respond to your inquiries, provide support, and communicate important notices regarding the App.',
-        "Analytics and Research: We may use aggregated and anonymized data for analytical purposes, such as understanding user behavior, trends, and preferences, to enhance the App's performance and user experience.",
-        'Legal Compliance: We may process and disclose your information as required by applicable laws, regulations, or legal proceedings.',
+        "a. Provide and Improve the App: We may use the collected information to provide you with the App's services, personalize your experience, improve the App's features, and develop new functionalities.",
+        'b. Communication: We may use your contact information to respond to your inquiries, provide support, and communicate important notices regarding the App.',
+        "c. Analytics and Research: We may use aggregated and anonymized data for analytical purposes, such as understanding user behavior, trends, and preferences, to enhance the App's performance and user experience.",
+        'd. Legal Compliance: We may process and disclose your information as required by applicable laws, regulations, or legal proceedings.',
       ],
     },
     {
       title: 'Data Sharing and Disclosure',
       points: [
-        'Service Providers: We may engage trusted third-party service providers to assist us in providing and maintaining the App. These providers may have access to your personal information for the sole purpose of performing their services on our behalf.',
-        'Compliance with Law: We may disclose your information if required by law, legal process, or governmental request, or to protect our rights, privacy, safety, or property, or that of others.',
-        'Business Transfers: In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred to the acquiring entity.',
+        'a. Service Providers: We may engage trusted third-party service providers to assist us in providing and maintaining the App. These providers may have access to your personal information for the sole purpose of performing their services on our behalf.',
+        'b. Compliance with Law: We may disclose your information if required by law, legal process, or governmental request, or to protect our rights, privacy, safety, or property, or that of others.',
+        'c. Business Transfers: In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred to the acquiring entity.',
       ],
     },
     {

@@ -7,6 +7,7 @@ import React from 'react';
 import FAQs from 'components/Settings/FAQs';
 import Help from 'components/Settings/Help';
 import TermsOfService from 'components/Settings/TermsOfService';
+import PrivacyPolicy from 'components/Settings/PrivacyPolicy';
 
 const Settings = () => {
   const [selectedScreen, setSelectedScreen] = React.useState<ScreenName>(
@@ -65,6 +66,7 @@ const Settings = () => {
             title={ScreenName.PRIVACY_POLICY}
             onBackPress={() => setSelectedScreen(ScreenName.SETTINGS)}
           />
+          <PrivacyPolicy />
         </div>
       );
 
