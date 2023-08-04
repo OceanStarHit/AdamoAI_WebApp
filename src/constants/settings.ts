@@ -1,9 +1,9 @@
-import { HeadPhone, Help, Info, Shield } from 'assets/svgs';
+import { Email, HeadPhone, Help, Info, Phone, Shield } from 'assets/svgs';
 
 export type SettingsItem = {
   icon: () => JSX.Element;
-  title: ScreenName;
-  hasMore: boolean;
+  title: ScreenName | string;
+  hasMore?: boolean;
 };
 
 export enum ScreenName {
@@ -62,5 +62,16 @@ export const FAQItems = [
   {
     question: 'What kinds of questions can I ask the Chat AI App?',
     answer: '',
+  },
+];
+
+export const contactDetails: Array<SettingsItem> = [
+  {
+    icon: Email,
+    title: 'adamo@gmail.com',
+  },
+  {
+    icon: Phone,
+    title: '1-800-555-5555',
   },
 ];

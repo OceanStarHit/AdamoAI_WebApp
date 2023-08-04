@@ -5,6 +5,7 @@ import { ScreenName, helpAndSupportItems } from 'constants/settings';
 import SettingsItem from 'components/Settings/SettingsItem';
 import React from 'react';
 import FAQs from 'components/Settings/FAQs';
+import Help from 'components/Settings/Help';
 
 const Settings = () => {
   const [selectedScreen, setSelectedScreen] = React.useState<ScreenName>(
@@ -25,7 +26,7 @@ const Settings = () => {
                     isLast={isLast}
                     item={item}
                     key={index}
-                    onClick={() => setSelectedScreen(item.title)}
+                    onClick={() => setSelectedScreen(item.title as ScreenName)}
                   />
                 );
               })}
@@ -52,7 +53,7 @@ const Settings = () => {
             title={ScreenName.GET_HELP}
             onBackPress={() => setSelectedScreen(ScreenName.SETTINGS)}
           />
-          GET_HELP
+          <Help />
         </div>
       );
 
@@ -63,7 +64,6 @@ const Settings = () => {
             title={ScreenName.PRIVACY_POLICY}
             onBackPress={() => setSelectedScreen(ScreenName.SETTINGS)}
           />
-          PRIVACY_POLICY
         </div>
       );
 
@@ -74,7 +74,6 @@ const Settings = () => {
             title={ScreenName.TERMS_OF_SERVICE}
             onBackPress={() => setSelectedScreen(ScreenName.SETTINGS)}
           />
-          TERMS_OF_SERVICE
         </div>
       );
   };

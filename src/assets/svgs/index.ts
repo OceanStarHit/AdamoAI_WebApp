@@ -43,6 +43,7 @@ import HeadPhone from './HeadPhones';
 import Info from './Info';
 import Shield from './Shield';
 import CarrotRight from './CarrotRight';
+import Phone from './Phone';
 
 export {
   Avatar,
@@ -90,4 +91,5 @@ export {
   Info,
   Shield,
   CarrotRight,
+  Phone,
 };
