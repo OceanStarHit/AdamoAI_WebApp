@@ -24,6 +24,9 @@ const colors = {
   },
   'black-gradient': `radial-gradient(65.93% 114.17% at 52.57% 100.00%, rgba(100, 196, 235, 0.08) 0%, rgba(100, 196, 235, 0.00) 77.94%), linear-gradient(225deg, rgba(248, 198, 82, 0.10) 0%, rgba(232, 163, 222, 0.10) 48.26%, rgba(90, 191, 235, 0.10) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), rgba(255, 255, 255, 0.12)`,
   'card': '#F7F5F7',
+  'subscription-lite': '#A056A215',
+  'subscription-basic': '#FFB34015',
+  'adamo-green': '#30DB5B',
 };
 
 module.exports = {

@@ -1,4 +1,13 @@
-import { Email, HeadPhone, Help, Info, Phone, Shield } from 'assets/svgs';
+import {
+  Email,
+  HeadPhone,
+  Help,
+  Info,
+  LitePlan,
+  Phone,
+  Shield,
+} from 'assets/svgs';
+import BasicPlan from 'assets/svgs/BasicPlan';
 
 export type SettingsItem = {
   icon: () => JSX.Element;
@@ -157,4 +166,52 @@ export const PrivacyPolicy = {
       ],
     },
   ],
+};
+
+export enum subscriptionPlansNames {
+  LITE = 'LITE',
+  BASIC = 'BASIC',
+}
+
+export type SubscriptionPlansType = {
+  type: subscriptionPlansNames;
+  price: number;
+  noOfMessages: string;
+  icon: () => JSX.Element;
+  discount?: number;
+  features: Array<string>;
+};
+
+export const subscriptionPlans: {
+  [key in subscriptionPlansNames]: SubscriptionPlansType;
+} = {
+  [subscriptionPlansNames.LITE]: {
+    type: subscriptionPlansNames.LITE,
+    icon: LitePlan,
+    price: 0,
+    noOfMessages: 'Limited Number of Messages',
+    discount: 0,
+    features: [
+      '20 Messages/Week',
+      '5 Experts',
+      'Message history',
+      'Human-like learning & experience',
+      'Community Updates',
+    ],
+  },
+  [subscriptionPlansNames.BASIC]: {
+    type: subscriptionPlansNames.BASIC,
+    icon: BasicPlan,
+    price: 5,
+    noOfMessages: 'No message limits',
+    discount: 50,
+    features: [
+      'No Message Limits',
+      'Unlimited Experts',
+      'Message History',
+      'Human-like learning & experience',
+      'Community Updates',
+      'Premium Support',
+    ],
+  },
 };
