@@ -95,3 +95,66 @@ export const termsOfServices = {
   endDiscliamer:
     'By using the Adamo AI Chat App, you acknowledge that you have read, understood, and agreed to these Terms.',
 };
+
+export const PrivacyPolicy = {
+  date: 'June 25, 2023',
+  disclaimer:
+    'This Privacy Policy ("Policy") explains how Adamo AI Chat ("we," "us," or "our") collects, uses, and protects the personal information of users ("you" or "your") when you use the Adamo AI Chat mobile application ("App"). This Policy applies to the information collected through the App and its related services.',
+  details: [
+    {
+      title: 'Information We Collect',
+      points: [
+        'Personal Information: We may collect personal information that you voluntarily provide when using the App, such as your name, email address, and any other information you choose to provide.',
+        'Usage Information: We may collect information about your interactions with the App, including log files, app usage data, and device information (e.g., device type, operating system, unique device identifiers).',
+        "Chat Data: When you engage in conversations or interact with the App, we may collect and retain the content of those communications for the purpose of improving the App's functionality and performance.",
+      ],
+    },
+    {
+      title: 'Use of Information',
+      points: [
+        "Provide and Improve the App: We may use the collected information to provide you with the App's services, personalize your experience, improve the App's features, and develop new functionalities.",
+        'Communication: We may use your contact information to respond to your inquiries, provide support, and communicate important notices regarding the App.',
+        "Analytics and Research: We may use aggregated and anonymized data for analytical purposes, such as understanding user behavior, trends, and preferences, to enhance the App's performance and user experience.",
+        'Legal Compliance: We may process and disclose your information as required by applicable laws, regulations, or legal proceedings.',
+      ],
+    },
+    {
+      title: 'Data Sharing and Disclosure',
+      points: [
+        'Service Providers: We may engage trusted third-party service providers to assist us in providing and maintaining the App. These providers may have access to your personal information for the sole purpose of performing their services on our behalf.',
+        'Compliance with Law: We may disclose your information if required by law, legal process, or governmental request, or to protect our rights, privacy, safety, or property, or that of others.',
+        'Business Transfers: In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred to the acquiring entity.',
+      ],
+    },
+    {
+      title: 'Data Security',
+      points: [
+        'We take reasonable measures to protect your information from unauthorized access, disclosure, alteration, or destruction. However, please be aware that no security measures are perfect or impenetrable, and we cannot guarantee the absolute security of your information.',
+      ],
+    },
+    {
+      title: 'Third-Party Links and Services',
+      points: [
+        'The App may contain links to third-party websites or services that are not controlled or operated by us. This Privacy Policy does not apply to such third-party services, and we are not responsible for their privacy practices. We encourage you to review the privacy policies of these third parties before providing any personal information.',
+      ],
+    },
+    {
+      title: "Children's Privacy",
+      points: [
+        'The Adamo AI Chat App is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If you become aware that your child has provided us with personal information without your consent, please contact us, and we will promptly delete such information from our systems.',
+      ],
+    },
+    {
+      title: 'Changes to this Privacy Policy',
+      points: [
+        'We may update this Privacy Policy from time to time. Any changes will be effective immediately upon posting the revised Policy in the App. We encourage you to review this Policy periodically to stay informed about how we collect, use, and protect your information.',
+      ],
+    },
+    {
+      title: 'Contact Us',
+      points: [
+        "If you have any questions, concerns, or requests regarding this Privacy Policy or the App's privacy practices, please contact us at adamo.ai",
+      ],
+    },
+  ],
+};
