@@ -38,7 +38,21 @@ import Translator from './Translator';
 import Social from './Social';
 import Business from './Business';
 import SidebarDropdown from './sidebarDropdown';
+import Help from './Help';
+import HeadPhone from './HeadPhones';
+import Info from './Info';
+import Shield from './Shield';
+import CarrotRight from './CarrotRight';
+import Phone from './Phone';
+import LitePlan from './LitePlan';
 import DrawerClose from './DrawerClose';
+import Calendar from './Calendar';
+import AvatarField from './AvatarField';
+import Theme from './Theme';
+import Speech from './Speech';
+import CanadaIcon from './CandaIcon';
+import ChevronDown from './ChevronDown';
+import ChevronUp from './ChevronUp';
 
 export {
   Avatar,
@@ -81,5 +95,19 @@ export {
   Social,
   Business,
   SidebarDropdown,
+  Help,
+  HeadPhone,
+  Info,
+  Shield,
+  CarrotRight,
+  Phone,
+  LitePlan,
   DrawerClose,
+  Calendar,
+  AvatarField,
+  Theme,
+  Speech,
+  CanadaIcon,
+  ChevronDown,
+  ChevronUp,
 };

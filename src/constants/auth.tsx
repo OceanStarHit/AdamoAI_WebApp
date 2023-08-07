@@ -1,7 +1,7 @@
 import { AuthFormType } from 'types/auth';
 import { Email, Password } from 'assets/svgs';
 
-const required = { value: true, message: 'This field cannot be empty' };
+export const required = { value: true, message: 'This field cannot be empty' };
 
 export const emailRule = {
   required,
