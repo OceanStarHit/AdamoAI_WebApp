@@ -22,7 +22,8 @@ const AuthProvider: React.FC<PROPS> = ({ children }) => {
   React.useEffect(() => {
     if (accessToken) navigate(ROUTES.HOME);
     else navigate(ROUTES.AUTH);
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const login = async (data: IAuthType) => {
     const res = AuthService.login(data);
