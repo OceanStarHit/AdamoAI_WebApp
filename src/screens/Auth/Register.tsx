@@ -1,6 +1,6 @@
 import useAuth from 'hooks/useAuth';
 import Input from 'components/Input';
-import { LOGIN } from 'constants/auth';
+import { REGISTER } from 'constants/auth';
 import Button from 'components/Button';
 import { AuthFormType, IAuthType } from 'types/auth';
 import { Apple, Facebook, Google } from 'assets/svgs';
@@ -16,7 +16,7 @@ const Register = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {LOGIN.map((item: AuthFormType) => {
+        {REGISTER.map((item: AuthFormType) => {
           return (
             <div className='flex flex-col items-center' key={item.label}>
               <Controller

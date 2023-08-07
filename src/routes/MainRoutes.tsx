@@ -6,17 +6,29 @@ import { ROUTES } from 'constants/routes';
 import UserAuthentication from 'screens/Auth';
 import { Routes, Route } from 'react-router-dom';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
+import useAuthContext from 'hooks/useAuth';
 
-const MainRoutes = () => (
-  <Routes>
-    <React.Fragment>
-      <Route path={ROUTES.CHAT} element={<Chat />} />
+const getAuthenticatedRoutes = () => {
+  return (
+    <>
       <Route path={ROUTES.HOME} element={<Home />} />
-      <Route path={ROUTES.AUTH} element={<UserAuthentication />} />
-      <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
+      <Route path={ROUTES.CHAT} element={<Chat />} />
       <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
-    </React.Fragment>
-  </Routes>
-);
+    </>
+  );
+};
+
+const MainRoutes = () => {
+  const { accessToken } = useAuthContext();
+  return (
+    <Routes>
+      <React.Fragment>
+        <Route path={ROUTES.AUTH} element={<UserAuthentication />} />
+        <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
+        {accessToken ? getAuthenticatedRoutes() : null}
+      </React.Fragment>
+    </Routes>
+  );
+};
 
 export default MainRoutes;

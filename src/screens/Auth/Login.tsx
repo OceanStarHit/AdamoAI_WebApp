@@ -59,6 +59,7 @@ const Login = () => {
         <div className='flex justify-center'>
           <div>
             <Button
+              type='submit'
               gradient
               btnText='Sign In'
               className='text-white w-[300px] md:w-[550px] rounded-lg'

@@ -9,11 +9,14 @@ class AuthService {
   }
 
   async login(user: IAuthType) {
+    const formData = new FormData();
+    formData.append('username', user.email);
+    formData.append('password', user.password);
     const response = await axios.post(
       Config.API_BASE_URL + '/login/access-token',
-      user,
+      formData,
     );
-    return response.data;
+    return response;
   }
 
   async refreshToken() {
@@ -26,7 +29,7 @@ class AuthService {
     if (response.data.access_token) {
       localStorage.setItem('token', response.data.access_token);
     }
-    return response.data;
+    return response;
   }
 
   logout() {
