@@ -14,7 +14,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        {pathname !== ROUTES.AUTH ? (
+        {pathname !== ROUTES.AUTH && pathname !== ROUTES.FORGOT_PASSWORD ? (
           <LayoutProvider>
             <Layout>
               <ToastContainer style={toastCustomStyle} />
