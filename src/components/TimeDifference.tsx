@@ -33,7 +33,7 @@ const TimeDifferenceComponent: React.FC<TimeDifferenceProps> = ({
     setTimeDifference(formattedTimeDifference);
   }, [timestamp]);
 
-  return <p className='text-sm text-gray-400'>{timeDifference}</p>;
+  return <p className='text-xs md:text-sm text-gray-400'>{timeDifference}</p>;
 };
 
 export default TimeDifferenceComponent;

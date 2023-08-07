@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
-// import Layout from 'components/Sidebar';
 import { SENDER_TYPE } from 'types/chat';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
@@ -21,14 +20,14 @@ import {
   DropdownIcon,
   Camera,
   BackArrow,
-} from '../../assets/svgs/index';
+} from 'assets/svgs/index';
 
 import {
   fetchSpeechToText,
   fetchTextToText,
   getRoom,
   handleCreateRoom,
-} from '../../services/chat/utils';
+} from 'services/chat/utils';
 
 const Chat = () => {
   const [messages, setMessages] = React.useState<
@@ -82,6 +81,14 @@ const Chat = () => {
     handleCreateRoom(createRoom);
   };
 
+  const onChangeChatMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (timeOutRef.current) {
+      clearTimeout(timeOutRef.current);
+    }
+    setValue(e.target.value);
+    timeOutRef.current = setTimeout(TextToText, 3000);
+  };
+
   return (
     <div className='bg-white rounded-3xl w-full flex'>
       <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
@@ -113,13 +120,7 @@ const Chat = () => {
             type='text'
             placeholder='Message'
             value={value}
-            onChange={(e) => {
-              if (timeOutRef.current) {
-                clearTimeout(timeOutRef.current);
-              }
-              setValue(e.target.value);
-              timeOutRef.current = setTimeout(TextToText, 3000);
-            }}
+            onChange={(e) => onChangeChatMessage(e)}
             onKeyUp={(e) => {
               if (e.key === 'Enter') {
                 sendMessage();
@@ -159,39 +160,37 @@ const Chat = () => {
         </div>
       </div>
       <div className='w-1/3 border-l border-slate-300 max-h-[calc(100vh-2rem)] flex-col justify-between flex'>
-        <div className='w-full items-center max-h-full'>
-          <div className='flex justify-end items-center space-x-2 h-20'>
-            <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
-              <Avatar />
-            </div>
-            <DropdownIcon />
+        <div className='flex justify-end items-center space-x-6 h-20 mx-4'>
+          <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
+            <Avatar />
           </div>
-          <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
-            <ChatHistory chat_history={CHAT_HISTORY} />
-            <div className='p-4'>
-              <Button
-                btnText='New Chat'
-                gradient
-                className='rounded-md w-full font-semibold'
-                onClick={() => setIsOpen(true)}
-              />
-              <Modal
-                isOpen={isOpen}
-                title='Create Room'
-                description='Please Add Room UUID Here'
-                btnText='Create Room'
-                setIsOpen={setIsOpen}
-                onClose={handleRoomCreation}
-              >
-                <div>
-                  <ChatInput
-                    type='text'
-                    placeholder='Please Input the room uuid'
-                    onChange={(e) => setCreateRoom(e.target.value)}
-                  />
-                </div>
-              </Modal>
-            </div>
+          <DropdownIcon />
+        </div>
+        <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
+          <ChatHistory chat_history={CHAT_HISTORY} />
+          <div className='p-4'>
+            <Button
+              btnText='New Chat'
+              gradient
+              className='rounded-md w-full font-semibold'
+              onClick={() => setIsOpen(true)}
+            />
+            <Modal
+              isOpen={isOpen}
+              title='Create Room'
+              description='Please Add Room UUID Here'
+              btnText='Create Room'
+              setIsOpen={setIsOpen}
+              onClose={handleRoomCreation}
+            >
+              <div>
+                <ChatInput
+                  type='text'
+                  placeholder='Please Input the room uuid'
+                  onChange={(e) => setCreateRoom(e.target.value)}
+                />
+              </div>
+            </Modal>
           </div>
         </div>
       </div>

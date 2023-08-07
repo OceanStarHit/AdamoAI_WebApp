@@ -12,7 +12,7 @@ const SidebarList: React.FC<SidebarListType> = ({ lists }) => {
 
   return (
     <div className='px-3'>
-      <ul className='mt-6 space-y-2 font-helvetica font-medium cursor-pointer'>
+      <ul className='mt-4 space-y-2 font-helvetica font-medium cursor-pointer'>
         {lists?.map((item) => {
           return (
             <li

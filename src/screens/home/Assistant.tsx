@@ -68,8 +68,10 @@ const CardList = () => {
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 3,
+    swipeToSlide: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+
     responsive: [
       {
         breakpoint: 1024,

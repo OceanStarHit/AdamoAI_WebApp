@@ -71,7 +71,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({ chat_history }) => {
                     handleCheckboxChange={handleCheckboxChange}
                   />
 
-                  <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1'>
+                  <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1'>
                     {item.label}
                   </label>
                 </span>
@@ -79,7 +79,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({ chat_history }) => {
                   <TimeDifferenceComponent timestamp={item.time_stamp} />
                 </span>
               </div>
-              <div className='text-sm text-gray-400 flex justify-center md:justify-start'>
+              <div className='text-xs md:text-sm text-gray-400 flex justify-center md:justify-start'>
                 {item.description}
               </div>
             </div>

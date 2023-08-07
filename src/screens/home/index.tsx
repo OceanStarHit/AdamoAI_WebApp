@@ -1,4 +1,3 @@
-import React from 'react';
 import Tabs from 'components/Tabs';
 import Tools from 'screens/home/Tools';
 import Heading from 'components/Heading';
@@ -13,7 +12,7 @@ const Home = () => {
   const tabs = [
     { label: 'For You', component: <CardList /> },
     { label: 'All Categories', component: <CardList /> },
-    { label: 'For You', component: <CardList /> },
+    { label: 'Oldest', component: <CardList /> },
     { label: 'Newest', component: <CardList /> },
   ];
   return (
@@ -51,7 +50,7 @@ const Home = () => {
             tabPanelClassName='w-3/4 lg:w-2/3'
           />
         </div>
-        <div>
+        <div className='flex justify-start mt-8 relative right-8'>
           <Heading text='Tools' type='subtitle' className='ml-12' />
         </div>
         <div className='flex justify-center bg-transparent'>
