@@ -1,13 +1,14 @@
 import InputError from 'components/InputError';
 
 interface InputType extends React.ComponentProps<'input'> {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   label?: string;
   type?: string;
   name?: string;
   placeholder?: string;
   className?: string;
   error?: string;
+  labelClassName?: string;
 }
 
 const Input: React.FC<InputType> = ({
@@ -17,20 +18,23 @@ const Input: React.FC<InputType> = ({
   placeholder,
   className,
   error,
+  labelClassName,
   ...rest
 }) => {
   return (
     <div className='flex flex-col'>
       <label
         htmlFor='input-group-1'
-        className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+        className={`block mb-2 text-sm font-medium text-gray-900 dark:text-white ${labelClassName}`}
       >
         {label}
       </label>
       <div className='relative mb-6'>
-        <div className='absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none'>
-          {icon}
-        </div>
+        {icon ? (
+          <div className='absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none'>
+            {icon}
+          </div>
+        ) : null}
         <input
           type={type}
           id='input-group-1'

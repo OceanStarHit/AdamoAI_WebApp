@@ -5,10 +5,12 @@ import Heading from 'components/Heading';
 import { emailRule } from 'constants/auth';
 import { IForgotPassword } from 'types/auth';
 import { BackArrow, Email } from 'assets/svgs';
+import { useNavigate } from 'react-router-dom';
 import MainContainer from 'components/MainContainer';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const { control, handleSubmit } = useForm<IForgotPassword>();
 
   const onSubmit: SubmitHandler<IForgotPassword> = (data) => {
@@ -19,7 +21,10 @@ const ForgotPassword = () => {
       <MainContainer>
         <div className='flex flex-col w-full min-h-[calc(100vh-2rem)]'>
           <div className='border-b border-gray-300 flex w-full h-20'>
-            <div className='flex justify-start space-x-2 items-center ml-2'>
+            <div
+              className='flex justify-start space-x-2 items-center ml-2 cursor-pointer'
+              onClick={() => navigate(-1)}
+            >
               <BackArrow />
               <p className='text-xl text-black font-medium'>Forgot Password</p>
             </div>

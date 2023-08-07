@@ -7,8 +7,13 @@ type PROPS = {
 
 const LayoutProvider: React.FC<PROPS> = ({ children }) => {
   const [sidebarState, setSidebarState] = React.useState('');
-
-  const contextValue = { sidebarState, setSidebarState };
+  const [settingState, setSettingState] = React.useState('Settings');
+  const contextValue = {
+    sidebarState,
+    settingState,
+    setSidebarState,
+    setSettingState,
+  };
   return (
     <LayoutContext.Provider value={contextValue}>
       {children}

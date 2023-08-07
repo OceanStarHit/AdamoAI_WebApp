@@ -1,6 +1,6 @@
-const Avatar = () => (
+const Avatar = ({ width = '12', height = '12', className = '' }) => (
   <svg
-    className='absolute w-12 h-12 text-white -left-1'
+    className={`absolute w-${width} h-${height} text-white -left-1 ${className}`}
     fill='currentColor'
     viewBox='0 0 20 20'
     xmlns='http://www.w3.org/2000/svg'
