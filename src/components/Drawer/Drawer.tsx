@@ -1,6 +1,9 @@
 import React from 'react';
-import SidebarList from 'components/Drawer/SidebarList';
-import { LOWER_SIDEBAR, UPPER_SIDEBAR } from 'constants/sidebar';
+import { LOWER_SIDEBAR } from 'constants/sidebar';
+import { IMAGE_URL } from 'constants/common';
+import { AllAssistants } from 'types/assistant';
+import SidebarContainer from './SidebarContainer';
+import AssistantServices from 'services/assistants/index';
 
 interface DrawerType {
   openDrawer: boolean;
@@ -8,6 +11,22 @@ interface DrawerType {
 }
 
 const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
+  const [dropdown, setDropdown] = React.useState(true);
+  const [lowerSidebar, setLowerSidebar] = React.useState<AllAssistants[]>([]);
+
+  React.useEffect(() => {
+    async function fetchListAssistant() {
+      try {
+        const listAssistant = await AssistantServices.listAssistants();
+        setLowerSidebar(listAssistant ?? LOWER_SIDEBAR);
+      } catch (error) {
+        console.log(error);
+        setLowerSidebar(LOWER_SIDEBAR);
+      }
+    }
+    fetchListAssistant();
+  }, []);
+
   return (
     <div>
       <button
@@ -31,54 +50,14 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
           ></path>
         </svg>
       </button>
-      <div className='h-full overflow-y-auto bg-slate-950 pb-4'>
-        <div className='flex'>
+      <div className='min-h-screen'>
+        <div className='flex justify-center items-center'>
           <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
-            <img
-              src='https://s3-alpha-sig.figma.com/img/6632/03be/91a92de67c0eedb1a2fc88c554cac425?Expires=1690761600&Signature=QVCIAQc0pkUa~1U4EPLZdacVUhljJb7tKa5thPGUUyLcp2VveWGi-RzJW9QbrLgC61KmeQFjGUas88t7Hgo6LF4cx1729ssmliuod1wsPCLU4mvb1LEwYD-Dgrezpc4Vxgi1dy2UV1B3ToUItaGQpQE9Jiy4yB1p8bIys5kG3CSkalMQXyQjBldfGbNy5AKRwB4QZLesZ1uy5WDLVr7uzL7SkCLANx5v8~bs8T97Uq338YvRL8xYAFgq4KtcGc8mEssAoqHPyLxoaozy0zHCQzEVAvGgjnV3lFVe2BXDh14YI3IOSDLol7ziS~SHqLw1uuKpdHzon-c2WR0kmLUMgg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'
-              height={100}
-              width={100}
-              alt={''}
-            />
+            <img src={IMAGE_URL} height={50} width={50} alt='Logo' />
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>
-        <div className='divide-y-[0.5px]'>
-          <SidebarList lists={UPPER_SIDEBAR} />
-          <SidebarList lists={LOWER_SIDEBAR} />
-        </div>
-        <div className='p-2'>
-          <div className='black-gradient text-white rounded-md py-2 px-2'>
-            <div className='flex space-x-2'>
-              <div className='relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
-                <svg
-                  className='absolute w-8 h-8 text-gray-400 -left-1'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
-                    clipRule='evenodd'
-                  ></path>
-                </svg>
-              </div>
-              <div className='flex flex-col'>
-                <span className='text-white text-sm'>Kenzi Lawson</span>
-                <span className='text-white text-xs'>
-                  kenzilawson@gmail.com
-                </span>
-              </div>
-              <div className='black-primary text-green-600 p-1 h-8 w-12 rounded-md text-center'>
-                <p>Free</p>
-              </div>
-            </div>
-            <div className='rounded-md p-2 border border-gray-300 mt-4'>
-              <p className='text-center'>Upgrade to pro</p>
-            </div>
-          </div>
-        </div>
+        <SidebarContainer {...{ dropdown, setDropdown, lowerSidebar }} />
       </div>
     </div>
   );

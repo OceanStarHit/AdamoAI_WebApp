@@ -45,6 +45,7 @@ import Shield from './Shield';
 import CarrotRight from './CarrotRight';
 import Phone from './Phone';
 import LitePlan from './LitePlan';
+import DrawerClose from './DrawerClose';
 
 export {
   Avatar,
@@ -94,4 +95,5 @@ export {
   CarrotRight,
   Phone,
   LitePlan,
+  DrawerClose,
 };

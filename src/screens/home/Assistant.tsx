@@ -1,21 +1,113 @@
+import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
-import { ASSISTANTS, COLORS } from 'constants/tools';
+import { ASSISTANTS } from 'constants/tools';
+
+interface ICardList {
+  onClick?: () => void;
+  style?: object;
+  className?: string;
+}
 
 const CardList = () => {
-  const backgroundColor = () => {
-    const random = Math.floor(Math.random() * COLORS.length);
-    return COLORS[random];
+  const SampleNextArrow = (props: ICardList) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+          height: '40px',
+          width: '40px',
+          borderRadius: '20px',
+          background: `linear-gradient(
+          90deg,
+          #ae519d 0%,
+          #e54389 51.04%,
+          #f4a14c 97.92%
+        )`,
+          right: -40,
+        }}
+        onClick={onClick}
+      />
+    );
   };
+
+  const SamplePrevArrow = (props: ICardList) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          zIndex: 20,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+          height: '40px',
+          width: '40px',
+          borderRadius: '20px',
+          background: `linear-gradient(
+          90deg,
+          #ae519d 0%,
+          #e54389 51.04%,
+          #f4a14c 97.92%
+        )`,
+          left: -40,
+        }}
+        onClick={onClick}
+      />
+    );
+  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    swipeToSlide: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className='overflow-x-auto'>
-      <div className='flex px-4 py-2 space-x-2'>
+    <div>
+      <Slider {...settings}>
         {ASSISTANTS.map((card) => {
-          const randomBackground = backgroundColor();
           return (
             <div
               key={card.persona}
-              style={{ backgroundColor: randomBackground }}
-              className={`flex-shrink-0 w-44 h-48 shadow-lg rounded-xl`}
+              className={`!w-[90%] relative !left-[5%]  h-48 rounded-xl ${card.gradientColor}`}
             >
               <div className='flex justify-between'>
                 <div className='mt-3 ml-1'>
@@ -35,7 +127,7 @@ const CardList = () => {
             </div>
           );
         })}
-      </div>
+      </Slider>
     </div>
   );
 };
