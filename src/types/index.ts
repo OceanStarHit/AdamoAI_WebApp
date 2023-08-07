@@ -9,3 +9,8 @@ export interface ResponseType {
   error: boolean;
   message: string;
 }
+
+export type LoginResponse = IResponse<{
+  access_token: string;
+  token_type: string;
+}>;

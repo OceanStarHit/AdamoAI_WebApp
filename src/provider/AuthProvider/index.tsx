@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponseType } from 'types';
+import { LoginResponse, ResponseType } from 'types';
 import { toast } from 'react-toastify';
 import { IAuthType } from 'types/auth';
 import AuthService from 'services/auth';
@@ -26,11 +26,10 @@ const AuthProvider: React.FC<PROPS> = ({ children }) => {
 
   const login = async (data: IAuthType) => {
     const res = AuthService.login(data);
-    const serialResponse: ResponseType = await TransformResponse(res);
+    const serialResponse: LoginResponse = await TransformResponse(res);
     if (serialResponse.error) {
       toast.error(serialResponse.message);
     } else {
-      //@ts-ignore
       setAccessToken(serialResponse?.data?.access_token);
       toast('Login Successfully!');
       navigate(ROUTES.HOME);
