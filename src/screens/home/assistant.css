@@ -1,0 +1,8 @@
+slick-arrow {
+  color: black;
+}
+
+/* Change the color of the dots (if needed) */
+.slick-dots li button:before {
+  color: black;
+}

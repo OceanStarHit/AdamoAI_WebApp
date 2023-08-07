@@ -7,6 +7,7 @@ export const TOOLS = [
     name: 'Susan',
     description: 'Generate images using a written description as a basis.',
     icon: <Upload />,
+    gradientColor: 'card-gradient7',
   },
   {
     avatar: require('../assets/images/Book.png'),
@@ -14,6 +15,7 @@ export const TOOLS = [
     name: 'Adamo',
     description: 'Can translate spoken or written language in real time.',
     icon: <Translator />,
+    gradientColor: 'card-gradient8',
   },
   {
     avatar: require('../assets/images/App.png'),
@@ -21,6 +23,7 @@ export const TOOLS = [
     name: 'Adamo',
     description: 'Integrate AI with all your social media accounts',
     icon: <Social />,
+    gradientColor: 'card-gradient9',
   },
   {
     avatar: require('../assets/images/Wave.png'),
@@ -29,6 +32,7 @@ export const TOOLS = [
     description:
       'Integrate and Utilization of AI within the context of a business organization.',
     icon: <Business />,
+    gradientColor: 'card-gradient10',
   },
 ];
 
@@ -39,6 +43,7 @@ export const ASSISTANTS = [
     name: 'Anna',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient3',
   },
   {
     avatar: require('../assets/images/doctor.png'),
@@ -46,6 +51,7 @@ export const ASSISTANTS = [
     name: 'Susan',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient2',
   },
   {
     avatar: require('../assets/images/nutritionist.png'),
@@ -53,6 +59,7 @@ export const ASSISTANTS = [
     name: 'Adamo',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient1',
   },
   {
     avatar: require('../assets/images/pharmacist.png'),
@@ -60,6 +67,7 @@ export const ASSISTANTS = [
     name: 'Adamo',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient5',
   },
   {
     avatar: require('../assets/images/nutritionist.png'),
@@ -67,6 +75,7 @@ export const ASSISTANTS = [
     name: 'Adamo',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient4',
   },
   {
     avatar: require('../assets/images/nutritionist.png'),
@@ -74,6 +83,7 @@ export const ASSISTANTS = [
     name: 'Adamo',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient6',
   },
   {
     avatar: require('../assets/images/pharmacist.png'),
@@ -81,6 +91,7 @@ export const ASSISTANTS = [
     name: 'Adamo',
     description: '',
     href: '#',
+    gradientColor: 'card-gradient2',
   },
 ];
 

@@ -38,6 +38,7 @@ import Translator from './Translator';
 import Social from './Social';
 import Business from './Business';
 import SidebarDropdown from './sidebarDropdown';
+import DrawerClose from './DrawerClose';
 
 export {
   Avatar,
@@ -80,4 +81,5 @@ export {
   Social,
   Business,
   SidebarDropdown,
+  DrawerClose,
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
-import Layout from 'components/Sidebar';
 import { SENDER_TYPE } from 'types/chat';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
@@ -21,14 +20,14 @@ import {
   DropdownIcon,
   Camera,
   BackArrow,
-} from '../../assets/svgs/index';
+} from 'assets/svgs/index';
 
 import {
   fetchSpeechToText,
   fetchTextToText,
   getRoom,
   handleCreateRoom,
-} from '../../services/chat/utils';
+} from 'services/chat/utils';
 
 const Chat = () => {
   const [messages, setMessages] = React.useState<
@@ -38,7 +37,7 @@ const Chat = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
   const timeOutRef = React.useRef<NodeJS.Timeout>();
-  const [currentAssistant, setCurrentAssistant] = React.useState('Chat');
+  const [currentAssistant] = React.useState('Chat');
 
   const {
     status,
@@ -82,126 +81,120 @@ const Chat = () => {
     handleCreateRoom(createRoom);
   };
 
+  const onChangeChatMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (timeOutRef.current) {
+      clearTimeout(timeOutRef.current);
+    }
+    setValue(e.target.value);
+    timeOutRef.current = setTimeout(TextToText, 3000);
+  };
+
   return (
-    <Layout
-      title='Home'
-      currentChat={currentAssistant}
-      setCurrentChat={setCurrentAssistant}
-    >
-      <div className='bg-white rounded-3xl w-full flex'>
-        <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
-          <div className='p-3.5 w-full items-center'>
-            <div className='flex justify-start'>
-              <span className='text-black text-xl font-semibold relative top-5 font-sans items-center flex'>
-                {currentAssistant !== 'Chat' ? (
-                  <span className='cursor-pointer'>
-                    <BackArrow />
-                  </span>
-                ) : null}
-                {currentAssistant}
-              </span>
-            </div>
-            <div className='flex justify-end space-x-2'>
-              <Star />
-              <Bookmark />
-              <Setting />
-            </div>
+    <div className='bg-white rounded-3xl w-full flex'>
+      <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
+        <div className='p-3.5 w-full items-center'>
+          <div className='flex justify-start'>
+            <span className='text-black text-xl font-semibold relative top-5 font-sans items-center flex'>
+              {currentAssistant !== 'Chat' ? (
+                <span className='cursor-pointer'>
+                  <BackArrow />
+                </span>
+              ) : null}
+              {currentAssistant}
+            </span>
           </div>
-          <Messages
-            {...{
-              messages,
-              setMessages,
-            }}
-          />
-          <div className='p-4 flex space-x-2 items-center'>
-            <ChatInput
-              type='text'
-              placeholder='Message'
-              value={value}
-              onChange={(e) => {
-                if (timeOutRef.current) {
-                  clearTimeout(timeOutRef.current);
-                }
-                setValue(e.target.value);
-                timeOutRef.current = setTimeout(TextToText, 3000);
-              }}
-              onKeyUp={(e) => {
-                if (e.key === 'Enter') {
-                  sendMessage();
-                }
-              }}
-            />
-
-            {value.length === 0 && (
-              <div className='flex space-x-2'>
-                {(status === 'idle' || status === 'stopped') && (
-                  <span className='cursor-pointer' onClick={startRecording}>
-                    <MicroPhone />
-                  </span>
-                )}
-                {status === 'recording' && (
-                  <span className='cursor-pointer' onClick={stopRecording}>
-                    <StopRecording />
-                  </span>
-                )}
-                <span className='cursor-pointer'>
-                  <Image />
-                </span>
-                <span className='cursor-pointer'>
-                  <Camera />
-                </span>
-              </div>
-            )}
-
-            {value.length !== 0 && (
-              <Button
-                className='text-white px-4 rounded-full h-14 w-14'
-                onClick={() => sendMessage()}
-                icon={<Send small />}
-                gradient
-              />
-            )}
+          <div className='flex justify-end space-x-2'>
+            <Star />
+            <Bookmark />
+            <Setting />
           </div>
         </div>
-        <div className='w-1/3 border-l border-slate-300 max-h-[calc(100vh-2rem)] flex-col justify-between flex'>
-          <div className='w-full items-center max-h-full'>
-            <div className='flex justify-end items-center space-x-2 h-20'>
-              <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
-                <Avatar />
-              </div>
-              <DropdownIcon />
+        <Messages
+          {...{
+            messages,
+            setMessages,
+          }}
+        />
+        <div className='p-4 flex space-x-2 items-center'>
+          <ChatInput
+            type='text'
+            placeholder='Message'
+            value={value}
+            onChange={(e) => onChangeChatMessage(e)}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                sendMessage();
+              }
+            }}
+          />
+
+          {value.length === 0 && (
+            <div className='flex space-x-2'>
+              {(status === 'idle' || status === 'stopped') && (
+                <span className='cursor-pointer' onClick={startRecording}>
+                  <MicroPhone />
+                </span>
+              )}
+              {status === 'recording' && (
+                <span className='cursor-pointer' onClick={stopRecording}>
+                  <StopRecording />
+                </span>
+              )}
+              <span className='cursor-pointer'>
+                <Image />
+              </span>
+              <span className='cursor-pointer'>
+                <Camera />
+              </span>
             </div>
-            <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
-              <ChatHistory chat_history={CHAT_HISTORY} />
-              <div className='p-4'>
-                <Button
-                  btnText='New Chat'
-                  gradient
-                  className='rounded-md w-full font-semibold'
-                  onClick={() => setIsOpen(true)}
+          )}
+
+          {value.length !== 0 && (
+            <Button
+              className='text-white px-4 rounded-full h-14 w-14'
+              onClick={() => sendMessage()}
+              icon={<Send small />}
+              gradient
+            />
+          )}
+        </div>
+      </div>
+      <div className='w-1/3 border-l border-slate-300 max-h-[calc(100vh-2rem)] flex-col justify-between flex'>
+        <div className='flex justify-end items-center space-x-6 h-20 mx-4'>
+          <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
+            <Avatar />
+          </div>
+          <DropdownIcon />
+        </div>
+        <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
+          <ChatHistory chat_history={CHAT_HISTORY} />
+          <div className='p-4'>
+            <Button
+              btnText='New Chat'
+              gradient
+              className='rounded-md w-full font-semibold'
+              onClick={() => setIsOpen(true)}
+            />
+            <Modal
+              isOpen={isOpen}
+              title='Create Room'
+              description='Please Add Room UUID Here'
+              btnText='Create Room'
+              setIsOpen={setIsOpen}
+              onClose={handleRoomCreation}
+            >
+              <div>
+                <ChatInput
+                  type='text'
+                  placeholder='Please Input the room uuid'
+                  onChange={(e) => setCreateRoom(e.target.value)}
                 />
-                <Modal
-                  isOpen={isOpen}
-                  title='Create Room'
-                  description='Please Add Room UUID Here'
-                  btnText='Create Room'
-                  setIsOpen={setIsOpen}
-                  onClose={handleRoomCreation}
-                >
-                  <div>
-                    <ChatInput
-                      type='text'
-                      placeholder='Please Input the room uuid'
-                      onChange={(e) => setCreateRoom(e.target.value)}
-                    />
-                  </div>
-                </Modal>
               </div>
-            </div>
+            </Modal>
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

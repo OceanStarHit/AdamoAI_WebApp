@@ -32,9 +32,9 @@ const Tabs: React.FC<TabsType> = ({
           <Tab.List
             className={`flex space-x-1 bg-gray-200 p-1 mt-6 ${className} ${tabWidth}`}
           >
-            {options.map((tab) => (
+            {options.map((tab, index) => (
               <Tab
-                key={tab.label}
+                key={`${tab.label} ${index}`}
                 className={({ selected }) =>
                   classNames(
                     `w-full py-3 text-xs sm:text-sm ${className}`,
