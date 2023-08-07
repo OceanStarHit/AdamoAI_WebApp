@@ -1,18 +1,26 @@
+/* eslint-disable max-lines */
 import {
+  AvatarField,
+  Calendar,
   Email,
   HeadPhone,
   Help,
   Info,
   LitePlan,
+  Password,
   Phone,
   Shield,
+  Speech,
+  Theme,
 } from 'assets/svgs';
 import BasicPlan from 'assets/svgs/BasicPlan';
+import { emailRule, passwordRule, required } from './auth';
 
 export type SettingsItem = {
   icon: () => JSX.Element;
   title: ScreenName | string;
   hasMore?: boolean;
+  subtitle?: string;
 };
 
 export enum ScreenName {
@@ -82,6 +90,19 @@ export const contactDetails: Array<SettingsItem> = [
   {
     icon: Phone,
     title: '1-800-555-5555',
+  },
+];
+
+export const APP_DETAILS = [
+  {
+    icon: Theme,
+    title: 'Theme',
+    subtitle: 'Light',
+  },
+  {
+    icon: Speech,
+    title: 'Main Language For Speech',
+    subtitle: 'English',
   },
 ];
 
@@ -215,3 +236,44 @@ export const subscriptionPlans: {
     ],
   },
 };
+
+export const email = {
+  icon: <Email />,
+  name: 'email',
+  label: 'Email',
+  placeholder: 'Enter your email',
+  rules: emailRule,
+};
+
+export const password = {
+  icon: <Password />,
+  name: 'password',
+  label: 'Password',
+  placeholder: 'Enter your password',
+  rules: passwordRule,
+};
+
+export const name = {
+  icon: <AvatarField />,
+  name: 'name',
+  label: 'Name',
+  placeholder: 'Enter your Name',
+  rules: { required },
+};
+
+export const birthday = {
+  icon: <Calendar />,
+  name: 'birthday',
+  label: 'Birthday',
+  placeholder: 'Enter your birthday',
+  rules: { required },
+};
+
+export const phoneNumber = {
+  icon: <Calendar />,
+  name: 'phoneNumber',
+  label: 'Phone Number',
+  placeholder: 'Enter your phone number',
+  rules: { required },
+};
+export const EDIT_PROFILE = [phoneNumber, name, email, birthday, password];

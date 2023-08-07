@@ -29,7 +29,7 @@ export const UPPER_SIDEBAR = [
     icon: <Tools />,
   },
   {
-    route: ROUTES.TOOLS,
+    route: ROUTES.SETTING,
     label: 'Settings',
     icon: <SidebarSetting />,
   },
@@ -85,7 +85,7 @@ export const UPPER_CLOSE_SIDEBAR = [
     icon: <Tools width='30' height='30' />,
   },
   {
-    route: ROUTES.TOOLS,
+    route: ROUTES.SETTING,
     label: 'Settings',
     icon: <SidebarSetting width='30' height='30' />,
   },

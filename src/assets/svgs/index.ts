@@ -46,6 +46,13 @@ import CarrotRight from './CarrotRight';
 import Phone from './Phone';
 import LitePlan from './LitePlan';
 import DrawerClose from './DrawerClose';
+import Calendar from './Calendar';
+import AvatarField from './AvatarField';
+import Theme from './Theme';
+import Speech from './Speech';
+import CanadaIcon from './CandaIcon';
+import ChevronDown from './ChevronDown';
+import ChevronUp from './ChevronUp';
 
 export {
   Avatar,
@@ -96,4 +103,11 @@ export {
   Phone,
   LitePlan,
   DrawerClose,
+  Calendar,
+  AvatarField,
+  Theme,
+  Speech,
+  CanadaIcon,
+  ChevronDown,
+  ChevronUp,
 };

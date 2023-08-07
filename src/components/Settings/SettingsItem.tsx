@@ -20,7 +20,10 @@ const SettingsItem: React.FC<Props> = ({ item, isLast, onClick }) => {
         <item.icon />
         <p className='ml-3 md:ml-5 text-sm md:text-lg'>{item.title}</p>
       </div>
-      <CarrotRight />
+      <div className='flex space-x-4 items-center'>
+        <p className='text-slate-400 font-light'>{item.subtitle}</p>
+        <CarrotRight />
+      </div>
     </div>
   );
 };
