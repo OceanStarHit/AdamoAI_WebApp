@@ -19,7 +19,7 @@ const ToolScreen = () => {
           </div>
           <div className='flex justify-end mr-8'>
             <div className='flex space-x-4 items-center'>
-              <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full dark:bg-gray-600'>
+              <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
                 <Avatar />
               </div>
               <div>

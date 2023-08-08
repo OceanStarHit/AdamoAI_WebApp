@@ -75,7 +75,7 @@ const SidebarContainer: React.FC<SidebarContainerType> = ({
         <div className='p-2'>
           <div className='black-gradient text-white rounded-md p-2'>
             <div className='flex space-x-2'>
-              <div className='relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
+              <div className='relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full'>
                 <svg
                   className='absolute w-8 h-8 text-gray-400 -left-1'
                   fill='currentColor'

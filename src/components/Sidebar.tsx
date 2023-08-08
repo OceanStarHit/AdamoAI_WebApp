@@ -107,7 +107,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <div className='black-gradient rounded-md p-2'>
                   <div className='text-white mb-1'>
                     <div className='flex justify-center items-center'>
-                      <div className='relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
+                      <div className='relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full'>
                         <svg
                           className='absolute w-8 h-8 text-gray-400 top-1'
                           fill='currentColor'
