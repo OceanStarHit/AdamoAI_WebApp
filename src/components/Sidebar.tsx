@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
-  const [lowerSidebar, setLowerSidebar] = React.useState<AllAssistants[]>([]);
+  const [, setLowerSidebar] = React.useState<AllAssistants[]>([]);
 
   React.useEffect(() => {
     async function fetchListAssistant() {
@@ -67,7 +67,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <DrawerClose />
                 </div>
               </div>
-              <SidebarContainer {...{ dropdown, setDropdown, lowerSidebar }} />
+              <SidebarContainer
+                setDropdown={setDropdown}
+                dropdown={dropdown}
+                lowerSidebar={LOWER_SIDEBAR}
+              />
             </>
           ) : (
             <div>
