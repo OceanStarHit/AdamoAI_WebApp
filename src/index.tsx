@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'slick-carousel/slick/slick.css'; // Import slick carousel CSS
+import 'slick-carousel/slick/slick-theme.css'; // Import slick carousel theme CSS
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

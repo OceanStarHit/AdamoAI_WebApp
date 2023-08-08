@@ -1,12 +1,13 @@
 interface TickIconType {
   classNames: string;
+  color?: string;
 }
-const TickIcon: React.FC<TickIconType> = ({ classNames }) => (
+const TickIcon: React.FC<TickIconType> = ({ classNames, color = 'white' }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 24 24'
     fill='white'
-    stroke='white'
+    stroke={color}
     strokeWidth='2'
     className={`w-6 h-6 ${classNames}`}
   >

@@ -7,6 +7,7 @@ import UserAuthentication from 'screens/Auth';
 import { Routes, Route } from 'react-router-dom';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
 import useAuthContext from 'hooks/useAuth';
+import Settings from 'screens/Settings';
 
 const getAuthenticatedRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const getAuthenticatedRoutes = () => {
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.CHAT} element={<Chat />} />
       <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
+      <Route path={ROUTES.SETTING} element={<Settings />} />
     </>
   );
 };

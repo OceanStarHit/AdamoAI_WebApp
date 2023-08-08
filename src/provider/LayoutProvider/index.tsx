@@ -1,0 +1,25 @@
+import React from 'react';
+import { LayoutContext } from 'provider/LayoutProvider/context';
+
+type PROPS = {
+  children: null | boolean | undefined | React.ReactNode | React.ReactPortal;
+};
+
+const LayoutProvider: React.FC<PROPS> = ({ children }) => {
+  const [sidebarState, setSidebarState] = React.useState('');
+  const [settingState, setSettingState] = React.useState('Settings');
+  const contextValue = {
+    sidebarState,
+    settingState,
+    setSidebarState,
+    setSettingState,
+  };
+  return (
+    <LayoutContext.Provider value={contextValue}>
+      {children}
+    </LayoutContext.Provider>
+  );
+};
+
+export default LayoutProvider;
+export { LayoutContext };
