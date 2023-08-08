@@ -44,15 +44,17 @@ const Checkout: React.FC<Props> = ({ plan }) => {
               $ {selectedPlan.price}
             </p>
           </div>
-          <div className='px-5 bg-gray-light rounded-b-md p-3 flex items-center font-semibold justify-between'>
-            <div className='flex items-center'>
+          <div className='px-5 bg-gray-light rounded-b-md p-3 flex items-between font-semibold justify-between flex-col md:flex-row'>
+            <div className='flex'>
               <ToggleBtn />
-              <p className='ml-4 mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
-                Save $10
+              <p className='ml-2'>
+                <span className='p-2 rounded-sm bg-[#00ff4011] text-black whitespace-nowrap'>
+                  Save $10
+                </span>
+                with annual billing
               </p>
-              <p>with annual billing</p>
             </div>
-            <p className='r-0'>$50/year</p>
+            <p className='r-0 md:self-auto self-end'>$50/year</p>
           </div>
         </div>
         <div className='text-black font-semibold md:pl-6 md:mt-5 max-w-[700px]'>
