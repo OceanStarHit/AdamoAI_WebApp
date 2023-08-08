@@ -53,6 +53,22 @@ const Checkout: React.FC<Props> = ({ plan }) => {
             <p className='r-0'>$50/year</p>
           </div>
         </div>
+        <div className='text-black font-semibold pl-6'>
+          <div className='flex justify-between py-5 border-b-2 border-gray-200'>
+            <p>Subtotal</p>
+            <p>${selectedPlan.price}</p>
+          </div>
+          <div className='flex justify-between py-5 border-b-2 border-gray-200'>
+            <input
+              placeholder='Add Promotion Code'
+              className='bg-gray-light w-[190px] p-2 px-4 rounded text-black'
+            />
+          </div>
+          <div className='flex justify-between py-5'>
+            <p>Total Due</p>
+            <p>${selectedPlan.price}</p>
+          </div>
+        </div>
       </div>
       <div className='flex-1'>
         <p>Billing details</p>
