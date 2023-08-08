@@ -29,7 +29,7 @@ const EditProfile = () => {
   return (
     <div className='flex justify-center w-full flex-col items-center space-y-2 my-2'>
       {!selectedFile ? (
-        <div className='relative w-28 h-28 overflow-hidden bg-gray-600 rounded-full dark:bg-gray-600'>
+        <div className='relative w-28 h-28 overflow-hidden bg-gray-600 rounded-full'>
           <Avatar width='26' height='26' className='relative left-0.5 top-3' />
         </div>
       ) : (

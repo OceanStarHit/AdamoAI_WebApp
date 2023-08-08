@@ -25,7 +25,7 @@ const Input: React.FC<InputType> = ({
     <div className='flex flex-col'>
       <label
         htmlFor='input-group-1'
-        className={`block mb-2 text-sm font-medium text-gray-900 dark:text-white ${labelClassName}`}
+        className={`block mb-2 text-sm font-medium text-gray-900 ${labelClassName}`}
       >
         {label}
       </label>
