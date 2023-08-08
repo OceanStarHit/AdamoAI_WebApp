@@ -9,7 +9,7 @@ type Props = {
 const Checkout: React.FC<Props> = ({ plan }) => {
   const selectedPlan = subscriptionPlans[plan];
   return (
-    <div className='flex w-full mb-5 mt-5'>
+    <div className='flex w-full mb-5 mt-5 flex-col md:flex-row'>
       <div className='flex-1'>
         <div className='flex items-center'>
           <img
@@ -30,22 +30,24 @@ const Checkout: React.FC<Props> = ({ plan }) => {
         </div>
         {/* Plan Card */}
         <div className='border rounded-lg mt-8 max-w-[700px]'>
-          <div className='p-5 flex gap-3 justify-between'>
-            <selectedPlan.icon />
-            <div className='ml-3'>
-              <p className='capitalize font-semibold text-black'>
-                Adamo {selectedPlan.type.toLocaleLowerCase()}
-              </p>
-              <p className='text-sm'>{selectedPlan.details}</p>
+          <div className='p-5 flex gap-3 justify-between items-center'>
+            <div className='flex items-center'>
+              <selectedPlan.icon />
+              <div className='ml-3'>
+                <p className='capitalize font-semibold text-black'>
+                  Adamo {selectedPlan.type.toLocaleLowerCase()}
+                </p>
+                <p className='text-sm'>{selectedPlan.details}</p>
+              </div>
             </div>
             <p className='text-lg text-black font-semibold whitespace-nowrap'>
               $ {selectedPlan.price}
             </p>
           </div>
           <div className='px-5 bg-gray-light rounded-b-md p-3 flex items-center font-semibold justify-between'>
+            <ToggleBtn />
             <div className='flex items-center'>
-              <ToggleBtn />
-              <p className='ml-4 mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
+              <p className='mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
                 Save $10
               </p>
               <p>with annual billing</p>
@@ -53,7 +55,7 @@ const Checkout: React.FC<Props> = ({ plan }) => {
             <p className='r-0'>$50/year</p>
           </div>
         </div>
-        <div className='text-black font-semibold pl-6'>
+        <div className='text-black font-semibold md:pl-6 mt-5 max-w-[700px]'>
           <div className='flex justify-between py-5 border-b-2 border-gray-200'>
             <p>Subtotal</p>
             <p>${selectedPlan.price}</p>
