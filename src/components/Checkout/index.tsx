@@ -1,3 +1,4 @@
+import ToggleBtn from 'components/ToggleBtn';
 import { subscriptionPlans } from 'constants/settings';
 import { subscriptionPlansNames } from 'constants/settings';
 
@@ -8,7 +9,7 @@ type Props = {
 const Checkout: React.FC<Props> = ({ plan }) => {
   const selectedPlan = subscriptionPlans[plan];
   return (
-    <div className='flex w-full mb-5'>
+    <div className='flex w-full mb-5 mt-5'>
       <div className='flex-1'>
         <div className='flex items-center'>
           <img
@@ -40,6 +41,16 @@ const Checkout: React.FC<Props> = ({ plan }) => {
             <p className='text-lg text-black font-semibold whitespace-nowrap'>
               $ {selectedPlan.price}
             </p>
+          </div>
+          <div className='px-5 bg-gray-light rounded-b-md p-3 flex items-center font-semibold justify-between'>
+            <div className='flex items-center'>
+              <ToggleBtn />
+              <p className='ml-4 mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
+                Save $10
+              </p>
+              <p>with annual billing</p>
+            </div>
+            <p className='r-0'>$50/year</p>
           </div>
         </div>
       </div>
