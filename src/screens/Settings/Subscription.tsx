@@ -2,18 +2,22 @@ import React from 'react';
 import Tabs from 'components/Tabs';
 import { TickIcon } from 'assets/svgs';
 import {
+  SUBSCRIPTION_SCREEN_NAMES,
   SubscriptionPlansType,
   subscriptionPlans,
   subscriptionPlansNames,
 } from 'constants/settings';
 import useLayoutContext from 'hooks/useLayout';
+import Checkout from 'components/Checkout';
 
 const Plan = ({
   plan,
   isCurrent,
+  onSelectPlan,
 }: {
   plan: SubscriptionPlansType;
   isCurrent: boolean;
+  onSelectPlan: () => void;
 }) => {
   return (
     <div
@@ -22,6 +26,7 @@ const Plan = ({
           ? 'bg-subscription-lite'
           : 'bg-subscription-basic'
       } p-3 rounded-lg flex flex-col justify-between w-full`}
+      onClick={onSelectPlan}
     >
       <div>
         <div className='flex gap-5 items-center'>
@@ -69,11 +74,16 @@ const Plan = ({
 };
 
 const Subscription = () => {
+  const [currentScreen, setCurrentScreen] = React.useState(
+    SUBSCRIPTION_SCREEN_NAMES.SUBSCRIPTION,
+  );
+  const [selectedPlan, setSelectedPlan] =
+    React.useState<subscriptionPlansNames>(subscriptionPlansNames.LITE);
   const tabs = [
     { label: 'Monthly', component: <></> },
     { label: 'Yearly', component: <></> },
   ];
-  const { setSettingState } = useLayoutContext();
+  const { setSettingState, settingState } = useLayoutContext();
 
   React.useEffect(() => {
     setSettingState('Settings');
@@ -82,21 +92,44 @@ const Subscription = () => {
 
   return (
     <div className='w-full flex flex-col justify-center items-center text-gray-500'>
-      <div className='relative bottom-2'>
-        <Tabs
-          options={tabs}
-          selectedClassName='!bg-white'
-          notSelectedClassName='!bg-input-gradient'
-          variant='login'
-        />
-      </div>
-      <p className='text-center font-helvetica text-base text-adamo-green relative bottom-1 font-semibold'>
-        Save $10 with annual billing
-      </p>
-      <div className='flex flex-col md:flex-row gap-x-3 gap-2 justify-center w-full'>
-        <Plan plan={subscriptionPlans.LITE} isCurrent />
-        <Plan plan={subscriptionPlans.BASIC} isCurrent={false} />
-      </div>
+      {currentScreen === SUBSCRIPTION_SCREEN_NAMES.SUBSCRIPTION ||
+      settingState === 'Settings' ? (
+        <>
+          <div className='relative bottom-2'>
+            <Tabs
+              options={tabs}
+              selectedClassName='!bg-white'
+              notSelectedClassName='!bg-input-gradient'
+              variant='login'
+            />
+          </div>
+          <p className='text-center font-helvetica text-base text-adamo-green relative bottom-1 font-semibold'>
+            Save $10 with annual billing
+          </p>
+          <div className='flex flex-col md:flex-row gap-x-3 gap-2 justify-center w-full mb-6'>
+            <Plan
+              plan={subscriptionPlans.LITE}
+              isCurrent
+              onSelectPlan={() => {
+                setSelectedPlan(subscriptionPlansNames.LITE);
+                setCurrentScreen(SUBSCRIPTION_SCREEN_NAMES.CHECKOUT);
+                setSettingState('Checkout');
+              }}
+            />
+            <Plan
+              plan={subscriptionPlans.BASIC}
+              isCurrent={false}
+              onSelectPlan={() => {
+                setSelectedPlan(subscriptionPlansNames.BASIC);
+                setCurrentScreen(SUBSCRIPTION_SCREEN_NAMES.CHECKOUT);
+                setSettingState('Checkout');
+              }}
+            />
+          </div>
+        </>
+      ) : (
+        <Checkout plan={selectedPlan} />
+      )}
     </div>
   );
 };

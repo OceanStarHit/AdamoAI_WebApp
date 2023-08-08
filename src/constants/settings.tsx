@@ -201,6 +201,7 @@ export type SubscriptionPlansType = {
   icon: () => JSX.Element;
   discount?: number;
   features: Array<string>;
+  details?: string;
 };
 
 export const subscriptionPlans: {
@@ -226,6 +227,7 @@ export const subscriptionPlans: {
     price: 5,
     noOfMessages: 'No message limits',
     discount: 50,
+    details: 'Enjoy unlimited message and expert with the Basic plan.',
     features: [
       'No Message Limits',
       'Unlimited Experts',
@@ -277,3 +279,8 @@ export const phoneNumber = {
   rules: { required },
 };
 export const EDIT_PROFILE = [phoneNumber, name, email, birthday, password];
+
+export enum SUBSCRIPTION_SCREEN_NAMES {
+  SUBSCRIPTION = 'SUBSCRIPTION',
+  CHECKOUT = 'CHECKOUT',
+}
