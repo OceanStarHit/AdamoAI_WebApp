@@ -30,8 +30,8 @@ const Checkout: React.FC<Props> = ({ plan }) => {
         </div>
         {/* Plan Card */}
         <div className='border rounded-lg mt-8 max-w-[700px]'>
-          <div className='p-5 flex gap-3 justify-between items-center'>
-            <div className='flex items-center'>
+          <div className='p-5 flex gap-3 justify-between'>
+            <div className='flex'>
               <selectedPlan.icon />
               <div className='ml-3'>
                 <p className='capitalize font-semibold text-black'>
@@ -45,9 +45,9 @@ const Checkout: React.FC<Props> = ({ plan }) => {
             </p>
           </div>
           <div className='px-5 bg-gray-light rounded-b-md p-3 flex items-center font-semibold justify-between'>
-            <ToggleBtn />
             <div className='flex items-center'>
-              <p className='mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
+              <ToggleBtn />
+              <p className='ml-4 mr-1 p-2 rounded-sm bg-[#00ff4011] text-black'>
                 Save $10
               </p>
               <p>with annual billing</p>
@@ -55,7 +55,7 @@ const Checkout: React.FC<Props> = ({ plan }) => {
             <p className='r-0'>$50/year</p>
           </div>
         </div>
-        <div className='text-black font-semibold md:pl-6 mt-5 max-w-[700px]'>
+        <div className='text-black font-semibold md:pl-6 md:mt-5 max-w-[700px]'>
           <div className='flex justify-between py-5 border-b-2 border-gray-200'>
             <p>Subtotal</p>
             <p>${selectedPlan.price}</p>
