@@ -1,9 +1,7 @@
 import React from 'react';
 import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
-import { AllAssistants } from 'types/assistant';
 import { DrawerClose, MenuIcon } from 'assets/svgs';
-import AssistantServices from 'services/assistants/index';
 import {
   LOWER_SIDEBAR,
   LOWER__CLOSE_SIDEBAR,
@@ -18,20 +16,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
-  const [, setLowerSidebar] = React.useState<AllAssistants[]>([]);
-
-  React.useEffect(() => {
-    async function fetchListAssistant() {
-      try {
-        const listAssistant = await AssistantServices.listAssistants();
-        setLowerSidebar(listAssistant ?? LOWER_SIDEBAR);
-      } catch (error) {
-        console.log(error);
-        setLowerSidebar(LOWER_SIDEBAR);
-      }
-    }
-    fetchListAssistant();
-  }, []);
 
   return (
     <div className='bg-slate-950 min-h-screen font-serif'>

@@ -1,34 +1,29 @@
 import React from 'react';
-import { SENDER_TYPE } from 'types/chat';
-import { Edit, Reload } from 'assets/svgs';
+import { PreviousChatType, SENDER_TYPE } from 'types/chat';
+// import { Reload } from 'assets/svgs';
 import ChatInput from 'components/ChatInput';
 import { IMAGE_GIF } from 'constants/common';
 
-type Message = {
-  text: string;
-  sender: SENDER_TYPE;
-};
-
 interface MessagesType {
-  messages: Message[];
-  setMessages: (message: Message[]) => void;
+  messages: PreviousChatType[];
+  setMessages: (message: PreviousChatType[]) => void;
 }
 const Messages: React.FC<MessagesType> = ({ messages }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
   });
-  const handleEdit = (selectedIndex: number, message: string) => {
-    const selectedMessage = messages.find(
-      (item, index) =>
-        item.text === message &&
-        index === selectedIndex &&
-        item.sender === SENDER_TYPE.USER,
-    );
-    if (selectedMessage) {
-      setEditMessage({ index: selectedIndex, message: selectedMessage?.text });
-    }
-  };
+  // const handleEdit = (selectedIndex: number, message: string) => {
+  //   const selectedMessage = messages.find(
+  //     (item, index) =>
+  //       item.text === message &&
+  //       index === selectedIndex &&
+  //       item.sender === SENDER_TYPE.USER,
+  //   );
+  //   if (selectedMessage) {
+  //     setEditMessage({ index: selectedIndex, message: selectedMessage?.text });
+  //   }
+  // };
 
   const handleSendMessage = () => {
     messages[editMessage.index].text = editMessage.message;
@@ -42,7 +37,7 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
           <div
             key={index}
             className={`${
-              message.sender === SENDER_TYPE.USER
+              message.senderType === SENDER_TYPE.USER
                 ? 'justify-end'
                 : 'justify-start mb-4'
             } flex`}
@@ -50,13 +45,13 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
             <div className='block'>
               <div
                 className={`${
-                  message.sender === SENDER_TYPE.USER
+                  message.senderType === SENDER_TYPE.USER
                     ? 'bg-blue-500 text-white'
                     : 'bg-orange-300 text-gray-500'
                 } py-2 px-4 rounded-lg`}
               >
                 {editMessage.index === index &&
-                message.sender === SENDER_TYPE.USER ? (
+                message.senderType === SENDER_TYPE.USER ? (
                   <ChatInput
                     type='text'
                     defaultValue={editMessage.message}
@@ -78,7 +73,7 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                   message.text
                 )}
               </div>
-              {message.sender === SENDER_TYPE.USER ? (
+              {message.senderType === SENDER_TYPE.USER ? (
                 <>
                   <div className='flex justify-end -mt-2 mr-2'>
                     <svg
@@ -100,20 +95,20 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                         Just Now
                       </p>
                     </span>
-                    <span
+                    {/* <span
                       className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'
-                      onClick={() => handleEdit(index, message.text)}
+                      // onClick={() => handleEdit(index, message.text)}
                     >
                       <Edit />
                       <p className='text-gray-600 text-xs'>Edit</p>
-                    </span>
+                    </span> */}
                   </div>
                 </>
               ) : (
                 <>
                   <div className='flex justify-start -mt-2'>
                     <img
-                      src='https://s3-alpha-sig.figma.com/img/e5c2/b213/71bbe166f7d5c1f533d34bfcbf74b69e?Expires=1690761600&Signature=c0R~cNo3OzECor4Jk6wgtbe5dJHjt1PcatLjje5B0DezhzSLDV3R2EoIGIrlGU6OE8mm~54YHWrewnCA7CtIVPGghoM~jT8j8BWIEsxPIEtNqP7AQeC4QgrMSYihEH-oyySijoQPw1QyNfKxjE2Au7LNj~whz5oHXnyS-02jjlZbc9fGEOsb7d2NOI13YFOk~Z0Ao7u0cA6OYw93jES~1mocPBQ0ruk1lGORRZ4EmpRwQrCwlg~VntqdERh6dsFLcwgpEVcUfyloCjVrfdsml3QRSnyNsDiE~RoCs0Gt0jPnYAcCU3odvTD~6lCid6VKe8Z3fEIU2cf30Rc7t5D9Xw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4'
+                      src={IMAGE_GIF}
                       width={40}
                       height={40}
                       className='rounded-full'
@@ -125,12 +120,12 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                         Just Now
                       </p>
                     </span>
-                    <span className='flex space-x-1 rounded-md bg-gray-200 w-auto h-7 items-center justify-center relative bottom-7 cursor-pointer p-1'>
+                    {/* <span className='flex space-x-1 rounded-md bg-gray-200 w-auto h-7 items-center justify-center relative bottom-7 cursor-pointer p-1'>
                       <Reload />
                       <p className='text-gray-600 text-xs'>
                         Regenerate response
                       </p>
-                    </span>
+                    </span> */}
                   </div>
                 </>
               )}

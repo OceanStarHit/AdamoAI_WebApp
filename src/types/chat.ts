@@ -32,3 +32,11 @@ export enum SENDER_TYPE {
   USER = 'USER',
   BOT = 'BOT',
 }
+
+export interface PreviousChatType {
+  sender_uuid: string;
+  text: string;
+  time_stamp: string;
+  uuid: string;
+  senderType: SENDER_TYPE;
+}

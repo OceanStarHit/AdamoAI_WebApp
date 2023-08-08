@@ -53,6 +53,7 @@ import Speech from './Speech';
 import CanadaIcon from './CandaIcon';
 import ChevronDown from './ChevronDown';
 import ChevronUp from './ChevronUp';
+import Loader from './Loader';
 
 export {
   Avatar,
@@ -110,4 +111,5 @@ export {
   CanadaIcon,
   ChevronDown,
   ChevronUp,
+  Loader,
 };
