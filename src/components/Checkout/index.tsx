@@ -1,6 +1,7 @@
 import ToggleBtn from 'components/ToggleBtn';
 import { subscriptionPlans } from 'constants/settings';
 import { subscriptionPlansNames } from 'constants/settings';
+import CheckoutForm from './CheckoutForm';
 
 type Props = {
   plan: subscriptionPlansNames;
@@ -75,7 +76,7 @@ const Checkout: React.FC<Props> = ({ plan }) => {
         </div>
       </div>
       <div className='flex-1'>
-        <p>Billing details</p>
+        <CheckoutForm />
       </div>
     </div>
   );
