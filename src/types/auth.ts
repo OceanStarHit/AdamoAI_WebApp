@@ -12,12 +12,12 @@ export interface AuthFormType {
   name: string;
   label: string;
   placeholder: string;
-  rules: {
-    required: {
+  rules?: {
+    required?: {
       value: boolean;
       message: string;
     };
-    pattern: {
+    pattern?: {
       value: RegExp;
       message: string;
     };

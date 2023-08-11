@@ -33,6 +33,13 @@ export const password = {
   name: 'password',
   label: 'Password',
   placeholder: 'Enter your password',
+};
+
+export const validPassword = {
+  icon: <Password />,
+  name: 'password',
+  label: 'Password',
+  placeholder: 'Enter your password',
   rules: passwordRule,
 };
 
@@ -48,3 +55,4 @@ export const ANIMATED_TEXT = [
   `Your BFF, who's an expert in everything. `,
 ];
 export const LOGIN: AuthFormType[] = [email, password];
+export const REGISTER: AuthFormType[] = [email, validPassword];
