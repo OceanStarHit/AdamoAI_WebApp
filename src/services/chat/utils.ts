@@ -45,24 +45,7 @@ export const getRoom = async (room_uuid: string) => {
     }));
     return messageResponse;
   } catch (error) {
-    console.log(error);
     return [];
-  }
-};
-
-export const fetchTextToText = async (hashValue: string) => {
-  const sendTxt = {
-    room: {
-      uuid: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      assistant_uuid: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    },
-    msg_txt: hashValue,
-  };
-  try {
-    const response = await ChatServices.on_text_as_text(sendTxt);
-    return response;
-  } catch (error) {
-    return 'Text message testing';
   }
 };
 

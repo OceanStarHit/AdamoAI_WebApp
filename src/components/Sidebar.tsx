@@ -1,9 +1,8 @@
 import React from 'react';
 import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
-import { AllAssistants } from 'types/assistant';
+import { useNavigate } from 'react-router-dom';
 import { DrawerClose, MenuIcon } from 'assets/svgs';
-import AssistantServices from 'services/assistants/index';
 import {
   LOWER_SIDEBAR,
   LOWER__CLOSE_SIDEBAR,
@@ -15,23 +14,10 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const navigate = useNavigate();
   const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
-  const [, setLowerSidebar] = React.useState<AllAssistants[]>([]);
-
-  React.useEffect(() => {
-    async function fetchListAssistant() {
-      try {
-        const listAssistant = await AssistantServices.listAssistants();
-        setLowerSidebar(listAssistant ?? LOWER_SIDEBAR);
-      } catch (error) {
-        console.log(error);
-        setLowerSidebar(LOWER_SIDEBAR);
-      }
-    }
-    fetchListAssistant();
-  }, []);
 
   return (
     <div className='bg-slate-950 min-h-screen font-serif'>
@@ -91,6 +77,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <div
                     className='flex flex-col mt-2 items-center hover:black-gradient w-16 h-10 ml-4 rounded-full cursor-pointer'
                     key={item.label}
+                    onClick={() => navigate(item.route)}
                   >
                     <span className='relative top-1'>{item.icon}</span>
                   </div>

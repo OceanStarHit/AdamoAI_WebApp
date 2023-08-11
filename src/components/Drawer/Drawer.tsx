@@ -1,9 +1,7 @@
 import React from 'react';
-import { LOWER_SIDEBAR } from 'constants/sidebar';
 import { IMAGE_URL } from 'constants/common';
-import { AllAssistants } from 'types/assistant';
+import { LOWER_SIDEBAR } from 'constants/sidebar';
 import SidebarContainer from './SidebarContainer';
-import AssistantServices from 'services/assistants/index';
 
 interface DrawerType {
   openDrawer: boolean;
@@ -12,20 +10,6 @@ interface DrawerType {
 
 const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
   const [dropdown, setDropdown] = React.useState(true);
-  const [lowerSidebar, setLowerSidebar] = React.useState<AllAssistants[]>([]);
-
-  React.useEffect(() => {
-    async function fetchListAssistant() {
-      try {
-        const listAssistant = await AssistantServices.listAssistants();
-        setLowerSidebar(listAssistant ?? LOWER_SIDEBAR);
-      } catch (error) {
-        console.log(error);
-        setLowerSidebar(LOWER_SIDEBAR);
-      }
-    }
-    fetchListAssistant();
-  }, []);
 
   return (
     <div>
@@ -57,7 +41,11 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>
-        <SidebarContainer {...{ dropdown, setDropdown, lowerSidebar }} />
+        <SidebarContainer
+          dropdown={dropdown}
+          lowerSidebar={LOWER_SIDEBAR}
+          setDropdown={setDropdown}
+        />
       </div>
     </div>
   );

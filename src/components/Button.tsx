@@ -1,5 +1,5 @@
+import { Loader } from 'assets/svgs';
 import classnames from 'classnames';
-import Loader from 'assets/svgs/loader.svg';
 
 interface ButtonType extends React.ComponentProps<'button'> {
   bold?: boolean;
@@ -40,7 +40,7 @@ const Button: React.FC<ButtonType> = ({
     {...rest}
   >
     {loading ? (
-      <div className='flex-center'>
+      <div className='flex justify-center'>
         <Loader />
       </div>
     ) : (

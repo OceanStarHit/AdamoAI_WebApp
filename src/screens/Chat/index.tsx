@@ -1,13 +1,12 @@
 import React from 'react';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
-import { SENDER_TYPE } from 'types/chat';
+import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
-import { CHAT_HISTORY } from 'constants/chat';
 import ChatHistory from 'screens/Chat/ChatHistory';
 import { useReactMediaRecorder } from 'react-media-recorder';
-
+import ChatServices from 'services/chat/index';
 import {
   Bookmark,
   Avatar,
@@ -22,23 +21,30 @@ import {
   BackArrow,
 } from 'assets/svgs/index';
 
-import {
-  fetchSpeechToText,
-  fetchTextToText,
-  getRoom,
-  handleCreateRoom,
-} from 'services/chat/utils';
+import { fetchSpeechToText, handleCreateRoom } from 'services/chat/utils';
+import { CombineRoomType } from 'types/assistant';
 
 const Chat = () => {
-  const [messages, setMessages] = React.useState<
-    { text: string; sender: SENDER_TYPE }[]
-  >([]);
   const [createRoom, setCreateRoom] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
-  const timeOutRef = React.useRef<NodeJS.Timeout>();
   const [currentAssistant] = React.useState('Chat');
-
+  const [allListAssistant, setAllListAssistants] = React.useState<
+    CombineRoomType[] | null
+  >([]);
+  const [prevMessages, setPrevMessages] = React.useState<PreviousChatType[]>(
+    [],
+  );
+  const [selectedRoom, setSelectedRoom] = React.useState<CombineRoomType>({
+    avatar: '',
+    discription: '',
+    name: '',
+    persona: '',
+    _id: '',
+    assistant_uuid: '',
+    user_uuid: '',
+    uuid: '',
+  });
   const {
     status,
     startRecording,
@@ -47,17 +53,45 @@ const Chat = () => {
   } = useReactMediaRecorder({ audio: true });
 
   const sendMessage = async () => {
-    setMessages([...messages, { text: value, sender: SENDER_TYPE.USER }]);
     setValue('');
+    setPrevMessages([
+      ...prevMessages,
+      {
+        sender_uuid: '',
+        text: value,
+        senderType: SENDER_TYPE.USER,
+        uuid: '',
+        time_stamp: '',
+      },
+    ]);
+    const _prevMessage = [
+      ...prevMessages,
+      {
+        sender_uuid: '',
+        text: value,
+        senderType: SENDER_TYPE.USER,
+        uuid: '',
+        time_stamp: '',
+      },
+    ];
+    const sendObj = {
+      msg_txt: value,
+      room: {
+        assistant_uuid: selectedRoom?.assistant_uuid,
+        user_uuid: selectedRoom?.user_uuid,
+        uuid: selectedRoom?.uuid,
+      },
+    };
+    const response = await ChatServices.on_text_as_text(sendObj);
+    setPrevMessages([
+      ..._prevMessage,
+      { ...response, senderType: SENDER_TYPE.BOT },
+    ]);
   };
 
   const handleFetchSpeechToText = async (mediaBlobUrl: string) => {
     const response = await fetchSpeechToText(mediaBlobUrl);
     setValue(response);
-  };
-
-  const handleGetRoom = async () => {
-    setMessages(await getRoom('3fa85f64-5717-4562-b3fc-2c963f66afa6'));
   };
 
   React.useEffect(() => {
@@ -66,31 +100,12 @@ const Chat = () => {
     }
   }, [mediaBlobUrl]);
 
-  React.useEffect(() => {
-    handleGetRoom();
-  }, [currentAssistant]);
-
-  const TextToText = React.useCallback(async () => {
-    if (value.length !== 0) {
-      const response = await fetchTextToText(value);
-      setValue(response);
-    }
-  }, [value]);
-
   const handleRoomCreation = () => {
     handleCreateRoom(createRoom);
   };
 
-  const onChangeChatMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (timeOutRef.current) {
-      clearTimeout(timeOutRef.current);
-    }
-    setValue(e.target.value);
-    timeOutRef.current = setTimeout(TextToText, 3000);
-  };
-
   return (
-    <div className='bg-white rounded-3xl w-full flex'>
+    <div className='bg-white rounded-3xl w-full flex min-h-[calc(100vh-2rem)]'>
       <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
         <div className='p-3.5 w-full items-center'>
           <div className='flex justify-start'>
@@ -109,18 +124,13 @@ const Chat = () => {
             <Setting />
           </div>
         </div>
-        <Messages
-          {...{
-            messages,
-            setMessages,
-          }}
-        />
+        <Messages messages={prevMessages} setMessages={setPrevMessages} />
         <div className='p-4 flex space-x-2 items-center'>
           <ChatInput
             type='text'
             placeholder='Message'
             value={value}
-            onChange={(e) => onChangeChatMessage(e)}
+            onChange={(e) => setValue(e.target.value)}
             onKeyUp={(e) => {
               if (e.key === 'Enter') {
                 sendMessage();
@@ -167,7 +177,14 @@ const Chat = () => {
           <DropdownIcon />
         </div>
         <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
-          <ChatHistory chat_history={CHAT_HISTORY} />
+          <ChatHistory
+            {...{
+              allListAssistant,
+              setAllListAssistants,
+              setPrevMessages,
+              setSelectedRoom,
+            }}
+          />
           <div className='p-4'>
             <Button
               btnText='New Chat'

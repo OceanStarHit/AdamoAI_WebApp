@@ -9,12 +9,17 @@ export async function TransformResponse<T>(
     const response = await responseP;
     if (response.status >= 200 && response.status < 400) {
       return {
-        data: response.data,
+        data: response?.data,
         error: false,
         message: customMessage ?? '',
       };
     }
-    return { data: null, error: true, message: 'Something went wrong' };
+    return {
+      data: null,
+      error: true,
+      //@ts-ignore
+      message: response?.response?.data?.detail ?? 'Something Went Wrong!',
+    };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return {

@@ -1,12 +1,18 @@
 import React from 'react';
-import { IAuthType } from 'types/auth';
+import { IAuthType, IRegisterType } from 'types/auth';
 
 export const AuthContext = React.createContext<{
   accessToken: string;
   user: IAuthType | null;
   loggedOut: () => void;
-  login: (data: IAuthType) => void;
-  register: (data: IAuthType) => void;
+  login: (
+    data: IAuthType,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => void;
+  register: (
+    data: IRegisterType,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => void;
   googleLogin: () => void;
   facebookLogin: () => void;
   setUser: React.Dispatch<React.SetStateAction<IAuthType | null>>;

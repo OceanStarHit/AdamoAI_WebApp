@@ -23,3 +23,23 @@ export interface AuthFormType {
     };
   };
 }
+
+export interface IRegisterType {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+}
+
+export interface RegisterFormType {
+  icon: JSX.Element;
+  name: string;
+  label: string;
+  placeholder: string;
+  rules: {
+    required: {
+      value: boolean;
+      message: string;
+    };
+  };
+}
