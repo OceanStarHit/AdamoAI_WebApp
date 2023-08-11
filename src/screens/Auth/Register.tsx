@@ -1,26 +1,28 @@
+import React from 'react';
 import useAuth from 'hooks/useAuth';
 import Input from 'components/Input';
 import { REGISTER } from 'constants/auth';
 import Button from 'components/Button';
-import { AuthFormType, IAuthType } from 'types/auth';
 import { Apple, Facebook, Google } from 'assets/svgs';
+import { IRegisterType, RegisterFormType } from 'types/auth';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
 const Register = () => {
-  const { control, handleSubmit } = useForm<IAuthType>();
+  const [loading, setLoading] = React.useState(false);
+  const { control, handleSubmit } = useForm<IRegisterType>();
   const { register, googleLogin, facebookLogin } = useAuth();
 
-  const onSubmit: SubmitHandler<IAuthType> = async (data) => {
-    await register(data);
+  const onSubmit: SubmitHandler<IRegisterType> = async (data) => {
+    await register(data, setLoading);
   };
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {REGISTER.map((item: AuthFormType) => {
+        {REGISTER.map((item: RegisterFormType) => {
           return (
             <div className='flex flex-col items-center' key={item.label}>
               <Controller
-                name={item.name as keyof IAuthType}
+                name={item.name as keyof IRegisterType}
                 control={control}
                 rules={item.rules}
                 render={({
@@ -35,7 +37,7 @@ const Register = () => {
                     className='!w-[300px] md:!w-[550px] h-14'
                     label={item.label}
                     onChange={onChange}
-                    value={value}
+                    value={value ?? ''}
                     error={error?.message}
                   />
                 )}
@@ -54,7 +56,9 @@ const Register = () => {
             <Button
               gradient
               btnText='Create Account'
-              className='text-white w-[300px] md:w-[550px] rounded-lg'
+              className='text-white w-[300px] md:w-[550px] rounded-lg font-semibold'
+              loading={loading}
+              disabled={loading}
             />
           </div>
         </div>
@@ -88,7 +92,7 @@ const Register = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default Register;

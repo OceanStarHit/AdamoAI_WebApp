@@ -1,5 +1,5 @@
-import { AuthFormType } from 'types/auth';
-import { Email, Password } from 'assets/svgs';
+import { AuthFormType, RegisterFormType } from 'types/auth';
+import { AvatarField, Email, Password } from 'assets/svgs';
 
 export const required = { value: true, message: 'This field cannot be empty' };
 
@@ -43,6 +43,22 @@ export const validPassword = {
   rules: passwordRule,
 };
 
+export const firstName = {
+  icon: <AvatarField />,
+  name: 'first_name',
+  label: 'First Name',
+  placeholder: 'Enter your First Name',
+  rules: { required },
+};
+
+export const lastName = {
+  icon: <AvatarField />,
+  name: 'last_name',
+  label: 'Last Name',
+  placeholder: 'Enter your Last Name',
+  rules: { required },
+};
+
 export const ANIMATED_TEXT = [
   `Your, live interpreter helping you chat up locals wherever you go. `,
   `Your, study-buddy, helping you ace every assignment. `,
@@ -55,4 +71,9 @@ export const ANIMATED_TEXT = [
   `Your BFF, who's an expert in everything. `,
 ];
 export const LOGIN: AuthFormType[] = [email, password];
-export const REGISTER: AuthFormType[] = [email, validPassword];
+export const REGISTER: RegisterFormType[] = [
+  firstName,
+  lastName,
+  email,
+  validPassword,
+];

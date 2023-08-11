@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import ChatServices from 'services/chat';
 import { SENDER_TYPE } from 'types/chat';
 
@@ -46,25 +45,7 @@ export const getRoom = async (room_uuid: string) => {
     }));
     return messageResponse;
   } catch (error) {
-    console.log(error);
     return [];
-  }
-};
-
-export const fetchTextToText = async (sendingMessage: {
-  msg_txt: string;
-  room: {
-    assistant_uuid: string;
-    user_uuid: string;
-    uuid: string;
-  };
-}) => {
-  try {
-    const response = await ChatServices.on_text_as_text(sendingMessage);
-    console.log({ response });
-  } catch (error) {
-    //@ts-ignore
-    toast.error(error?.response?.data?.detail);
   }
 };
 

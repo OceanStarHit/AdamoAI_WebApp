@@ -6,8 +6,8 @@ import {
   ListAllAssistantType,
   OpenedRoomType,
 } from 'types/assistant';
+import { instance } from 'utils/interceptor';
 import { ChatVoiceType, RoomType } from 'types/chat';
-import Interceptor from 'utils/interceptor';
 class ChatServices {
   async on_speech_as_text(data: ChatVoiceType): Promise<string> {
     const response = await axios.post(
@@ -26,7 +26,7 @@ class ChatServices {
     };
   }) {
     try {
-      const responseMessage = await Interceptor.request.post(
+      const responseMessage = await instance.post(
         '/ai_respond/on_text_as_text',
         data,
       );
@@ -54,11 +54,9 @@ class ChatServices {
 
   async listAssistants() {
     try {
-      const allListAssistant = await Interceptor.request.get(
-        '/list-assistants',
-      );
-      const openedRoom = await Interceptor.request.get('/list-open-rooms');
-      console.log({ openedRoom, allListAssistant });
+      const allListAssistant = await instance.get('/list-assistants');
+      const openedRoom = await instance.get('/list-open-rooms');
+
       const combinedRooms: CombineRoomType[] = openedRoom?.data
         .map((openRoom: OpenedRoomType) => {
           const matchedAssistant = allListAssistant?.data.find(
@@ -80,7 +78,6 @@ class ChatServices {
           return null; // If no match found
         })
         .filter((combinedRoom: CombineRoomType) => combinedRoom !== null);
-      console.log({ combinedRooms });
       return combinedRooms;
     } catch (error) {
       //@ts-ignore
@@ -90,10 +87,7 @@ class ChatServices {
 
   async chatHistory(uuid: string) {
     try {
-      const prevChatHistory = await Interceptor.request.get(
-        `/get-open-room-${uuid}`,
-      );
-      console.log({ prevChatHistory });
+      const prevChatHistory = await instance.get(`/get-open-room-${uuid}`);
 
       return prevChatHistory?.data?.messages;
     } catch (error) {

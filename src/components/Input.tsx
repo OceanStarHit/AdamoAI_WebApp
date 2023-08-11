@@ -29,7 +29,7 @@ const Input: React.FC<InputType> = ({
       >
         {label}
       </label>
-      <div className='relative mb-6'>
+      <div className='relative mb-2'>
         {icon ? (
           <div className='absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none'>
             {icon}
@@ -38,7 +38,7 @@ const Input: React.FC<InputType> = ({
         <input
           type={type}
           id='input-group-1'
-          className={`bg-gray-100 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 ${className}`}
+          className={`bg-gray-100 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 ${className} placeholder:text-base`}
           placeholder={placeholder}
           {...rest}
         />

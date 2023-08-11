@@ -1,8 +1,8 @@
 import React from 'react';
-import { PreviousChatType, SENDER_TYPE } from 'types/chat';
-// import { Reload } from 'assets/svgs';
 import ChatInput from 'components/ChatInput';
 import { IMAGE_GIF } from 'constants/common';
+import { PreviousChatType, SENDER_TYPE } from 'types/chat';
+import TimeDifferenceComponent from 'components/TimeDifference';
 
 interface MessagesType {
   messages: PreviousChatType[];
@@ -92,7 +92,13 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                   <div className='flex justify-start items-center mr-16 space-x-2'>
                     <span>
                       <p className='text-gray-500 text-xs font-semibold relative bottom-7 right-0'>
-                        Just Now
+                        {message?.time_stamp ? (
+                          <TimeDifferenceComponent
+                            timestamp={message.time_stamp}
+                          />
+                        ) : (
+                          'Just Now'
+                        )}
                       </p>
                     </span>
                     {/* <span
@@ -117,7 +123,9 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                   <div className='flex justify-end mr-2 space-x-2 items-center'>
                     <span>
                       <p className='text-gray-500 text-xs font-semibold relative bottom-7 right-0'>
-                        Just Now
+                        <TimeDifferenceComponent
+                          timestamp={message.time_stamp}
+                        />
                       </p>
                     </span>
                     {/* <span className='flex space-x-1 rounded-md bg-gray-200 w-auto h-7 items-center justify-center relative bottom-7 cursor-pointer p-1'>

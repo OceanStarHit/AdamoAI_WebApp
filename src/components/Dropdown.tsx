@@ -6,7 +6,7 @@ const Dropdown = () => {
   const [options, setOptions] = React.useState('+1');
   return (
     <div>
-      <Menu as='div' className='relative inline-block text-left'>
+      <Menu as='div' className='relative inline-block text-left top-2'>
         <div>
           <Menu.Button className='inline-flex justify-center rounded-l-lg bg-[#CACACA] p-4 h-12 text-sm font-medium text-white space-x-2 w-20'>
             <CanadaIcon />

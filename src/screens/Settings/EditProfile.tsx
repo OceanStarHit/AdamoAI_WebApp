@@ -70,6 +70,7 @@ const EditProfile = () => {
                       type={item.name}
                       placeholder={item.placeholder}
                       className='!w-[300px] md:!w-[550px] input-gradient h-12'
+                      labelClassName='mt-2'
                       label={item.label}
                       onChange={onChange}
                       value={value}
@@ -109,7 +110,7 @@ const EditProfile = () => {
             <Button
               gradient
               btnText='Save'
-              className='text-white w-[300px] md:w-[550px] rounded-lg'
+              className='text-white w-[300px] md:w-[550px] rounded-lg mt-6'
             />
           </div>
         </div>

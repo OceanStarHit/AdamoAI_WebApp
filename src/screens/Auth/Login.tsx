@@ -1,3 +1,4 @@
+import React from 'react';
 import useAuth from 'hooks/useAuth';
 import Input from 'components/Input';
 import { LOGIN } from 'constants/auth';
@@ -10,15 +11,16 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = React.useState(false);
   const { control, handleSubmit } = useForm<IAuthType>();
   const { login, googleLogin, facebookLogin } = useAuth();
 
   const onSubmit: SubmitHandler<IAuthType> = async (data) => {
-    await login(data);
+    await login(data, setLoading);
   };
 
   return (
-    <>
+    <div className='min-h-[calc(100vh-2rem)]'>
       <form onSubmit={handleSubmit(onSubmit)}>
         {LOGIN.map((item: AuthFormType) => {
           return (
@@ -62,7 +64,9 @@ const Login = () => {
               type='submit'
               gradient
               btnText='Sign In'
-              className='text-white w-[300px] md:w-[550px] rounded-lg'
+              className='text-white w-[300px] md:w-[550px] rounded-lg font-semibold'
+              loading={loading}
+              disabled={loading}
             />
           </div>
         </div>
@@ -96,7 +100,7 @@ const Login = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default Login;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
+import { useNavigate } from 'react-router-dom';
 import { DrawerClose, MenuIcon } from 'assets/svgs';
 import {
   LOWER_SIDEBAR,
@@ -13,6 +14,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const navigate = useNavigate();
   const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
@@ -75,6 +77,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <div
                     className='flex flex-col mt-2 items-center hover:black-gradient w-16 h-10 ml-4 rounded-full cursor-pointer'
                     key={item.label}
+                    onClick={() => navigate(item.route)}
                   >
                     <span className='relative top-1'>{item.icon}</span>
                   </div>

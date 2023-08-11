@@ -3,7 +3,7 @@ import { TOOLS } from 'constants/tools';
 const Tools = () => {
   return (
     <div className='overflow-x-auto overflow-y-hidden mx-2'>
-      <div className='flex space-x-2 mb-2'>
+      <div className='flex space-x-2 mb-4'>
         {TOOLS.map((card) => {
           return (
             <div

@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatService from 'services/chat';
+import { DeleteIcon, Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 
@@ -32,11 +33,14 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         };
       });
       setPrevMessages(categorizedMessages);
+    } else {
+      setPrevMessages([]);
     }
   };
 
   const getAllAssistants = async () => {
     setLoading(true);
+
     const res = await ChatService.listAssistants();
     if (res?.length) {
       setAllListAssistants(res);
@@ -58,17 +62,17 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
             <div>
               <p>Chat History</p>
             </div>
-            {/* <div className='cursor-pointer' onClick={() => setIsOpen(true)}>
-      <DeleteIcon />
-      <Modal
-        isOpen={isOpen}
-        title='Delete Chat'
-        description='Are You To Delete Chats'
-        btnText='Delete'
-        setIsOpen={setIsOpen}
-        onClose={handleDelete}
-      />
-    </div> */}
+            <div className='cursor-pointer'>
+              <DeleteIcon />
+              {/* <Modal
+                isOpen={isOpen}
+                title='Delete Chat'
+                description='Are You To Delete Chats'
+                btnText='Delete'
+                setIsOpen={setIsOpen}
+                onClose={handleDelete}
+              /> */}
+            </div>
           </div>
           <div className='p-4 space-y-2 flex-grow overflow-y-scroll overflow-x-hidden font-medium'>
             {allListAssistant?.map((item) => {
@@ -81,10 +85,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
                   <div className='flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 justify-start md:justify-between'>
                     <span className='flex items-center space-x-2'>
                       {/* <Checkbox
-                  index={index}
-                  checkboxStatus={allListAssistant}
-                  handleCheckboxChange={handleCheckboxChange}
-                /> */}
+                        index={index}
+                        checkboxStatus={allListAssistant}
+                        handleCheckboxChange={handleCheckboxChange}
+                      /> */}
 
                       <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1'>
                         {`${item.persona} ${item.name}`}
@@ -105,7 +109,11 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className='border-t border-gray-300 flex justify-between p-4 relative bottom-[491px]' />
+          <div className='border-t border-gray-300 flex justify-between p-4 relative bottom-[491px]'>
+            <div className='flex justify-center absolute inset-0 top-60'>
+              <Loader color='#db2777' />
+            </div>
+          </div>
         </>
       )}
     </>

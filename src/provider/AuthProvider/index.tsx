@@ -1,13 +1,13 @@
 import React from 'react';
-import { LoginResponse, ResponseType } from 'types';
 import { toast } from 'react-toastify';
-import { IAuthType } from 'types/auth';
 import AuthService from 'services/auth';
+import { ROUTES } from 'constants/routes';
+import { useNavigate } from 'react-router-dom';
+import { LoginResponse, ResponseType } from 'types';
+import { IAuthType, IRegisterType } from 'types/auth';
 import { TransformResponse } from 'utils/serializeResponse';
 import { AuthContext } from 'provider/AuthProvider/context';
 import { removeStorage, useLocalStorageState } from 'hooks/useLocalstorage';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from 'constants/routes';
 
 type PROPS = {
   children: null | boolean | React.ReactNode | React.ReactPortal;
@@ -19,15 +19,14 @@ const AuthProvider: React.FC<PROPS> = ({ children }) => {
   const [user, setUser] = React.useState<IAuthType | null>(storageUser);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (accessToken) navigate(ROUTES.HOME);
-    else navigate(ROUTES.AUTH);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const login = async (data: IAuthType) => {
+  const login = async (
+    data: IAuthType,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    setLoading(true);
     const res = AuthService.login(data);
     const serialResponse: LoginResponse = await TransformResponse(res);
+    setLoading(false);
     if (serialResponse.error) {
       toast.error(serialResponse.message);
     } else {
@@ -45,14 +44,21 @@ const AuthProvider: React.FC<PROPS> = ({ children }) => {
     AuthService.getFacebookLoginUrl();
   };
 
-  const register = async (data: IAuthType) => {
-    const res = AuthService.register(data);
+  const register = async (
+    data: IRegisterType,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    setLoading(true);
+    const res = await AuthService.register(data);
+    //@ts-ignore
     const serialResponse: ResponseType = await TransformResponse(res);
+    setLoading(false);
     if (serialResponse.error) {
       toast.error(serialResponse.message);
     } else {
-      setStorageUser(res);
+      setStorageUser(serialResponse?.data);
       toast('User Created Successfully!');
+      navigate(ROUTES.HOME);
     }
   };
 

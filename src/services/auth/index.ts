@@ -1,11 +1,16 @@
 import axios from 'axios';
 import { Config } from 'constants/config';
-import { IAuthType } from 'types/auth';
+import { instance } from 'utils/interceptor';
+import { IAuthType, IRegisterType } from 'types/auth';
 
 class AuthService {
-  async register(user: IAuthType) {
-    const response = await axios.post(Config.API_BASE_URL + '/users', user);
-    return response.data;
+  async register(user: IRegisterType) {
+    try {
+      const response = await instance.post('/register/by-email', user);
+      return response;
+    } catch (error) {
+      return error;
+    }
   }
 
   async login(user: IAuthType) {
