@@ -1,5 +1,4 @@
 import React from 'react';
-import { IMAGE_URL } from 'constants/common';
 import Drawer from 'components/Drawer/Drawer';
 import { useNavigate } from 'react-router-dom';
 import { DrawerClose, MenuIcon } from 'assets/svgs';
@@ -41,7 +40,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <>
               <div className='flex justify-between items-center'>
                 <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
-                  <img src={IMAGE_URL} height={50} width={50} alt='Logo' />
+                  <img
+                    src={require('../assets/images/Logo.png')}
+                    height={50}
+                    width={50}
+                    alt='Logo'
+                  />
                   <p className='text-lg font-semibold text-white font-sans'>
                     ADAMO
                   </p>
@@ -63,7 +67,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <div className='w-full items-center flex mt-2'>
                 <div className='flex justify-start'>
-                  <img src={IMAGE_URL} height={50} width={50} alt='Logo' />
+                  <img
+                    src={require('../assets/images/Logo.png')}
+                    height={50}
+                    width={50}
+                    alt='Logo'
+                  />
                 </div>
                 <div
                   className='flex justify-end ml-4 cursor-pointer'
