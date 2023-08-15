@@ -14,7 +14,7 @@ import {
   Theme,
 } from 'assets/svgs';
 import BasicPlan from 'assets/svgs/BasicPlan';
-import { emailRule, passwordRule, required } from './auth';
+import { editPasswordRule, emailRule, required } from './auth';
 
 export type SettingsItem = {
   icon: () => JSX.Element;
@@ -245,14 +245,13 @@ export const email = {
   rules: emailRule,
 };
 
-export const password = {
+export const editPassword = {
   icon: <Password />,
   name: 'password',
   label: 'Password',
   placeholder: 'Enter your password',
-  rules: passwordRule,
+  rules: editPasswordRule,
 };
-
 export const name = {
   icon: <AvatarField />,
   name: 'name',
@@ -276,4 +275,4 @@ export const phoneNumber = {
   placeholder: 'Enter your phone number',
   rules: { required },
 };
-export const EDIT_PROFILE = [phoneNumber, name, email, birthday, password];
+export const EDIT_PROFILE = [phoneNumber, name, email, birthday, editPassword];

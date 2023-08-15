@@ -44,7 +44,7 @@ const Input: React.FC<InputType> = ({
         />
       </div>
       {error ? (
-        <div className='relative bottom-5'>
+        <div className='relative bottom-2'>
           <InputError error={error} />
         </div>
       ) : null}

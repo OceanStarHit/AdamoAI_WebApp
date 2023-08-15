@@ -93,7 +93,7 @@ const Subscription = () => {
       <p className='text-center font-helvetica text-base text-adamo-green relative bottom-1 font-semibold'>
         Save $10 with annual billing
       </p>
-      <div className='flex flex-col md:flex-row gap-x-3 gap-2 justify-center w-full'>
+      <div className='flex flex-col md:flex-row gap-x-3 gap-2 justify-center w-full lg:w-11/12'>
         <Plan plan={subscriptionPlans.LITE} isCurrent />
         <Plan plan={subscriptionPlans.BASIC} isCurrent={false} />
       </div>

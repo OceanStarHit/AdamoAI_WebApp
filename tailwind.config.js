@@ -27,6 +27,7 @@ const colors = {
   'subscription-lite': '#A056A215',
   'subscription-basic': '#FFB34015',
   'adamo-green': '#30DB5B',
+  'primary-gray': 'var(--adamo-glass-body-light, rgba(255, 255, 255, 0.23))',
 };
 
 module.exports = {

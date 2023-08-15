@@ -5,4 +5,5 @@ export enum ROUTES {
   FORGOT_PASSWORD = '/forgot-password',
   TOOLS = '/tools',
   SETTING = '/settings',
+  CHECKOUT = '/checkout',
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Input from 'components/Input';
 import { Avatar } from 'assets/svgs';
 import Button from 'components/Button';
-import Dropdown from 'components/Dropdown';
+import PhoneInput from 'react-phone-input-2';
 import { ISettingType } from 'types/settings';
 import useLayoutContext from 'hooks/useLayout';
 import { EDIT_PROFILE } from 'constants/settings';
@@ -26,6 +26,7 @@ const EditProfile = () => {
       setSelectedFile(URL.createObjectURL(event.target.files[0]));
     }
   };
+
   return (
     <div className='flex justify-center w-full flex-col items-center space-y-2 my-2'>
       {!selectedFile ? (
@@ -83,19 +84,17 @@ const EditProfile = () => {
                   name={item.name as keyof ISettingType}
                   control={control}
                   rules={item.rules}
-                  render={({ field: { name, value, onChange } }) => (
+                  render={({ field: { value, onChange } }) => (
                     <div className='flex items-center'>
-                      <Dropdown />
-                      <Input
-                        icon={item.icon}
-                        name={name}
-                        type={item.name}
-                        placeholder={item.placeholder}
-                        className='!w-[220px] md:!w-[470px] input-gradient h-12 !rounded-none !rounded-r-lg relative bottom-0.5'
-                        label={item.label}
-                        onChange={onChange}
+                      <PhoneInput
+                        country={'us'}
                         value={value}
-                        labelClassName='relative right-20'
+                        onChange={onChange}
+                        containerStyle={{ margin: '20px' }}
+                        inputProps={{
+                          className: 'phone-input',
+                        }}
+                        buttonClass='phone-button'
                       />
                     </div>
                   )}

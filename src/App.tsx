@@ -1,5 +1,6 @@
 import './App.css';
 import MainRoutes from 'routes/MainRoutes';
+import 'react-phone-input-2/lib/style.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from 'provider/AuthProvider';

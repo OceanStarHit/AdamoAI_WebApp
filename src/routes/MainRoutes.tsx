@@ -7,6 +7,7 @@ import Layout from 'components/Sidebar';
 import { ROUTES } from 'constants/routes';
 import useAuthContext from 'hooks/useAuth';
 import UserAuthentication from 'screens/Auth';
+import Checkout from 'screens/Settings/Checkout';
 import LayoutProvider from 'provider/LayoutProvider';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
@@ -19,6 +20,7 @@ const GetAuthenticatedRoutes = () => {
     ROUTES.CHAT,
     ROUTES.SETTING,
     ROUTES.TOOLS,
+    ROUTES.CHECKOUT,
   ];
   React.useEffect(() => {
     if (UNAUTHENTICATED_ROUTES.includes(location.pathname as ROUTES)) {
@@ -36,6 +38,7 @@ const GetAuthenticatedRoutes = () => {
           <Route path={ROUTES.CHAT} element={<Chat />} />
           <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
           <Route path={ROUTES.SETTING} element={<Settings />} />
+          <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
         </Routes>
       </Layout>
     </LayoutProvider>

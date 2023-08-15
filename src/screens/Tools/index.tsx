@@ -1,9 +1,8 @@
-import { Avatar, DropdownIcon } from 'assets/svgs';
 import Card from 'components/Card';
-import Heading from 'components/Heading';
-import MainContainer from 'components/MainContainer';
 import { TOOLS } from 'constants/tools';
-import React from 'react';
+import Heading from 'components/Heading';
+import { Avatar, DropdownIcon } from 'assets/svgs';
+import MainContainer from 'components/MainContainer';
 
 const ToolScreen = () => {
   return (

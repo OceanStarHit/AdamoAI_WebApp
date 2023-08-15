@@ -17,7 +17,6 @@ code {
 }
 
 @layer components {
-
   .primary-gradient {
     background: linear-gradient(
       90deg,
@@ -373,6 +372,33 @@ code {
     );
   }
 
+  .phone-input {
+    height: 45px;
+    background-color: #f3f4f6;
+    width: 510px;
+    margin-left: 40px;
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  /* Apply responsive styles using media queries */
+  @media (max-width: 768px) {
+    /* Change input width for screens up to 768px wide */
+    .phone-input {
+      width: 260px; /* Full width for small screens */
+    }
+  }
+
+  .dropdown-input {
+    height: 200px;
+    background-color: #f3f4f6;
+    width: 510px;
+    margin-left: 40px;
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  .phone-button {
+    border: '8px 0px 0px 8px' !important;
+  }
   .bg-image {
     /* Replace 'your-image-url' with the URL of your background image */
     background-image: url('https://s3-alpha-sig.figma.com/img/e5c2/b213/71bbe166f7d5c1f533d34bfcbf74b69e?Expires=1691366400&Signature=LJk3RP~32l1ju8VQROoUD7QeFBGYiQ-fXVwS1GSfWvFQ-xc1DmroIewU-tTYAkK37MuY2C7M9dSC16LrxWvTYJNL7WaNx-qzH~VObIVhJmnw-1O2CvBbSnTHGxgwt0MQd7uT6Z3raRVHTLDl5zDWcrEmTPCH9vnPBLfBQ4kI9fj0QsP9b3ecOdFQZPmsvNyTHEaopdNOBe88YilnobrcSdYHxP5Dy5ZWiyjINbTnbWX0cQkr99dOFjSRaOLa~ZOcMHQWYtxHxYJ4b3zOEWa-un5b9rXhMERT0vLbUgHKxt94yj6PywIZ1DMYMtMkF6tDihxjNS3ZORt288HSth9jkA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4');

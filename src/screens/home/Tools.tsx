@@ -19,7 +19,7 @@ const Tools = () => {
               <div className='m-2 font-medium'>
                 <div className='flex space-x-2 items-center'>
                   <span>{card.icon}</span>
-                  <p className='text-xs md:text-base font-semibold md:font-normal'>
+                  <p className='text-xs md:text-base font-semibold md:font-medium'>
                     {card.persona}
                   </p>
                 </div>

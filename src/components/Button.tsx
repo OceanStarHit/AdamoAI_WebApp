@@ -34,7 +34,7 @@ const Button: React.FC<ButtonType> = ({
         'w-full': full,
         'font-semibold': bold,
         'primary-gradient text-white hover:opacity-90': gradient,
-        'border-2 border-primary-blue hover:bg-gray-100': !gradient,
+        'hover:bg-gray-300': !gradient,
       },
     )}
     {...rest}

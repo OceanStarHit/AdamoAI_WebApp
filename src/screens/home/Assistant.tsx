@@ -20,16 +20,16 @@ const CardList = () => {
           justifyContent: 'center',
           alignItems: 'center',
           alignContent: 'center',
-          height: '40px',
-          width: '40px',
-          borderRadius: '20px',
+          height: '45px',
+          width: '45px',
+          borderRadius: '22.5px',
           background: `linear-gradient(
           90deg,
           #ae519d 0%,
           #e54389 51.04%,
           #f4a14c 97.92%
         )`,
-          right: -40,
+          right: -42,
         }}
         onClick={onClick}
       />
@@ -48,9 +48,9 @@ const CardList = () => {
           justifyContent: 'center',
           alignItems: 'center',
           alignContent: 'center',
-          height: '40px',
-          width: '40px',
-          borderRadius: '20px',
+          height: '45px',
+          width: '45px',
+          borderRadius: '22.5px',
           background: `linear-gradient(
           90deg,
           #ae519d 0%,
@@ -98,6 +98,22 @@ const CardList = () => {
         },
       },
     ],
+    customPaging: () => (
+      <div
+        style={{
+          height: '20px',
+          width: '20px',
+          borderRadius: '50%',
+          marginTop: '10px',
+          background: `linear-gradient(
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
+        }}
+      />
+    ),
   };
 
   return (

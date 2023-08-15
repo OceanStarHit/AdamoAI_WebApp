@@ -38,16 +38,19 @@ const HomeSearch = () => {
         />
       </div>
       {search && (
-        <div className='absolute z-20 space-y-4 bg-white w-full rounded-md'>
+        <div className='absolute z-20 bg-white w-full rounded-md shadow-lg mt-4 divide-y'>
           <p className='text-gray-500'>Search History</p>
           {filteredItems?.map((item) => {
             return (
-              <div className='flex w-full justify-between' key={item}>
+              <div
+                className='flex w-full justify-between space-y-6 items-center cursor-pointer hover:bg-gray-100'
+                key={item}
+              >
                 <div className='flex justify-start space-x-2 ml-4'>
                   <Search />
                   <p className='text-gray-400'>{item}</p>
                 </div>
-                <div className='mr-4'>
+                <div className='mr-4 relative bottom-1'>
                   <Link />
                 </div>
               </div>

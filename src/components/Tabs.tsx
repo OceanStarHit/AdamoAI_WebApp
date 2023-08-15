@@ -47,7 +47,7 @@ const Tabs: React.FC<TabsType> = ({
                       } font-semibold ${selectedClassName}`]: selected,
                       [`font-medium ${
                         selectedClassName === 'primary-gradient'
-                          ? 'text-gray-700'
+                          ? 'text-gray-600'
                           : 'text-black'
                       } hover:bg-gray-200/40 ${notSelectedClassName}`]:
                         !selected,

@@ -20,6 +20,14 @@ export const passwordRule = {
   },
 };
 
+export const editPasswordRule = {
+  required,
+  pattern: {
+    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/,
+    message:
+      'The combination of password should be lowercase, uppercase, number and symbol.',
+  },
+};
 export const email = {
   icon: <Email />,
   name: 'email',
