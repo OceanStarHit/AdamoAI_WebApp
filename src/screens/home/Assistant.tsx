@@ -137,7 +137,7 @@ const CardList = () => {
                   />
                 </div>
               </div>
-              <div className='m-2 font-medium'>
+              <div className='m-2 font-medium text-base'>
                 <p>{card.persona}</p>
               </div>
             </div>

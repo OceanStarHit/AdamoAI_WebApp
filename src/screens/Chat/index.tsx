@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
-import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
-import ChatHistory from 'screens/Chat/ChatHistory';
-import { useReactMediaRecorder } from 'react-media-recorder';
 import ChatServices from 'services/chat/index';
+import ChatHistory from 'screens/Chat/ChatHistory';
+import { PreviousChatType, SENDER_TYPE } from 'types/chat';
+import { useReactMediaRecorder } from 'react-media-recorder';
 import {
   Bookmark,
   Avatar,
@@ -23,6 +23,7 @@ import {
 
 import { fetchSpeechToText, handleCreateRoom } from 'services/chat/utils';
 import { CombineRoomType } from 'types/assistant';
+import classNames from 'classnames';
 
 const Chat = () => {
   const [createRoom, setCreateRoom] = React.useState('');
@@ -176,7 +177,17 @@ const Chat = () => {
           </div>
           <DropdownIcon />
         </div>
-        <div className='flex-col justify-between flex bg-gray-100 rounded-br-3xl max-h-[calc(100%-5rem)]'>
+        <div
+          className={classNames(
+            'flex-col justify-between flex bg-gray-100 rounded-br-3xl ',
+            {
+              'min-h-[calc(100%-5rem)]':
+                allListAssistant && allListAssistant?.length < 5,
+              'max-h-[calc(100%-5rem)]':
+                allListAssistant && allListAssistant?.length > 5,
+            },
+          )}
+        >
           <ChatHistory
             {...{
               allListAssistant,

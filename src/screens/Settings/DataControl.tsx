@@ -15,7 +15,7 @@ const DataCOntrol = () => {
         <div className='w-full max-w-[595px] bg-card px-[15px] md:px-[24px] mt-5 rounded-xl shadow-md mx-5 h-56 md:h-40'>
           <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
             <div className='flex items-center'>
-              <p className='ml-3 md:ml-5 text-sm md:text-lg font-light'>
+              <p className='ml-3 md:ml-5 text-sm md:text-lg font-normal'>
                 Chat History
               </p>
             </div>
@@ -36,7 +36,7 @@ const DataCOntrol = () => {
         <div className='w-full max-w-[595px] bg-card px-[15px] md:px-[24px] mt-5 rounded-xl shadow-md mx-5 h-44 md:h-48'>
           <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
             <div className='flex items-center'>
-              <p className='ml-3 md:ml-5 text-sm md:text-lg font-light'>
+              <p className='ml-3 md:ml-5 text-sm md:text-xl font-normal'>
                 Export Data
               </p>
             </div>
@@ -44,7 +44,7 @@ const DataCOntrol = () => {
           <div className='border-t border-slate-300'>
             <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
               <div className='flex items-center'>
-                <p className='ml-3 md:ml-5 text-sm md:text-lg font-light text-red-400'>
+                <p className='ml-3 md:ml-5 text-sm md:text-lg font-normal text-red-400'>
                   Delete account
                 </p>
               </div>
@@ -53,7 +53,7 @@ const DataCOntrol = () => {
           <div className='border-t border-slate-300'>
             <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
               <div className='flex items-center'>
-                <p className='ml-3 md:ml-5 text-sm md:text-lg font-light text-red-400'>
+                <p className='ml-3 md:ml-5 text-sm md:text-lg font-normal text-red-400'>
                   Clear Chat History
                 </p>
               </div>

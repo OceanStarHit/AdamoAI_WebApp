@@ -2,6 +2,7 @@ import InputError from 'components/InputError';
 
 interface InputType extends React.ComponentProps<'input'> {
   icon?: React.ReactNode;
+  iconLast?: React.ReactNode;
   label?: string;
   type?: string;
   name?: string;
@@ -14,6 +15,7 @@ interface InputType extends React.ComponentProps<'input'> {
 const Input: React.FC<InputType> = ({
   label,
   icon,
+  iconLast,
   type,
   placeholder,
   className,
@@ -33,6 +35,11 @@ const Input: React.FC<InputType> = ({
         {icon ? (
           <div className='absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none'>
             {icon}
+          </div>
+        ) : null}
+        {iconLast ? (
+          <div className='absolute inset-y-0 right-0 flex items-center pr-3.5'>
+            {iconLast}
           </div>
         ) : null}
         <input

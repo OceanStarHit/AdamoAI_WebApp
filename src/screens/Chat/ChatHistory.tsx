@@ -3,6 +3,7 @@ import ChatService from 'services/chat';
 import { DeleteIcon, Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
+import Checkbox from 'components/CheckBox';
 
 interface ChatHistoryType {
   allListAssistant: CombineRoomType[] | null;
@@ -64,7 +65,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
             </div>
             <div className='cursor-pointer'>
               <DeleteIcon />
-              {/* <Modal
+
+              {/* 
+              This code will work when delete chat api will be available
+              <Modal
                 isOpen={isOpen}
                 title='Delete Chat'
                 description='Are You To Delete Chats'
@@ -78,29 +82,23 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
             {allListAssistant?.map((item) => {
               return (
                 <div
-                  className='rounded-md border border-slate-200 p-1 h-36 md:h-24 bg-gray-100 font-sans cursor-pointer'
+                  className='rounded-md border border-slate-200 p-1 h-36 md:h-24 bg-gray-100 font-sans cursor-pointer w-full flex space-x-2'
                   key={item._id}
-                  onClick={() => getAssistantHistory(item)}
                 >
-                  <div className='flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 justify-start md:justify-between'>
-                    <span className='flex items-center space-x-2'>
-                      {/* <Checkbox
-                        index={index}
-                        checkboxStatus={allListAssistant}
-                        handleCheckboxChange={handleCheckboxChange}
-                      /> */}
-
-                      <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1'>
-                        {`${item.persona} ${item.name}`}
-                      </label>
-                    </span>
-                    {/* <span>
-                  <TimeDifferenceComponent timestamp={item.time_stamp} />
-                </span> */}
+                  <div className='w-1/12 relative top-1'>
+                    <Checkbox />
                   </div>
-                  <div className='text-xs md:text-sm text-gray-400 flex justify-center md:justify-start mt-2'>
-                    {item.discription ??
-                      'Best couple color gradient for FF5C00'}
+                  <div
+                    className='w-11/12 flex flex-col'
+                    onClick={() => getAssistantHistory(item)}
+                  >
+                    <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1 cursor-pointer'>
+                      {`${item.persona} ${item.name}`}
+                    </label>
+                    <div className='text-xs md:text-sm text-gray-400 flex justify-center md:justify-start mt-2'>
+                      {item.discription ??
+                        'Best couple color gradient for FF5C00'}
+                    </div>
                   </div>
                 </div>
               );
@@ -109,8 +107,8 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className='border-t border-gray-300 flex justify-between p-4 relative bottom-[491px]'>
-            <div className='flex justify-center absolute inset-0 top-60'>
+          <div className='border-t border-gray-300 flex p-4 justify-center'>
+            <div className='flex justify-center mt-40'>
               <Loader color='#db2777' />
             </div>
           </div>

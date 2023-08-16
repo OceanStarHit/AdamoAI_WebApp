@@ -1,28 +1,11 @@
 import React from 'react';
 import { TickIcon } from 'assets/svgs';
 
-interface CheckboxType {
-  index: number;
-  checkboxStatus: {
-    label: string;
-    time_stamp: string;
-    description: string;
-    checked: boolean;
-  }[];
-  handleCheckboxChange: (index: number) => void;
-}
-const Checkbox: React.FC<CheckboxType> = ({
-  index,
-  checkboxStatus,
-  handleCheckboxChange,
-}) => {
-  const [isChecked, setIsChecked] = React.useState(
-    checkboxStatus[index].checked,
-  );
+const Checkbox = () => {
+  const [isChecked, setIsChecked] = React.useState(false);
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
-    handleCheckboxChange(index);
   };
 
   return (

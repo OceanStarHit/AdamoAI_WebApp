@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from 'components/Input';
-import { Avatar } from 'assets/svgs';
+import { Avatar, Edit } from 'assets/svgs';
 import Button from 'components/Button';
 import PhoneInput from 'react-phone-input-2';
 import { ISettingType } from 'types/settings';
@@ -73,6 +73,13 @@ const EditProfile = () => {
                       className='!w-[300px] md:!w-[550px] input-gradient h-12'
                       labelClassName='mt-2'
                       label={item.label}
+                      iconLast={
+                        item.name === 'password' ? (
+                          <span className='cursor-pointer'>
+                            <Edit />
+                          </span>
+                        ) : null
+                      }
                       onChange={onChange}
                       value={value}
                       error={error?.message}
@@ -80,25 +87,30 @@ const EditProfile = () => {
                   )}
                 />
               ) : (
-                <Controller
-                  name={item.name as keyof ISettingType}
-                  control={control}
-                  rules={item.rules}
-                  render={({ field: { value, onChange } }) => (
-                    <div className='flex items-center'>
-                      <PhoneInput
-                        country={'us'}
-                        value={value}
-                        onChange={onChange}
-                        containerStyle={{ margin: '20px' }}
-                        inputProps={{
-                          className: 'phone-input',
-                        }}
-                        buttonClass='phone-button'
-                      />
-                    </div>
-                  )}
-                />
+                <div>
+                  <label className='block text-sm font-medium text-gray-900 relative top-2 left-5'>
+                    Phone Number
+                  </label>
+                  <Controller
+                    name={item.name as keyof ISettingType}
+                    control={control}
+                    rules={item.rules}
+                    render={({ field: { value, onChange } }) => (
+                      <div className='flex items-center'>
+                        <PhoneInput
+                          country={'us'}
+                          value={value}
+                          onChange={onChange}
+                          containerStyle={{ margin: '20px' }}
+                          inputProps={{
+                            className: 'phone-input',
+                          }}
+                          buttonClass='phone-button'
+                        />
+                      </div>
+                    )}
+                  />
+                </div>
               )}
             </div>
           );

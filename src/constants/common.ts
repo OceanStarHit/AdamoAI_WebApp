@@ -3,7 +3,3 @@ export const IMAGE_URL =
 
 export const IMAGE_GIF =
   'https://s3-alpha-sig.figma.com/img/e5c2/b213/71bbe166f7d5c1f533d34bfcbf74b69e?Expires=1693180800&Signature=HALYLVfIUH7oq1wfJH3qO8ceggogi03iKmfhQ270PcgrOXuvh8HXWhO~DxzAJONJY0Y98JA~0WfTtuXEB12jnYFV1jMfSZ2T0BJjp1jPHZX0sHJaD7XX4YIXmBtDmWTQjuTW995Z6t9rJokgKBiR8aU1k502AVwLut0GSCaZyBqVUedek2w20BQWrPM2GFQt8DelJKVXthbkpj9DB7rkDKvZ~uTmVOqR~8wBq7lkMkd8RSgH2YG61t73FbLhfeDANrgXvofXodAl5axpXjdjM1P0t-J2k1TZD4ZU2oJNo4wqG5KForxmNUN0h-tG0o9uonQgXGb55te769K6W1zGyA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4';
-
-export const toastCustomStyle = {
-  fontSize: 13,
-};

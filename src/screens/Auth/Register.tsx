@@ -16,7 +16,7 @@ const Register = () => {
     await register(data, setLoading);
   };
   return (
-    <div>
+    <div className=':min-h-[calc(100vh-2rem)]'>
       <form onSubmit={handleSubmit(onSubmit)}>
         {REGISTER.map((item: RegisterFormType) => {
           return (
