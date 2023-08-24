@@ -1,6 +1,6 @@
 const StopRecording = () => (
   <svg
-    fill='#000000'
+    fill='red'
     width='24'
     height='24'
     viewBox='0 0 32 32'

@@ -7,8 +7,9 @@ import TimeDifferenceComponent from 'components/TimeDifference';
 interface MessagesType {
   messages: PreviousChatType[];
   setMessages: (message: PreviousChatType[]) => void;
+  aiResponding: boolean;
 }
-const Messages: React.FC<MessagesType> = ({ messages }) => {
+const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
@@ -145,6 +146,11 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
           <img src={IMAGE_GIF} width={200} height={200} />
         </div>
       )}
+      {aiResponding ? (
+        <p className='absolute bottom-24 text-gray-500 text-xs'>
+          AI Responding, Please wait
+        </p>
+      ) : null}
     </div>
   );
 };

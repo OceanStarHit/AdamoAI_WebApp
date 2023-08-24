@@ -405,3 +405,6 @@ code {
     background-image: url('https://s3-alpha-sig.figma.com/img/e5c2/b213/71bbe166f7d5c1f533d34bfcbf74b69e?Expires=1691366400&Signature=LJk3RP~32l1ju8VQROoUD7QeFBGYiQ-fXVwS1GSfWvFQ-xc1DmroIewU-tTYAkK37MuY2C7M9dSC16LrxWvTYJNL7WaNx-qzH~VObIVhJmnw-1O2CvBbSnTHGxgwt0MQd7uT6Z3raRVHTLDl5zDWcrEmTPCH9vnPBLfBQ4kI9fj0QsP9b3ecOdFQZPmsvNyTHEaopdNOBe88YilnobrcSdYHxP5Dy5ZWiyjINbTnbWX0cQkr99dOFjSRaOLa~ZOcMHQWYtxHxYJ4b3zOEWa-un5b9rXhMERT0vLbUgHKxt94yj6PywIZ1DMYMtMkF6tDihxjNS3ZORt288HSth9jkA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4');
   }
 }
+.custom-scrollbar::-webkit-scrollbar {
+  display: none; /* Webkit (Safari, Chrome, etc.) */
+}

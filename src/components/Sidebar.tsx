@@ -2,11 +2,7 @@ import React from 'react';
 import Drawer from 'components/Drawer/Drawer';
 import { useNavigate } from 'react-router-dom';
 import { DrawerClose, MenuIcon } from 'assets/svgs';
-import {
-  LOWER_SIDEBAR,
-  LOWER__CLOSE_SIDEBAR,
-  UPPER_CLOSE_SIDEBAR,
-} from 'constants/sidebar';
+import { LOWER__CLOSE_SIDEBAR, UPPER_CLOSE_SIDEBAR } from 'constants/sidebar';
 import SidebarContainer from 'components/Drawer/SidebarContainer';
 
 interface LayoutProps {
@@ -14,7 +10,7 @@ interface LayoutProps {
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
-  const [dropdown, setDropdown] = React.useState(true);
+  // const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
 
@@ -31,15 +27,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <aside
         id='logo-sidebar'
         className={`fixed top-0 left-0 z-40 ${
-          sidebarMove ? 'w-64' : 'w-24'
-        } -translate-x-full border-r border-gray-700 bg-slate-950 transition-transform lg:translate-x-0`}
+          sidebarMove ? 'w-72' : 'w-24'
+        } -translate-x-full bg-slate-950 h-full transition-transform lg:translate-x-0`}
         aria-label='Sidebar'
       >
-        <div className='min-h-screen'>
+        <div>
           {sidebarMove ? (
             <>
               <div className='flex justify-between items-center'>
-                <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
+                <div className='my-9 flex items-center justify-start space-x-2 px-6'>
                   <img
                     src={require('../assets/images/Logo.png')}
                     height={50}
@@ -51,16 +47,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </p>
                 </div>
                 <div
-                  className='flex justify-end mr-4 mt-6 cursor-pointer'
+                  className='flex justify-end mr-4 cursor-pointer'
                   onClick={() => setSidebarMove(!sidebarMove)}
                 >
                   <DrawerClose />
                 </div>
               </div>
               <SidebarContainer
-                setDropdown={setDropdown}
-                dropdown={dropdown}
-                lowerSidebar={LOWER_SIDEBAR}
+              // setDropdown={setDropdown}
+              // dropdown={dropdown}
+              // lowerSidebar={LOWER_SIDEBAR}
               />
             </>
           ) : (
@@ -136,7 +132,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Drawer setOpenDrawer={setOpenDrawer} openDrawer={openDrawer} />
       ) : null}
       <div
-        className={`p-4 ${sidebarMove ? 'lg:ml-64' : 'lg:ml-32'} max-h-screen ${
+        className={`p-4 ${sidebarMove ? 'lg:ml-72' : 'lg:ml-32'} max-h-screen ${
           openDrawer ? 'hidden' : 'block'
         }`}
       >

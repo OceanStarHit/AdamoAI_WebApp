@@ -1,6 +1,5 @@
 import React from 'react';
 import { IMAGE_URL } from 'constants/common';
-import { LOWER_SIDEBAR } from 'constants/sidebar';
 import SidebarContainer from './SidebarContainer';
 
 interface DrawerType {
@@ -9,8 +8,6 @@ interface DrawerType {
 }
 
 const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
-  const [dropdown, setDropdown] = React.useState(true);
-
   return (
     <div>
       <button
@@ -41,11 +38,7 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>
-        <SidebarContainer
-          dropdown={dropdown}
-          lowerSidebar={LOWER_SIDEBAR}
-          setDropdown={setDropdown}
-        />
+        <SidebarContainer />
       </div>
     </div>
   );

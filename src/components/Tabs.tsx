@@ -1,9 +1,11 @@
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
+import Heading from './Heading';
 
 type optionsType = {
   label: string;
   component: JSX.Element;
+  tags?: number;
 };
 
 interface TabsType {
@@ -37,7 +39,7 @@ const Tabs: React.FC<TabsType> = ({
                 key={`${tab.label} ${index}`}
                 className={({ selected }) =>
                   classNames(
-                    `w-full py-3 text-xs sm:text-sm ${className}`,
+                    `w-full py-3 text-xs sm:text-sm flex justify-center ${className}`,
                     'focus:outline-none',
                     {
                       [`shadow-lg ${
@@ -55,10 +57,23 @@ const Tabs: React.FC<TabsType> = ({
                   )
                 }
               >
-                {tab.label}
+                <span>{tab.label}</span>
+                <span
+                  className={`w-5 h-5 rounded-full bg-gray-400 
+                flex items-center ml-2 justify-center text-white text-[.6rem] font-bold`}
+                >
+                  {tab.tags}
+                </span>
               </Tab>
             ))}
           </Tab.List>
+        </div>
+        <div className='flex justify-start mt-8 relative right-8'>
+          <Heading
+            text='Assistants'
+            type='heading'
+            className='ml-12 font-medium font-helvetica'
+          />
         </div>
         <div className='flex justify-center'>
           <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>
