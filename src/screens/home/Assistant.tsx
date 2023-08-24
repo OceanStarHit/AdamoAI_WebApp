@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { ASSISTANTS } from 'constants/tools';
+import { useNavigate } from 'react-router-dom';
 
 // interface ICardList {
 //   onClick?: () => void;
@@ -9,6 +10,7 @@ import { ASSISTANTS } from 'constants/tools';
 // }
 
 const CardList = () => {
+  const navigate = useNavigate();
   // const SampleNextArrow = (props: ICardList) => {
   //   const { className, style, onClick } = props;
   //   return (
@@ -123,7 +125,14 @@ const CardList = () => {
           return (
             <div
               key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl ${card.gradientColor}`}
+              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl ${card.gradientColor} cursor-pointer`}
+              onClick={() =>
+                navigate('/chat', {
+                  state: {
+                    uuid: card.uuid,
+                  },
+                })
+              }
             >
               <img src={card.avatar} className='w-full p-2 h-32' />
               <div className='flex justify-between'>

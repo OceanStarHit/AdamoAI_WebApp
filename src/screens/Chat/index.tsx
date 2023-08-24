@@ -20,19 +20,25 @@ import {
   Camera,
   BackArrow,
 } from 'assets/svgs/index';
+import ReactAudioPlayer from 'react-audio-player';
 
 import { fetchSpeechToText, handleCreateRoom } from 'services/chat/utils';
 import { CombineRoomType } from 'types/assistant';
 import classNames from 'classnames';
+import { useLocation } from 'react-router-dom';
 
 const Chat = () => {
   const [createRoom, setCreateRoom] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
   const [currentAssistant] = React.useState('Chat');
+  const [audioBlob, setAudioBlob] = React.useState<string>('');
+  const { state } = useLocation();
+  console.log({ state });
   const [allListAssistant, setAllListAssistants] = React.useState<
     CombineRoomType[] | null
   >([]);
+  const [aiResponding, setAIResponding] = React.useState(false);
   const [prevMessages, setPrevMessages] = React.useState<PreviousChatType[]>(
     [],
   );
@@ -55,6 +61,7 @@ const Chat = () => {
 
   const sendMessage = async () => {
     setValue('');
+    setAIResponding(true);
     setPrevMessages([
       ...prevMessages,
       {
@@ -83,14 +90,18 @@ const Chat = () => {
         uuid: selectedRoom?.uuid,
       },
     };
-    const response = await ChatServices.on_text_as_text(sendObj);
+    const response = await ChatServices.on_text_as_text_and_speech(sendObj);
+    setAudioBlob(`data:audio/mp3;base64,${response?.assistant_audio_base64}`);
+
     setPrevMessages([
       ..._prevMessage,
-      { ...response, senderType: SENDER_TYPE.BOT },
+      { ...response?.assistant_msg, senderType: SENDER_TYPE.BOT },
     ]);
+    setAIResponding(false);
   };
 
   const handleFetchSpeechToText = async (mediaBlobUrl: string) => {
+    console.log(mediaBlobUrl);
     const response = await fetchSpeechToText(mediaBlobUrl);
     setValue(response);
   };
@@ -125,7 +136,11 @@ const Chat = () => {
             <Setting />
           </div>
         </div>
-        <Messages messages={prevMessages} setMessages={setPrevMessages} />
+        <Messages
+          messages={prevMessages}
+          setMessages={setPrevMessages}
+          aiResponding={aiResponding}
+        />
         <div className='p-4 flex space-x-2 items-center'>
           <ChatInput
             type='text'
@@ -189,13 +204,13 @@ const Chat = () => {
           )}
         >
           <ChatHistory
-            {...{
-              allListAssistant,
-              setAllListAssistants,
-              setPrevMessages,
-              setSelectedRoom,
-            }}
+            allListAssistant={allListAssistant}
+            setAllListAssistants={setAllListAssistants}
+            setPrevMessages={setPrevMessages}
+            setSelectedRoom={setSelectedRoom}
+            uuid={state?.uuid}
           />
+
           <div className='p-4'>
             <Button
               btnText='New Chat'
@@ -222,6 +237,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
+      <ReactAudioPlayer src={audioBlob} autoPlay />
     </div>
   );
 };

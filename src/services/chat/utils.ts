@@ -1,33 +1,17 @@
 import ChatServices from 'services/chat';
 import { SENDER_TYPE } from 'types/chat';
 
-const getBlob = async (blobUrl: string) => {
-  const response = await fetch(blobUrl!);
-  const blob = await response.blob();
-  const reader = new FileReader();
-  let base = '';
-  reader.onload = function () {
-    const dataUrl = reader.result as unknown as string;
-    const base64 = dataUrl.split(',')[1];
-    base = base64;
-  };
-  reader.readAsDataURL(blob);
-  return base;
-};
-
 export const fetchSpeechToText = async (mediaBlobUrl: string) => {
-  const base64 = await getBlob(mediaBlobUrl);
+  const audioBlob = await fetch(mediaBlobUrl).then((response) =>
+    response.blob(),
+  );
+  const formData = new FormData();
+  formData.append('audio_file', audioBlob, 'myFile.wav');
 
-  const sendVoice = {
-    room: {
-      uuid: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      assistant_uuid: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    },
-    audio_file: base64,
-  };
   try {
-    const response = await ChatServices.on_speech_as_text(sendVoice);
-    return response;
+    const response = await ChatServices.convert_voice_to_text(formData);
+    console.log({ response });
+    return response?.transcription;
   } catch (error) {
     return 'Voice message Testing';
   }

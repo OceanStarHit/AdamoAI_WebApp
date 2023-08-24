@@ -12,17 +12,19 @@ interface ChatHistoryType {
   >;
   setPrevMessages: React.Dispatch<React.SetStateAction<PreviousChatType[]>>;
   setSelectedRoom: React.Dispatch<React.SetStateAction<CombineRoomType>>;
+  uuid: string;
 }
 const ChatHistory: React.FC<ChatHistoryType> = ({
   allListAssistant,
   setAllListAssistants,
   setPrevMessages,
   setSelectedRoom,
+  uuid,
 }) => {
   const [loading, setLoading] = React.useState(false);
-  const getAssistantHistory = async (selectedRoom: CombineRoomType) => {
-    setSelectedRoom(selectedRoom);
-    const res = await ChatService.chatHistory(selectedRoom?.uuid);
+
+  const getAssistantHistory = async (uuid: string) => {
+    const res = await ChatService.chatHistory(uuid);
     if (res?.length) {
       const categorizedMessages = res?.map((message: PreviousChatType) => {
         const isUser = allListAssistant?.some(
@@ -33,10 +35,15 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
           senderType: isUser ? SENDER_TYPE.BOT : SENDER_TYPE.USER,
         };
       });
+      console.log({ categorizedMessages });
       setPrevMessages(categorizedMessages);
     } else {
       setPrevMessages([]);
     }
+  };
+  const selectedAssistant = async (selectedRoom: CombineRoomType) => {
+    setSelectedRoom(selectedRoom);
+    await getAssistantHistory(selectedRoom?.uuid);
   };
 
   const getAllAssistants = async () => {
@@ -55,6 +62,12 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  React.useEffect(() => {
+    if (uuid && allListAssistant) {
+      getAssistantHistory(uuid);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uuid, allListAssistant]);
   return (
     <>
       {!loading ? (
@@ -90,7 +103,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
                   </div>
                   <div
                     className='w-11/12 flex flex-col'
-                    onClick={() => getAssistantHistory(item)}
+                    onClick={() => selectedAssistant(item)}
                   >
                     <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1 cursor-pointer'>
                       {`${item.persona} ${item.name}`}

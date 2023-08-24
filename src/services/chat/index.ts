@@ -17,7 +17,7 @@ class ChatServices {
     return response.data;
   }
 
-  async on_text_as_text(data: {
+  async on_text_as_text_and_speech(data: {
     msg_txt: string;
     room: {
       assistant_uuid: string;
@@ -27,9 +27,10 @@ class ChatServices {
   }) {
     try {
       const responseMessage = await instance.post(
-        '/ai_respond/on_text_as_text',
+        '/assistant_responds/on_text_as_text_and_speech',
         data,
       );
+      console.log(responseMessage?.data);
       return responseMessage?.data;
     } catch (error) {
       //@ts-ignore
@@ -93,6 +94,21 @@ class ChatServices {
     } catch (error) {
       //@ts-ignore
       toast.error(error?.response?.data?.detail);
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  async convert_voice_to_text(messageBody: any) {
+    try {
+      const res = await instance.post(`/voice_service/stt`, messageBody);
+      console.log(
+        'The response data of sendAudio_receiveTranscription(): ',
+        res.data,
+      );
+
+      return res.data;
+    } catch (e) {
+      console.error(e);
     }
   }
 }
