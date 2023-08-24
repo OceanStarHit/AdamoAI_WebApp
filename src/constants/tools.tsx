@@ -38,7 +38,7 @@ export const TOOLS = [
 
 export const ASSISTANTS = [
   {
-    avatar: require('../assets/images/fitness.png'),
+    avatar: require('../assets/images/fitnesss.png'),
     persona: 'Your Fitness Coach',
     name: 'Anna',
     description: '',
@@ -46,7 +46,7 @@ export const ASSISTANTS = [
     gradientColor: 'card-gradient3',
   },
   {
-    avatar: require('../assets/images/doctor.png'),
+    avatar: require('../assets/images/doctors.png'),
     persona: 'Your Doctor',
     name: 'Susan',
     description: '',
@@ -54,7 +54,7 @@ export const ASSISTANTS = [
     gradientColor: 'card-gradient2',
   },
   {
-    avatar: require('../assets/images/nutritionist.png'),
+    avatar: require('../assets/images/nutritionists.png'),
     persona: 'Your Nutritionist',
     name: 'Adamo',
     description: '',
@@ -62,7 +62,7 @@ export const ASSISTANTS = [
     gradientColor: 'card-gradient1',
   },
   {
-    avatar: require('../assets/images/pharmacist.png'),
+    avatar: require('../assets/images/pharmacists.png'),
     persona: 'Your Pharmacist',
     name: 'Adamo',
     description: '',
@@ -70,7 +70,7 @@ export const ASSISTANTS = [
     gradientColor: 'card-gradient5',
   },
   {
-    avatar: require('../assets/images/nutritionist.png'),
+    avatar: require('../assets/images/therapists.png'),
     persona: 'Your Therapist',
     name: 'Adamo',
     description: '',
@@ -78,15 +78,15 @@ export const ASSISTANTS = [
     gradientColor: 'card-gradient4',
   },
   {
-    avatar: require('../assets/images/nutritionist.png'),
-    persona: 'Your Nutritionist',
+    avatar: require('../assets/images/YourTravelAdvisor.png'),
+    persona: 'Your Travel Advisor',
     name: 'Adamo',
     description: '',
     href: '#',
     gradientColor: 'card-gradient6',
   },
   {
-    avatar: require('../assets/images/pharmacist.png'),
+    avatar: require('../assets/images/pharmacists.png'),
     persona: 'Your Pharmacist',
     name: 'Adamo',
     description: '',

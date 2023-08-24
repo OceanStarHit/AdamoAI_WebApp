@@ -2,75 +2,75 @@ import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { ASSISTANTS } from 'constants/tools';
 
-interface ICardList {
-  onClick?: () => void;
-  style?: object;
-  className?: string;
-}
+// interface ICardList {
+//   onClick?: () => void;
+//   style?: object;
+//   className?: string;
+// }
 
 const CardList = () => {
-  const SampleNextArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignContent: 'center',
-          height: '45px',
-          width: '45px',
-          borderRadius: '22.5px',
-          background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
-          right: -42,
-        }}
-        onClick={onClick}
-      />
-    );
-  };
+  // const SampleNextArrow = (props: ICardList) => {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{
+  //         ...style,
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         alignContent: 'center',
+  //         height: '45px',
+  //         width: '45px',
+  //         borderRadius: '22.5px',
+  //         background: `linear-gradient(
+  //         90deg,
+  //         #ae519d 0%,
+  //         #e54389 51.04%,
+  //         #f4a14c 97.92%
+  //       )`,
+  //         right: -42,
+  //       }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // };
 
-  const SamplePrevArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          zIndex: 20,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignContent: 'center',
-          height: '45px',
-          width: '45px',
-          borderRadius: '22.5px',
-          background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
-          left: -40,
-        }}
-        onClick={onClick}
-      />
-    );
-  };
+  // const SamplePrevArrow = (props: ICardList) => {
+  //   const { className, style, onClick } = props;
+  //   return (
+  //     <div
+  //       className={className}
+  //       style={{
+  //         ...style,
+  //         zIndex: 20,
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         alignContent: 'center',
+  //         height: '45px',
+  //         width: '45px',
+  //         borderRadius: '22.5px',
+  //         background: `linear-gradient(
+  //         90deg,
+  //         #ae519d 0%,
+  //         #e54389 51.04%,
+  //         #f4a14c 97.92%
+  //       )`,
+  //         left: -40,
+  //       }}
+  //       onClick={onClick}
+  //     />
+  //   );
+  // };
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 3,
     swipeToSlide: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
 
     responsive: [
       {
@@ -79,7 +79,7 @@ const CardList = () => {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
+          // dots: true,
         },
       },
       {
@@ -123,22 +123,16 @@ const CardList = () => {
           return (
             <div
               key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-48 rounded-xl ${card.gradientColor}`}
+              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl ${card.gradientColor}`}
             >
+              <img src={card.avatar} className='w-full p-2 h-32' />
               <div className='flex justify-between'>
-                <div className='mt-3 ml-1'>
+                <div className='m-2 font-semibold text-sm'>
+                  <p>{card.persona}</p>
+                </div>
+                <div className='mt-3 mx-3'>
                   <Heart />
                 </div>
-                <div>
-                  <img
-                    src={card.avatar}
-                    alt={card.persona}
-                    className='rounded-xl'
-                  />
-                </div>
-              </div>
-              <div className='m-2 font-medium text-base'>
-                <p>{card.persona}</p>
               </div>
             </div>
           );

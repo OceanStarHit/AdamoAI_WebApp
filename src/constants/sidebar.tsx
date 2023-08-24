@@ -1,16 +1,14 @@
-import {
-  Chat,
-  Doctor,
-  Favourite,
-  Fitness,
-  Home,
-  Nutritionist,
-  SidebarBookmark,
-  SidebarSetting,
-  Therapist,
-  Tools,
-} from 'assets/svgs';
+import { Home } from 'assets/svgs';
 import { ROUTES } from './routes';
+import Assistants from 'assets/svgs/assistants';
+import RealtimeTranslator from 'assets/svgs/realtimeTranslator';
+import ImageCreator from 'assets/svgs/imageCreator';
+import SocialConnection from 'assets/svgs/socialConnection';
+import Helps from 'assets/svgs/helps';
+import Account from 'assets/svgs/account';
+import Settings from 'assets/svgs/settings';
+import Subscription from 'assets/svgs/subscription';
+import Logout from 'assets/svgs/logout';
 
 export const UPPER_SIDEBAR = [
   {
@@ -20,53 +18,60 @@ export const UPPER_SIDEBAR = [
   },
   {
     route: ROUTES.CHAT,
-    label: 'Chat',
-    icon: <Chat />,
+    label: 'Assistants',
+    icon: <Assistants />,
   },
   {
-    route: ROUTES.TOOLS,
-    label: 'Tools',
-    icon: <Tools />,
+    route: ROUTES.HOME,
+    label: 'Realtime Translator',
+    icon: <RealtimeTranslator />,
   },
   {
-    route: ROUTES.SETTING,
+    route: ROUTES.HOME,
+    label: 'Image Creators',
+    icon: <ImageCreator />,
+  },
+  {
+    route: ROUTES.HOME,
+    label: 'Social Connection',
+    icon: <SocialConnection />,
+  },
+  {
+    route: ROUTES.HOME,
+    label: 'Help',
+    icon: <Helps />,
+  },
+];
+export const LOWER_SIDEBAR = [
+  {
+    route: ROUTES.HOME,
+    label: 'Account',
+    icon: <Account />,
+  },
+  {
+    route: ROUTES.HOME,
     label: 'Settings',
-    icon: <SidebarSetting />,
+    icon: <Settings />,
+  },
+  {
+    route: ROUTES.HOME,
+    label: 'Subscription',
+    icon: <Subscription />,
+  },
+  {
+    route: ROUTES.HOME,
+    label: 'Logout',
+    icon: <Logout />,
   },
 ];
 
-export const LOWER_SIDEBAR = [
-  {
-    label: 'Favourite',
-    icon: <Favourite />,
-    color: 'text-pink-500',
-  },
-  {
-    label: 'Bookmark',
-    icon: <SidebarBookmark />,
-    color: 'text-white',
-  },
-  {
-    label: 'Your Nutritionist',
-    icon: <Nutritionist />,
-    color: 'text-green-500',
-  },
-  {
-    label: 'Your Doctor',
-    icon: <Doctor />,
-    color: 'text-blue-300',
-  },
-  {
-    label: 'Your Fitness Coach',
-    icon: <Fitness />,
-    color: 'text-red-500',
-  },
-  {
-    label: 'Your Therapist',
-    icon: <Therapist />,
-    color: 'text-purple-400',
-  },
-];
+// export const LOWER_SIDEBAR = [
+//   {
+//     label: 'Favourite',
+//     icon: <Favourite />,
+//     color: 'text-pink-500',
+//   },
+// ];
 
 export const UPPER_CLOSE_SIDEBAR = [
   {
@@ -76,50 +81,50 @@ export const UPPER_CLOSE_SIDEBAR = [
   },
   {
     route: ROUTES.CHAT,
-    label: 'Chat',
-    icon: <Chat width='30' height='30' />,
+    label: 'Assistants',
+    icon: <Assistants width='30' height='30' />,
   },
   {
     route: ROUTES.TOOLS,
-    label: 'Tools',
-    icon: <Tools width='30' height='30' />,
+    label: 'Realtime Translator',
+    icon: <RealtimeTranslator width='30' height='30' />,
   },
   {
     route: ROUTES.SETTING,
-    label: 'Settings',
-    icon: <SidebarSetting width='30' height='30' />,
+    label: 'ImageCreator',
+    icon: <ImageCreator width='30' height='30' />,
+  },
+  {
+    route: ROUTES.TOOLS,
+    label: 'Social Connection',
+    icon: <SocialConnection width='30' height='30' />,
+  },
+  {
+    route: ROUTES.SETTING,
+    label: 'Help',
+    icon: <Helps width='30' height='30' />,
   },
 ];
 
 export const LOWER__CLOSE_SIDEBAR = [
   {
-    label: 'Favourite',
-    icon: <Favourite width='30' height='30' />,
-    color: 'text-pink-500',
+    route: ROUTES.HOME,
+    label: 'Account',
+    icon: <Account width='30' height='30' />,
   },
   {
-    label: 'Bookmark',
-    icon: <SidebarBookmark width='30' height='30' />,
-    color: 'text-white',
+    route: ROUTES.HOME,
+    label: 'Settings',
+    icon: <Settings width='30' height='30' />,
   },
   {
-    label: 'Your Nutritionist',
-    icon: <Nutritionist width='30' height='30' />,
-    color: 'text-green-500',
+    route: ROUTES.HOME,
+    label: 'Subscription',
+    icon: <Subscription width='30' height='30' />,
   },
   {
-    label: 'Your Doctor',
-    icon: <Doctor width='30' height='30' />,
-    color: 'text-blue-300',
-  },
-  {
-    label: 'Your Fitness Coach',
-    icon: <Fitness width='30' height='30' />,
-    color: 'text-red-500',
-  },
-  {
-    label: 'Your Therapist',
-    icon: <Therapist width='30' height='30' />,
-    color: 'text-purple-400',
+    route: ROUTES.HOME,
+    label: 'Logout',
+    icon: <Logout width='30' height='30' />,
   },
 ];

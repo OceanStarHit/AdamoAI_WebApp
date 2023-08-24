@@ -11,8 +11,8 @@ const SidebarList: React.FC<SidebarListType> = ({ lists }) => {
   const { sidebarState, setSidebarState } = useLayoutContext();
 
   return (
-    <div className='px-3'>
-      <ul className='mt-4 space-y-2 font-helvetica font-medium cursor-pointer'>
+    <div className='px-4 '>
+      <ul className='my-4 space-y-2 font-helvetica font-medium cursor-pointer'>
         {lists?.map((item) => {
           return (
             <li
@@ -24,7 +24,7 @@ const SidebarList: React.FC<SidebarListType> = ({ lists }) => {
             >
               <a
                 className={classNames(
-                  'flex items-center rounded-full p-2 text-white hover:black-gradient',
+                  'flex items-center font-normal text-xl rounded-full p-2 text-white hover:black-gradient',
                   { 'black-gradient': sidebarState === item.label },
                 )}
               >
