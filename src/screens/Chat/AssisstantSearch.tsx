@@ -9,7 +9,7 @@ const AssistantSearch = () => {
       <input
         type='search'
         id='search'
-        className='block w-full p-3 pl-14 text-sm text-black rounded-full bg-slate-200'
+        className='block w-full p-3 pl-14 text-sm text-black rounded-full bg-transparent border-[0.1rem] border-slate-200'
         placeholder='Type Category or Industry'
       />
       <div>

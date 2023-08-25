@@ -8,17 +8,13 @@ import ChatHistory from 'screens/Chat/ChatHistory';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import { useReactMediaRecorder } from 'react-media-recorder';
 import {
-  Bookmark,
-  Avatar,
-  Setting,
-  Star,
   StopRecording,
   Send,
   MicroPhone,
   Image,
-  DropdownIcon,
   Camera,
   BackArrow,
+  // DropdownIcon,
 } from 'assets/svgs/index';
 import ReactAudioPlayer from 'react-audio-player';
 
@@ -31,7 +27,7 @@ const Chat = () => {
   const [createRoom, setCreateRoom] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
-  const [currentAssistant] = React.useState('Chat');
+  // const [currentAssistant] = React.useState('Chat');
   const [audioBlob, setAudioBlob] = React.useState<string>('');
   const { state } = useLocation();
   console.log({ state });
@@ -119,22 +115,20 @@ const Chat = () => {
   return (
     <div className='bg-white rounded-3xl w-full flex min-h-[calc(100vh-2rem)]'>
       <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
-        <div className='p-3.5 w-full items-center'>
-          <div className='flex justify-start'>
-            <span className='text-black text-xl font-semibold relative top-5 font-sans items-center flex'>
-              {currentAssistant !== 'Chat' ? (
-                <span className='cursor-pointer'>
+        <div className='p-3 w-full items-center'>
+          {selectedRoom._id !== '' ? (
+            <div className='p-3 w-full items-center'>
+              <div className=' flex items-center'>
+                <div
+                  className='mx-6 cursor-pointer'
+                  // onClick={setToInitial}
+                >
                   <BackArrow />
-                </span>
-              ) : null}
-              {currentAssistant}
-            </span>
-          </div>
-          <div className='flex justify-end space-x-2'>
-            <Star />
-            <Bookmark />
-            <Setting />
-          </div>
+                  <span>{selectedRoom.persona}</span>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
         <Messages
           messages={prevMessages}
@@ -186,11 +180,9 @@ const Chat = () => {
         </div>
       </div>
       <div className='w-1/3 border-l border-slate-300 max-h-[calc(100vh-2rem)] flex-col justify-between flex'>
-        <div className='flex justify-end items-center space-x-6 h-20 mx-4'>
-          <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
-            <Avatar />
-          </div>
-          <DropdownIcon />
+        <div className='flex my-4 mx-6 items-center justify-between sm:justify-normal'>
+          <img src={require('assets/images/users.png')} className='w-10 h-10' />
+          <p className=' text-2xl font-medium ml-4'>Assistants</p>
         </div>
         <div
           className={classNames(
@@ -212,12 +204,12 @@ const Chat = () => {
           />
 
           <div className='p-4'>
-            <Button
+            {/* <Button
               btnText='New Chat'
               gradient
               className='rounded-md w-full font-semibold'
               onClick={() => setIsOpen(true)}
-            />
+            /> */}
             <Modal
               isOpen={isOpen}
               title='Create Room'

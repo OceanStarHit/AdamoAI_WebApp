@@ -72,12 +72,12 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     <>
       {!loading ? (
         <>
-          <div className='w-full border-b-2'></div>
+          <div className='w-full h-0.5 bg-slate-300' />
           <div className='w-full'>
             <AssistantSearch />
           </div>
-          <div className='w-full border-b-2'></div>
-          <div className='p-4 space-y-2 flex-grow overflow-y-scroll overflow-x-hidden font-medium'>
+          <div className='w-full h-0.5 bg-slate-300' />
+          <div className='p-4 space-y-2 flex-grow overflow-y-scroll custom-scrollbar overflow-x-hidden font-medium'>
             {allListAssistant?.map((item) => {
               return (
                 <div key={item._id}>
@@ -101,7 +101,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className='border-t flex p-4 justify-center'>
+          <div className=' flex p-4 justify-center'>
             <div className='flex justify-center mt-40'>
               <Loader color='#db2777' />
             </div>
