@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 interface SidebarListType {
   lists: { label: string; icon: JSX.Element; route?: string }[];
+  setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const SidebarList: React.FC<SidebarListType> = ({ lists }) => {
+const SidebarList: React.FC<SidebarListType> = ({ lists, setOpenDrawer }) => {
   const navigate = useNavigate();
   const currentRoute = useLocation();
   const { setSidebarState } = useLayoutContext();
@@ -19,6 +20,7 @@ const SidebarList: React.FC<SidebarListType> = ({ lists }) => {
               key={item.label}
               onClick={() => {
                 setSidebarState(item.label);
+                setOpenDrawer(false);
                 item?.route ? navigate(item.route) : null;
               }}
             >

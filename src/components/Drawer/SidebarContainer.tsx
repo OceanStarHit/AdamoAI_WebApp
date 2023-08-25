@@ -1,8 +1,11 @@
 import { UPPER_SIDEBAR } from 'constants/sidebar';
 import { LOWER_SIDEBAR } from 'constants/sidebar';
 import SidebarList from 'components/Drawer/SidebarList';
+type propType = {
+  setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const SidebarContainer: React.FC = () => {
+const SidebarContainer: React.FC<propType> = ({ setOpenDrawer }) => {
   const list = UPPER_SIDEBAR.concat(LOWER_SIDEBAR);
   return (
     <>
@@ -11,7 +14,7 @@ const SidebarContainer: React.FC = () => {
         overflow-y-auto custom-scrollbar
        `}
       >
-        <SidebarList lists={list} />
+        <SidebarList lists={list} setOpenDrawer={setOpenDrawer} />
       </div>
       <div className='px-2 md:absolute bottom-4 right-0'>
         <div className='black-gradient text-white rounded-md p-4'>

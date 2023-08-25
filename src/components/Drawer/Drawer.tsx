@@ -42,7 +42,7 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>
-        <SidebarContainer />
+        <SidebarContainer setOpenDrawer={setOpenDrawer} />
       </div>
     </div>
   );
