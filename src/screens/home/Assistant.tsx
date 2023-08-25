@@ -130,6 +130,7 @@ const CardList = () => {
                 navigate('/chat', {
                   state: {
                     uuid: card.uuid,
+                    cardName: card.persona,
                   },
                 })
               }

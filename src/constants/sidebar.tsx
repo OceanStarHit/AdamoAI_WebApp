@@ -22,44 +22,44 @@ export const UPPER_SIDEBAR = [
     icon: <Assistants />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.REALTIME_TRANSLATOR,
     label: 'Realtime Translator',
     icon: <RealtimeTranslator />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.IMAGE_GENERATOR,
     label: 'Image Creators',
     icon: <ImageCreator />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.SOCIAL_CONNECTION,
     label: 'Social Connection',
     icon: <SocialConnection />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.HELP,
     label: 'Help',
     icon: <Helps />,
   },
 ];
 export const LOWER_SIDEBAR = [
   {
-    route: ROUTES.HOME,
+    route: ROUTES.ACCOUNT,
     label: 'Account',
     icon: <Account />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.SETTING,
     label: 'Settings',
     icon: <Settings />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.SUBSCRIPTION,
     label: 'Subscription',
     icon: <Subscription />,
   },
   {
-    route: ROUTES.HOME,
+    route: ROUTES.ACCOUNT,
     label: 'Logout',
     icon: <Logout />,
   },
