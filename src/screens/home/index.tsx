@@ -26,7 +26,7 @@ const Home = () => {
         </div>
 
         <div className='flex justify-center'>
-          <div className='w-1/2'>
+          <div className='w-1/2 md:w-1/3 mb-8 md:mb-6'>
             <div className='flex space-x-2'>
               <Heading
                 text={`Hi, I'm Adamo`}
@@ -39,24 +39,24 @@ const Home = () => {
           </div>
         </div>
         <div className='flex justify-center'>
-          <div className='w-11/12 md:w-2/3 lg:w-1/2'>
+          <div className='w-11/12 md:w-2/3 lg:w-3/5'>
             <HomeSearch />
           </div>
         </div>
-        <div className='mx-3'>
+        <div>
           <Tabs
             options={tabs}
             notSelectedClassName='!bg-gray-200'
             className='rounded-full'
-            tabWidth='w-11/12 md:w-2/3 lg:w-1/2'
+            tabWidth='w-11/12 md:w-2/3 lg:w-3/5'
             variant='home'
-            tabPanelClassName='w-full'
+            tabPanelClassName='w-3/4 md:w-11/12 '
           />
         </div>
-        <div className='flex justify-start mt-8 relative right-8 mx-3'>
+        <div className='flex justify-start mt-6 relative right-8 mx-3'>
           <Heading text='Tools' type='heading' className='ml-12 font-medium' />
         </div>
-        <div className=''>
+        <div>
           <Tools />
         </div>
       </div>

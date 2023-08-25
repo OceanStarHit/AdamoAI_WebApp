@@ -23,7 +23,7 @@ const HomeSearch = () => {
       <input
         type='search'
         id='search'
-        className='block w-full p-4 pl-14 text-sm text-black rounded-full bg-slate-200'
+        className='block w-full p-4 pl-14 text-sm text-black focus:outline-none rounded-full bg-slate-200'
         placeholder='Type Category or Industry'
         onChange={(e) => setSearch(e.target.value)}
       />

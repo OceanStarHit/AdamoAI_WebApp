@@ -1,9 +1,9 @@
 import React from 'react';
 import ChatService from 'services/chat';
-import { DeleteIcon, Loader } from 'assets/svgs';
+import { Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
-import Checkbox from 'components/CheckBox';
+import AssistantSearch from './AssisstantSearch';
 
 interface ChatHistoryType {
   allListAssistant: CombineRoomType[] | null;
@@ -72,47 +72,28 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     <>
       {!loading ? (
         <>
-          <div className='border-t border-gray-300 flex justify-between p-4'>
-            <div>
-              <p>Chat History</p>
-            </div>
-            <div className='cursor-pointer'>
-              <DeleteIcon />
-
-              {/* 
-              This code will work when delete chat api will be available
-              <Modal
-                isOpen={isOpen}
-                title='Delete Chat'
-                description='Are You To Delete Chats'
-                btnText='Delete'
-                setIsOpen={setIsOpen}
-                onClose={handleDelete}
-              /> */}
-            </div>
+          <div className='w-full border-b-2'></div>
+          <div className='w-full'>
+            <AssistantSearch />
           </div>
+          <div className='w-full border-b-2'></div>
           <div className='p-4 space-y-2 flex-grow overflow-y-scroll overflow-x-hidden font-medium'>
             {allListAssistant?.map((item) => {
               return (
-                <div
-                  className='rounded-md border border-slate-200 p-1 h-36 md:h-24 bg-gray-100 font-sans cursor-pointer w-full flex space-x-2'
-                  key={item._id}
-                >
-                  <div className='w-1/12 relative top-1'>
-                    <Checkbox />
-                  </div>
+                <div key={item._id}>
                   <div
-                    className='w-11/12 flex flex-col'
+                    className='flex items-center cursor-pointer'
                     onClick={() => selectedAssistant(item)}
                   >
-                    <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1 cursor-pointer'>
-                      {`${item.persona} ${item.name}`}
-                    </label>
-                    <div className='text-xs md:text-sm text-gray-400 flex justify-center md:justify-start mt-2'>
-                      {item.discription ??
-                        'Best couple color gradient for FF5C00'}
-                    </div>
+                    <img
+                      src={require('assets/images/YourTravelAdvisor.png')}
+                      className='w-10 h-10 rounded-full'
+                    />
+                    <p className='font-sans text-base font-normal ml-3'>
+                      {`${item.persona} `}
+                    </p>
                   </div>
+                  <div className='bg-gray-200 w-full ml-10 h-0.5'></div>
                 </div>
               );
             })}
@@ -120,7 +101,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className='border-t border-gray-300 flex p-4 justify-center'>
+          <div className='border-t flex p-4 justify-center'>
             <div className='flex justify-center mt-40'>
               <Loader color='#db2777' />
             </div>

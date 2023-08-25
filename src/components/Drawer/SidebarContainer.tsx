@@ -6,7 +6,7 @@ const SidebarContainer: React.FC = () => {
   return (
     <>
       <div
-        className={`mx-2 max-h-[calc(65vh-2rem)] 
+        className={`mx-2 max-h-[calc(100vh-2rem)] sm:max-h-[calc(65vh-2rem)] 
         overflow-y-auto custom-scrollbar
        `}
       >
@@ -14,7 +14,7 @@ const SidebarContainer: React.FC = () => {
         <div className='border-t border-gray-900' />
         <SidebarList lists={LOWER_SIDEBAR} />
       </div>
-      <div className='px-2 absolute bottom-4 right-0'>
+      <div className='px-2 md:absolute bottom-4 right-0'>
         <div className='black-gradient text-white rounded-md p-4'>
           <div className='flex space-x-2'>
             <div className='relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full'>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { IMAGE_URL } from 'constants/common';
 import SidebarContainer from './SidebarContainer';
 
 interface DrawerType {
@@ -34,7 +33,12 @@ const Drawer: React.FC<DrawerType> = ({ openDrawer, setOpenDrawer }) => {
       <div className='min-h-screen'>
         <div className='flex justify-center items-center'>
           <div className='mt-6 flex items-center justify-start space-x-2 px-3'>
-            <img src={IMAGE_URL} height={50} width={50} alt='Logo' />
+            <img
+              src={require('assets/images/Logo.png')}
+              height={50}
+              width={50}
+              alt='Logo'
+            />
             <p className='text-lg font-semibold text-white font-sans'>ADAMO</p>
           </div>
         </div>

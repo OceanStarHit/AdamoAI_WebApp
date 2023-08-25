@@ -2,13 +2,13 @@ import { TOOLS } from 'constants/tools';
 
 const Tools = () => {
   return (
-    <div className='overflow-x-auto overflow-y-hidden px-5 mb-5'>
-      <div className=' space-x-2 columns-1 sm:columns-2 md:columns-4'>
+    <div className='overflow-x-auto overflow-y-hidden px-5 pb-5 '>
+      <div className='sm:space-x-2 space-y-3 columns-1 sm:columns-2 md:columns-4'>
         {TOOLS.map((card) => {
           return (
             <div
               key={card.persona}
-              className={`flex-shrink-0 w-full h-60 md:h-auto shadow-md rounded-xl ${card.gradientColor}`}
+              className={`flex-shrink-0 pb-1 w-full h-auto shadow-md rounded-xl ${card.gradientColor}`}
             >
               <img
                 src={card.avatar}
