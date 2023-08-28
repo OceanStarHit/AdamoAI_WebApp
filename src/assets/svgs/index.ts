@@ -65,6 +65,7 @@ import Subscription from './subscription';
 import Logout from './logout';
 import SendFast from './sendfast';
 import LeftArrow from './leftArrow';
+import FilterIcon from './filterIcon';
 
 export {
   Avatar,
@@ -134,4 +135,5 @@ export {
   Logout,
   SendFast,
   LeftArrow,
+  FilterIcon,
 };
