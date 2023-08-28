@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'components/Button';
 import { HOME_ASSISTANT } from 'constants/home';
 import { ArrowForward, Link, MicroPhone, Search } from 'assets/svgs';
+import Input from 'components/Input';
 
 const HomeSearch = () => {
   const [search, setSearch] = React.useState('');
@@ -17,24 +18,24 @@ const HomeSearch = () => {
 
   return (
     <div className='relative'>
-      <div className='absolute top-3.5 left-3'>
+      <div className='absolute z-50 bottom-5 left-3'>
         <Search />
       </div>
-      <input
+      <Input
         type='search'
         id='search'
-        className='block w-full p-4 pl-14 text-sm text-black focus:outline-none rounded-full bg-slate-200'
+        className='block w-full p-4 pl-10 pr-20 sm:pl-14 sm:pr-20 text-sm text-black focus:outline-none !rounded-full bg-slate-200'
         placeholder='Type Category or Industry'
         onChange={(e) => setSearch(e.target.value)}
       />
       <div>
-        <span className='absolute right-16 bottom-3 cursor-pointer'>
+        <span className='absolute right-14 sm:right-16 bottom-5 cursor-pointer'>
           <MicroPhone />
         </span>
         <Button
           icon={<ArrowForward />}
           gradient
-          className='w-12 h-12 absolute right-0.5 bottom-0.5'
+          className='w-12 h-12 absolute right-0.5 bottom-2.5'
         />
       </div>
       {search && (
