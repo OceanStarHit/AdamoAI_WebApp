@@ -54,6 +54,7 @@ import CanadaIcon from './CandaIcon';
 import ChevronDown from './ChevronDown';
 import ChevronUp from './ChevronUp';
 import Loader from './Loader';
+import WaveIcon from './wavinghand';
 
 export {
   Avatar,
@@ -112,4 +113,5 @@ export {
   ChevronDown,
   ChevronUp,
   Loader,
+  WaveIcon,
 };

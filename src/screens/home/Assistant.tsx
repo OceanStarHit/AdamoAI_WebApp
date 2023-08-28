@@ -125,7 +125,7 @@ const CardList = () => {
           return (
             <div
               key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl ${card.gradientColor} cursor-pointer`}
+              className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
               onClick={() =>
                 navigate('/chat', {
                   state: {
@@ -135,7 +135,7 @@ const CardList = () => {
                 })
               }
             >
-              <img src={card.avatar} className='w-full p-2 h-32' />
+              <img src={card.avatar} className='w-full p-2 h-32 xl:h-44' />
               <div className='flex justify-between'>
                 <div className='m-2 font-semibold text-sm'>
                   <p>{card.persona}</p>

@@ -2,7 +2,7 @@ import { TOOLS } from 'constants/tools';
 
 const Tools = () => {
   return (
-    <div className='overflow-x-auto overflow-y-hidden px-5 pb-5 '>
+    <div className='overflow-x-auto overflow-y-hidden px-5 pb-5'>
       <div className='sm:space-x-2 space-y-3 columns-1 sm:columns-2 md:columns-4'>
         {TOOLS.map((card) => {
           return (
@@ -19,11 +19,13 @@ const Tools = () => {
               <div className='m-2 font-medium'>
                 <div className='flex space-x-2 items-center'>
                   <span>{card.icon}</span>
-                  <p className='text-xs md:text-sm font-semibold md:font-medium'>
+                  <p className='text-xs md:text-sm xl:text-lg font-semibold md:font-medium'>
                     {card.persona}
                   </p>
                 </div>
-                <p className='text-gray-500 text-xs'>{card.description}</p>
+                <p className='text-gray-500 text-xs xl:text-base'>
+                  {card.description}
+                </p>
               </div>
             </div>
           );

@@ -1,7 +1,8 @@
 import classnames from 'classnames';
+import { ReactElement } from 'react';
 
 interface HeadingType {
-  text: string;
+  text: ReactElement | string;
   type?: 'title' | 'subtitle' | 'heading' | 'subheading' | 'base';
   className?: string;
 }
