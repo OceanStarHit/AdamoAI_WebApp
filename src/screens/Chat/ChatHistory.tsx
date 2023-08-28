@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import ChatService from 'services/chat';
 import { Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
@@ -13,6 +13,8 @@ interface ChatHistoryType {
   setPrevMessages: React.Dispatch<React.SetStateAction<PreviousChatType[]>>;
   setSelectedRoom: React.Dispatch<React.SetStateAction<CombineRoomType>>;
   uuid: string;
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 const ChatHistory: React.FC<ChatHistoryType> = ({
   allListAssistant,
@@ -20,8 +22,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   setPrevMessages,
   setSelectedRoom,
   uuid,
+  setIsOpen,
 }) => {
   const [loading, setLoading] = React.useState(false);
+  const [selectedAssist, setSelectedAssist] = useState('');
 
   const getAssistantHistory = async (uuid: string) => {
     const res = await ChatService.chatHistory(uuid);
@@ -68,22 +72,41 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uuid, allListAssistant]);
+
+  const setSelectedRoomAction = (item: CombineRoomType) => {
+    selectedAssistant(item);
+    setSelectedAssist(item.uuid);
+    setIsOpen(false);
+  };
   return (
     <>
       {!loading ? (
         <>
-          <div className='w-full h-0.5 bg-slate-300' />
-          <div className='w-full'>
+          <div className={`flex py-4 mx-6 items-center sm:justify-normal `}>
+            <img
+              src={require('assets/images/users.png')}
+              className='w-10 h-10'
+            />
+            <span className=' text-2xl font-medium sm:ml-4'>Assistants</span>
+          </div>
+          <div className='w-full border-y border-slate-300 mb-2'>
             <AssistantSearch />
           </div>
-          <div className='w-full h-0.5 bg-slate-300' />
-          <div className='p-4 space-y-2 flex-grow overflow-y-scroll custom-scrollbar overflow-x-hidden font-medium'>
+          <div
+            className={`px-4 flex-grow overflow-y-scroll  rounded-br-3xl custom-scrollbar overflow-x-hidden font-medium`}
+          >
             {allListAssistant?.map((item) => {
               return (
                 <div key={item._id}>
                   <div
-                    className='flex items-center cursor-pointer'
-                    onClick={() => selectedAssistant(item)}
+                    className={`flex items-center p-1 cursor-pointer
+                   ${
+                     item.uuid === selectedAssist
+                       ? 'bg-primary-gradient rounded-md '
+                       : ''
+                   }
+                      `}
+                    onClick={() => setSelectedRoomAction(item)}
                   >
                     <img
                       src={require('assets/images/YourTravelAdvisor.png')}
@@ -93,7 +116,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
                       {`${item.persona} `}
                     </p>
                   </div>
-                  <div className='bg-gray-200 w-full ml-10 h-0.5'></div>
+                  <div
+                    className='bg-gray-200 ml-10 my-1 w-full'
+                    style={{ height: '1px' }}
+                  />
                 </div>
               );
             })}
@@ -101,8 +127,8 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className=' flex p-4 justify-center'>
-            <div className='flex justify-center mt-40'>
+          <div className='flex p-4 justify-center min-h-screen align-middle items-center'>
+            <div className='flex justify-center h-8'>
               <Loader color='#db2777' />
             </div>
           </div>

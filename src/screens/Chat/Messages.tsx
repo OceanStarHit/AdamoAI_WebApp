@@ -9,7 +9,7 @@ interface MessagesType {
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
 }
-const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
+const Messages: React.FC<MessagesType> = ({ messages }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
@@ -32,7 +32,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   };
 
   return (
-    <div className='flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] border-t border-gray-300 p-4'>
+    <div className='flex-grow overflow-y-scroll overflow-x-clip custom-scrollbar max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
@@ -142,15 +142,18 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
           </div>
         ))
       ) : (
-        <div className='flex justify-center mt-24 bg-transparent'>
+        <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={IMAGE_GIF} width={200} height={200} />
+          <h1 className='mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
+            Please select an assistant to start talking
+          </h1>
         </div>
       )}
-      {aiResponding ? (
+      {/* {aiResponding ? (
         <p className='absolute bottom-24 text-gray-500 text-xs'>
           AI Responding, Please wait
         </p>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
