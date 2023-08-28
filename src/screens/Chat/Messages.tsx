@@ -33,7 +33,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   };
 
   return (
-    <div className='flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
+    <div className='flex flex-col-reverse custom-scrollbar flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
