@@ -3,13 +3,14 @@ import ChatInput from 'components/ChatInput';
 import { IMAGE_GIF } from 'constants/common';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
+import { Edit } from 'assets/svgs';
 
 interface MessagesType {
   messages: PreviousChatType[];
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
 }
-const Messages: React.FC<MessagesType> = ({ messages }) => {
+const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
@@ -32,7 +33,7 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
   };
 
   return (
-    <div className='flex-grow overflow-y-scroll overflow-x-clip custom-scrollbar max-h-[calc(100%-5rem)] p-4'>
+    <div className='flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
@@ -102,13 +103,13 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
                         )}
                       </p>
                     </span>
-                    {/* <span
+                    <span
                       className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'
                       // onClick={() => handleEdit(index, message.text)}
                     >
                       <Edit />
                       <p className='text-gray-600 text-xs'>Edit</p>
-                    </span> */}
+                    </span>
                   </div>
                 </>
               ) : (
@@ -144,16 +145,16 @@ const Messages: React.FC<MessagesType> = ({ messages }) => {
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={IMAGE_GIF} width={200} height={200} />
-          <h1 className='mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
+          <h1 className='sm:mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
             Please select an assistant to start talking
           </h1>
         </div>
       )}
-      {/* {aiResponding ? (
+      {aiResponding ? (
         <p className='absolute bottom-24 text-gray-500 text-xs'>
           AI Responding, Please wait
         </p>
-      ) : null} */}
+      ) : null}
     </div>
   );
 };

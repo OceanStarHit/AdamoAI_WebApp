@@ -12,33 +12,36 @@ const SidebarList: React.FC<SidebarListType> = ({ lists, setOpenDrawer }) => {
   const { setSidebarState } = useLayoutContext();
 
   return (
-    <div className='px-4 '>
+    <div>
       <ul className='my-4 space-y-2 font-helvetica font-medium cursor-pointer'>
         {lists?.map((item, index) => {
           return (
-            <li
-              key={item.label}
-              onClick={() => {
-                setSidebarState(item.label);
-                setOpenDrawer(false);
-                item?.route ? navigate(item.route) : null;
-              }}
-            >
-              {index === 6 && <div className='border-t border-gray-900' />}
-              <a
-                className={classNames(
-                  'flex items-center font-normal text-xl rounded-full p-2 text-white hover:black-gradient',
-                  { 'black-gradient': currentRoute.pathname === item.route },
-                )}
+            <>
+              {index === 6 && <div className='border-t border-gray-700' />}
+              <li
+                className='px-6 '
+                key={item.label}
+                onClick={() => {
+                  setSidebarState(item.label);
+                  setOpenDrawer(false);
+                  item?.route ? navigate(item.route) : null;
+                }}
               >
-                <div className='flex space-x-4'>
-                  <span>{item.icon}</span>
-                  <span className='ml-3 flex-1 whitespace-nowrap'>
-                    {item.label}
-                  </span>
-                </div>
-              </a>
-            </li>
+                <a
+                  className={classNames(
+                    'flex items-center font-normal text-xl rounded-full p-2 text-white hover:black-gradient',
+                    { 'black-gradient': currentRoute.pathname === item.route },
+                  )}
+                >
+                  <div className='flex space-x-4'>
+                    <span>{item.icon}</span>
+                    <span className='ml-3 flex-1 whitespace-nowrap'>
+                      {item.label}
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </>
           );
         })}
       </ul>
