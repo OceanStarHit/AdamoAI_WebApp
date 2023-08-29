@@ -54,7 +54,18 @@ import CanadaIcon from './CandaIcon';
 import ChevronDown from './ChevronDown';
 import ChevronUp from './ChevronUp';
 import Loader from './Loader';
-import WaveIcon from './wavinghand';
+import Assistants from './assistants';
+import RealtimeTranslator from './realtimeTranslator';
+import ImageCreator from './imageCreator';
+import SocialConnection from './socialConnection';
+import Helps from './helps';
+import Account from './account';
+import Settings from './settings';
+import Subscription from './subscription';
+import Logout from './logout';
+import SendFast from './sendfast';
+import LeftArrow from './leftArrow';
+import FilterIcon from './filterIcon';
 
 export {
   Avatar,
@@ -113,5 +124,16 @@ export {
   ChevronDown,
   ChevronUp,
   Loader,
-  WaveIcon,
+  Assistants,
+  RealtimeTranslator,
+  ImageCreator,
+  SocialConnection,
+  Helps,
+  Account,
+  Settings,
+  Subscription,
+  Logout,
+  SendFast,
+  LeftArrow,
+  FilterIcon,
 };

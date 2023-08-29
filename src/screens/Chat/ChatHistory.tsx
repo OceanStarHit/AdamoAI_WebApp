@@ -4,6 +4,8 @@ import { Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import AssistantSearch from './AssisstantSearch';
+import Users from 'assets/images/users.png';
+import YourTravelAdvisor from 'assets/images/YourTravelAdvisor.png';
 
 interface ChatHistoryType {
   allListAssistant: CombineRoomType[] | null;
@@ -83,10 +85,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
       {!loading ? (
         <>
           <div className={`flex py-4 mx-6 items-center sm:justify-normal `}>
-            <img
-              src={require('assets/images/users.png')}
-              className='w-10 h-10'
-            />
+            <img src={Users} className='w-10 h-10' />
             <span className=' text-2xl font-medium sm:ml-4'>Assistants</span>
           </div>
           <div className='w-full border-y border-slate-300 mb-2'>
@@ -109,7 +108,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
                     onClick={() => setSelectedRoomAction(item)}
                   >
                     <img
-                      src={require('assets/images/YourTravelAdvisor.png')}
+                      src={YourTravelAdvisor}
                       className='w-10 h-10 rounded-full'
                     />
                     <p className='font-sans text-base font-normal ml-3'>

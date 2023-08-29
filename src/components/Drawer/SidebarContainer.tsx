@@ -10,7 +10,7 @@ const SidebarContainer: React.FC<propType> = ({ setOpenDrawer }) => {
   return (
     <>
       <div
-        className={`mx-2 max-h-[calc(100vh-2rem)] sm:max-h-[calc(65vh-2rem)] 
+        className={`max-h-[calc(100vh-2rem)] sm:max-h-[calc(65vh-2rem)] 
         overflow-y-auto custom-scrollbar
        `}
       >

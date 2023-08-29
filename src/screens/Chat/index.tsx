@@ -6,21 +6,24 @@ import ChatServices from 'services/chat/index';
 import ChatHistory from 'screens/Chat/ChatHistory';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import { useReactMediaRecorder } from 'react-media-recorder';
-import { StopRecording, MicroPhone, Image, Camera } from 'assets/svgs/index';
+import {
+  StopRecording,
+  MicroPhone,
+  Image,
+  Camera,
+  SendFast,
+} from 'assets/svgs/index';
 import ReactAudioPlayer from 'react-audio-player';
 import { fetchSpeechToText } from 'services/chat/utils';
 import { CombineRoomType } from 'types/assistant';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
-import SendFast from 'assets/svgs/sendfast';
 import AssistantSideButton from 'screens/Chat/AssistantSideButton';
 import TopBar from './TopBar';
 import AssistantDrawer from './AssistantDrawer';
 const Chat = () => {
-  // const [createRoom, setCreateRoom] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
-  // const [currentAssistant] = React.useState('Chat');
   const [audioBlob, setAudioBlob] = React.useState<string>('');
   const { state } = useLocation();
   console.log({ state });
@@ -97,9 +100,7 @@ const Chat = () => {
       handleFetchSpeechToText(mediaBlobUrl);
     }
   }, [mediaBlobUrl]);
-  // const handleRoomCreation = () => {
-  //   handleCreateRoom(createRoom);
-  // };
+
   const setToInitial = () => {
     setSelectedRoom({
       avatar: '',

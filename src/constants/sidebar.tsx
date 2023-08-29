@@ -1,14 +1,16 @@
 import { Home } from 'assets/svgs';
 import { ROUTES } from './routes';
-import Assistants from 'assets/svgs/assistants';
-import RealtimeTranslator from 'assets/svgs/realtimeTranslator';
-import ImageCreator from 'assets/svgs/imageCreator';
-import SocialConnection from 'assets/svgs/socialConnection';
-import Helps from 'assets/svgs/helps';
-import Account from 'assets/svgs/account';
-import Settings from 'assets/svgs/settings';
-import Subscription from 'assets/svgs/subscription';
-import Logout from 'assets/svgs/logout';
+import {
+  Assistants,
+  RealtimeTranslator,
+  ImageCreator,
+  SocialConnection,
+  Helps,
+  Account,
+  Settings,
+  Subscription,
+  Logout,
+} from 'assets/svgs';
 
 export const UPPER_SIDEBAR = [
   {

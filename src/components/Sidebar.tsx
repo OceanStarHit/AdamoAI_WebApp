@@ -53,12 +53,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <DrawerClose />
                 </div>
               </div>
-              <SidebarContainer
-                setOpenDrawer={setOpenDrawer}
-                // setDropdown={setDropdown}
-                // dropdown={dropdown}
-                // lowerSidebar={LOWER_SIDEBAR}
-              />
+              <SidebarContainer setOpenDrawer={setOpenDrawer} />
             </>
           ) : (
             <div>

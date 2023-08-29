@@ -1,13 +1,13 @@
 import Tabs from 'components/Tabs';
 import Tools from 'screens/home/Tools';
 import Heading from 'components/Heading';
-import { IMAGE_GIF } from 'constants/common';
 import CardList from 'screens/home/Assistant';
 import { ANIMATED_TEXT } from 'constants/auth';
 import WordEffect from 'components/WordEffect';
 import HomeSearch from 'screens/home/HomeSearch';
 import MainContainer from 'components/MainContainer';
-import { WaveIcon } from 'assets/svgs';
+import image_gif from '../../assets/images/AdamoCircle.gif';
+import WaveIcon from 'assets/svgs/wavinghand';
 const Home = () => {
   const tabs = [
     { label: 'All', component: <CardList />, tags: 23 },
@@ -22,7 +22,7 @@ const Home = () => {
       rounded-3xl'
       >
         <div className='flex justify-center bg-transparent'>
-          <img src={IMAGE_GIF} width={200} height={200} />
+          <img src={image_gif} width={200} height={200} />
         </div>
 
         <div className='flex justify-center'>
