@@ -26,6 +26,7 @@ const HomeSearch = () => {
       </div>
       <Input
         type='search'
+        value={homeSearch}
         id='search'
         className='block w-full p-4 pl-10 pr-20 sm:pl-14 sm:pr-20 text-sm text-black focus:outline-none !rounded-full bg-slate-200'
         placeholder='Type Category or Industry'

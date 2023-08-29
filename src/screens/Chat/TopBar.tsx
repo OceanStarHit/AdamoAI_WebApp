@@ -39,9 +39,11 @@ const TopBar: FC<PropType> = ({
             <span className='text-lg sm:text-2xl font-medium font-helvetica'>
               {selectedRoom.persona}
             </span>
-          ) : (
+          ) : states?.cardName ? (
             <span className='text-2xl font-medium'>{states?.cardName}</span>
-          )}
+          ) : states?.itemName ? (
+            <span className='text-2xl font-medium'>{states?.itemName}</span>
+          ) : null}
         </div>
         <Button icon={<FilterIcon />} />
       </div>
