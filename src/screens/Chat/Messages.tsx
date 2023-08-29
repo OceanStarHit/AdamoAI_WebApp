@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatInput from 'components/ChatInput';
-import { IMAGE_GIF } from 'constants/common';
+import IMAGE_GIF from '../../assets/images/AdamoCircle.gif';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
 import { Edit } from 'assets/svgs';
@@ -10,22 +10,12 @@ interface MessagesType {
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
 }
+
 const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
   });
-  // const handleEdit = (selectedIndex: number, message: string) => {
-  //   const selectedMessage = messages.find(
-  //     (item, index) =>
-  //       item.text === message &&
-  //       index === selectedIndex &&
-  //       item.sender === SENDER_TYPE.USER,
-  //   );
-  //   if (selectedMessage) {
-  //     setEditMessage({ index: selectedIndex, message: selectedMessage?.text });
-  //   }
-  // };
 
   const handleSendMessage = () => {
     messages[editMessage.index].text = editMessage.message;
@@ -103,10 +93,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                         )}
                       </p>
                     </span>
-                    <span
-                      className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'
-                      // onClick={() => handleEdit(index, message.text)}
-                    >
+                    <span className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'>
                       <Edit />
                       <p className='text-gray-600 text-xs'>Edit</p>
                     </span>
@@ -130,12 +117,6 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                         />
                       </p>
                     </span>
-                    {/* <span className='flex space-x-1 rounded-md bg-gray-200 w-auto h-7 items-center justify-center relative bottom-7 cursor-pointer p-1'>
-                      <Reload />
-                      <p className='text-gray-600 text-xs'>
-                        Regenerate response
-                      </p>
-                    </span> */}
                   </div>
                 </>
               )}
@@ -150,7 +131,8 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
           </h1>
         </div>
       )}
-      {aiResponding ? (
+
+      {aiResponding && messages.length > 0 ? (
         <p className='absolute bottom-24 text-gray-500 text-xs'>
           AI Responding, Please wait
         </p>
