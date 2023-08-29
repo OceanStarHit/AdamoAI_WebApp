@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
 import Heading from './Heading';
+import React from 'react';
 
 type optionsType = {
   label: string;

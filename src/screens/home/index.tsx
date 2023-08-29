@@ -50,7 +50,7 @@ const Home = () => {
             <HomeSearch />
           </div>
         </div>
-        <div>
+        <div className='h-full'>
           <Tabs
             options={tabs}
             notSelectedClassName='!bg-gray-200'

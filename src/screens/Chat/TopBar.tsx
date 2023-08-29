@@ -5,6 +5,7 @@ import { CombineRoomType } from 'types/assistant';
 interface stateType {
   uuid: string;
   cardName: string;
+  itemName?: string;
 }
 
 type PropType = {
@@ -33,9 +34,11 @@ const TopBar: FC<PropType> = ({
           <span className='text-2xl font-medium font-helvetica'>
             {selectedRoom.persona}
           </span>
-        ) : (
+        ) : states?.cardName ? (
           <span className='text-2xl font-medium'>{states?.cardName}</span>
-        )}
+        ) : states?.itemName ? (
+          <span className='text-2xl font-medium'>{states?.itemName}</span>
+        ) : null}
       </div>
     </div>
   );

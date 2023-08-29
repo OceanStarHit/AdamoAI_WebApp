@@ -2,15 +2,28 @@ import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { ASSISTANTS } from 'constants/tools';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import useLayoutContext from 'hooks/useLayout';
 
 interface ICardList {
   onClick?: () => void;
   style?: object;
   className?: string;
 }
+type AssistantProps = {
+  avatar: string;
+  persona: string;
+  name: string;
+  description: string;
+  href: string;
+  gradientColor: string;
+  uuid: string;
+}[];
 
 const CardList = () => {
   const navigate = useNavigate();
+  const [filterData, setFilterData] = React.useState<AssistantProps>([]);
+  const { homeSearch, setHomeSearch } = useLayoutContext();
   const SampleNextArrow = (props: ICardList) => {
     const { className, style, onClick } = props;
     return (
@@ -37,6 +50,20 @@ const CardList = () => {
       />
     );
   };
+
+  React.useEffect(() => {
+    if (homeSearch) {
+      const fiteredData = ASSISTANTS.filter((item) => {
+        return item.persona.toLowerCase().includes(homeSearch.toLowerCase());
+      });
+      setFilterData(fiteredData);
+      setHomeSearch(homeSearch);
+    } else {
+      setFilterData(ASSISTANTS);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [homeSearch]);
 
   const SamplePrevArrow = (props: ICardList) => {
     const { className, style, onClick } = props;
@@ -120,34 +147,40 @@ const CardList = () => {
 
   return (
     <div>
-      <Slider {...settings}>
-        {ASSISTANTS.map((card) => {
-          return (
-            <div
-              key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-              onClick={() =>
-                navigate('/chat', {
-                  state: {
-                    uuid: card.uuid,
-                    cardName: card.persona,
-                  },
-                })
-              }
-            >
-              <img src={card.avatar} className='w-full p-2 h-32 xl:h-44' />
-              <div className='flex justify-between'>
-                <div className='m-2 font-semibold text-sm'>
-                  <p>{card.persona}</p>
-                </div>
-                <div className='mt-3 mx-3'>
-                  <Heart />
+      {filterData.length ? (
+        <Slider {...settings}>
+          {filterData.map((card) => {
+            return (
+              <div
+                key={card.persona}
+                className={`!w-[90%] relative !left-[5%] h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
+                onClick={() =>
+                  navigate('/chat', {
+                    state: {
+                      uuid: card.uuid,
+                      cardName: card.persona,
+                    },
+                  })
+                }
+              >
+                <img src={card.avatar} className='w-full p-2 h-32 xl:h-44' />
+                <div className='flex justify-between'>
+                  <div className='m-2 font-semibold text-sm'>
+                    <p>{card.persona}</p>
+                  </div>
+                  <div className='mt-3 mx-3'>
+                    <Heart />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </Slider>
+            );
+          })}
+        </Slider>
+      ) : (
+        <div className='h-48 flex justify-center text-slate-600'>
+          {homeSearch} not found.
+        </div>
+      )}
     </div>
   );
 };
