@@ -1,5 +1,5 @@
 import React from 'react';
-import { MicroPhone, Search } from 'assets/svgs';
+import { Search } from 'assets/svgs';
 import Input from 'components/Input';
 const AssistantSearch = () => {
   return (
@@ -14,11 +14,6 @@ const AssistantSearch = () => {
           className='block w-full p-2 pl-10 pr-8 focus:outline-none text-sm text-black !rounded-full bg-transparent border-[0.1rem] border-slate-200'
           placeholder='Search Assistants'
         />
-        <div>
-          <span className='absolute top-6 right-8 cursor-pointer'>
-            <MicroPhone />
-          </span>
-        </div>
       </div>
     </div>
   );
