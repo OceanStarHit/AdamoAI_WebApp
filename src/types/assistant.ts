@@ -36,6 +36,7 @@ export interface CombineRoomType {
   assistant_uuid: string;
   user_uuid: string;
   uuid: string;
+  gradientColor?: string;
 }
 interface stateType {
   uuid: string;
