@@ -3,6 +3,9 @@ import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
 import ChatService from 'services/chat';
 import React from 'react';
+import {
+  CombineRoomType,
+} from 'types/assistant';
 
 interface ICardList {
   onClick?: () => void;
@@ -12,16 +15,11 @@ interface ICardList {
 
 const CardList = () => {
   const navigate = useNavigate();
-  const [resData, setResData] = React.useState([]);
+  const [resData, setResData] = React.useState<CombineRoomType[]>([]);
 
   const getAllAssistants = async () => {
     try {
-      const data = (await ChatService.listAssistants())?.map((item) => {
-        const itemCopy = item;
-        itemCopy['avatar'] =
-          '../../assets/avatars/assistants/travel_advisor.jpg';
-        return itemCopy;
-      });
+      const data : CombineRoomType[] = await ChatService.listAssistants() || [];
       setResData(data);
     } catch (error) {
       console.log('Fetch Error', error);
@@ -155,7 +153,7 @@ const CardList = () => {
                 })
               }
             >
-              <img src={require(card.avatar)} className='w-full p-2 h-32' />
+              <img src={card?.avatar?.replace(new RegExp(" ", "g"),"_")} className='w-full p-2 h-32' />
               <div className='flex justify-between'>
                 <div className='m-2 font-semibold text-sm'>
                   <p>{card.persona}</p>
