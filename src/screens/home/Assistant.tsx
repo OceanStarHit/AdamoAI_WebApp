@@ -1,7 +1,8 @@
 import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
-import { ASSISTANTS } from 'constants/tools';
 import { useNavigate } from 'react-router-dom';
+import ChatService from 'services/chat';
+import React from 'react';
 
 interface ICardList {
   onClick?: () => void;
@@ -11,6 +12,25 @@ interface ICardList {
 
 const CardList = () => {
   const navigate = useNavigate();
+  const [resData, setResData] = React.useState([]);
+
+  const getAllAssistants = async () => {
+    try {
+      const data = (await ChatService.listAssistants())?.map((item) => {
+        const itemCopy = item;
+        itemCopy['avatar'] =
+          '../../assets/avatars/assistants/travel_advisor.jpg';
+        return itemCopy;
+      });
+      setResData(data);
+    } catch (error) {
+      console.log('Fetch Error', error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllAssistants();
+  }, []);
   const SampleNextArrow = (props: ICardList) => {
     const { className, style, onClick } = props;
     return (
@@ -121,11 +141,11 @@ const CardList = () => {
   return (
     <div>
       <Slider {...settings}>
-        {ASSISTANTS.map((card) => {
+        {resData.map((card) => {
           return (
             <div
               key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl ${card.gradientColor} cursor-pointer`}
+              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl cursor-pointer`}
               onClick={() =>
                 navigate('/chat', {
                   state: {
@@ -135,7 +155,7 @@ const CardList = () => {
                 })
               }
             >
-              <img src={card.avatar} className='w-full p-2 h-32' />
+              <img src={require(card.avatar)} className='w-full p-2 h-32' />
               <div className='flex justify-between'>
                 <div className='m-2 font-semibold text-sm'>
                   <p>{card.persona}</p>

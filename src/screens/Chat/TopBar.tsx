@@ -1,8 +1,8 @@
-import { BackArrow, FilterIcon } from 'assets/svgs';
-import Button from 'components/Button';
+import { BackArrow } from 'assets/svgs';
 import React, { FC } from 'react';
 import { CombineRoomType } from 'types/assistant';
-
+import { Menu } from '@headlessui/react';
+import CustomDropdown from 'components/CustomDropdown';
 interface stateType {
   uuid: string;
   cardName: string;
@@ -42,7 +42,13 @@ const TopBar: FC<PropType> = ({
             <span className='text-2xl font-medium'>{states?.cardName}</span>
           )}
         </div>
-        <Button icon={<FilterIcon />} />
+        <Menu>
+          {/* <Menu.Button>
+            <FilterIcon />
+          </Menu.Button> */}
+          <CustomDropdown />
+        </Menu>
+        {/* <Button icon={<FilterIcon />} /> */}
       </div>
     </div>
   );
