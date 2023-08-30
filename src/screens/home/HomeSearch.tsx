@@ -21,14 +21,14 @@ const HomeSearch = () => {
 
   return (
     <div className='relative'>
-      <div className='absolute z-50 bottom-5 left-3'>
+      <div className='absolute z-50 bottom-5 left-3 xl:bottom-8 xl:left-5'>
         <Search />
       </div>
       <Input
         type='search'
         value={homeSearch}
         id='search'
-        className='block w-full p-4 pl-10 pr-20 sm:pl-14 sm:pr-20 text-sm text-black focus:outline-none !rounded-full bg-slate-200'
+        className='block w-full p-4 pl-10 pr-20 sm:pl-14 xl:text-xl xl:py-5 sm:pr-20 text-sm text-black focus:outline-none !rounded-full bg-slate-200'
         placeholder='Type Category or Industry'
         onChange={(e) => setHomeSearch(e.target.value)}
       />
@@ -36,7 +36,7 @@ const HomeSearch = () => {
         <Button
           icon={<ArrowForward />}
           gradient
-          className='w-12 absolute right-0.5 bottom-0.5 xl:right-2 xl:bottom-2'
+          className='w-12 xl:w-14 xl:h-14 absolute right-0.5 bottom-2 xl:bottom-3.5 xl:right-1'
         />
       </div>
       {homeSearch && (
