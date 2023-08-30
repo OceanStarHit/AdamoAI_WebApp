@@ -6,7 +6,7 @@ import { ANIMATED_TEXT } from 'constants/auth';
 import WordEffect from 'components/WordEffect';
 import HomeSearch from 'screens/home/HomeSearch';
 import MainContainer from 'components/MainContainer';
-import image_gif from '../../assets/images/AdamoCircle.gif';
+import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 const Home = () => {
   const tabs = [
     { label: 'All', component: <CardList />, tags: 23 },
@@ -21,7 +21,7 @@ const Home = () => {
       rounded-3xl'
       >
         <div className='flex justify-center bg-transparent'>
-          <img src={image_gif} width={200} height={200} />
+          <img src={ADAMO_GIF} width={200} height={200} />
         </div>
 
         <div className='flex justify-center'>
