@@ -29,16 +29,12 @@ const Home = () => {
           <div className='w-2/3 md:w-1/3 pb-9'>
             <div className='flex space-x-2'>
               <Heading
-                text={
-                  <div className='flex h-full items-center'>
-                    <span>Hi, I&apos;m Adamo </span>
-                    <div className='w-5 h-5 sm:w-8 sm:h-8 '>
-                      <WaveIcon />
-                    </div>
-                  </div>
-                }
+                text={`Hi, I'm Adamo`}
                 className={`font-helvetica font-extrabold text-lg md:!text-3xl`}
               />
+              <div className='w-5 h-5 sm:w-8 sm:h-8'>
+                <WaveIcon />
+              </div>
             </div>
             <div className='h-14'>
               <WordEffect text={ANIMATED_TEXT} delay={300} />

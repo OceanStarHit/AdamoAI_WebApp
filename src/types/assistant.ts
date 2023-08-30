@@ -3,6 +3,15 @@ export interface AllAssistants {
   icon: JSX.Element;
   color: string;
 }
+export type AssistantProps = {
+  avatar: string;
+  persona: string;
+  name: string;
+  description: string;
+  href: string;
+  gradientColor: string;
+  uuid: string;
+}[];
 
 export interface ListAllAssistantType {
   avatar: string;
@@ -29,3 +38,15 @@ export interface CombineRoomType {
   user_uuid: string;
   uuid: string;
 }
+
+interface stateType {
+  uuid: string;
+  cardName: string;
+  itemName?: string;
+}
+
+export type AssistantTopBarPropType = {
+  selectedRoom: CombineRoomType;
+  setToInitialFunction: () => void;
+  states?: stateType;
+};

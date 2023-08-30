@@ -4,21 +4,13 @@ import { ASSISTANTS } from 'constants/tools';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import useLayoutContext from 'hooks/useLayout';
+import { AssistantProps } from 'types/assistant';
 
 interface ICardList {
   onClick?: () => void;
   style?: object;
   className?: string;
 }
-type AssistantProps = {
-  avatar: string;
-  persona: string;
-  name: string;
-  description: string;
-  href: string;
-  gradientColor: string;
-  uuid: string;
-}[];
 
 const CardList = () => {
   const navigate = useNavigate();
@@ -54,7 +46,7 @@ const CardList = () => {
   React.useEffect(() => {
     if (homeSearch) {
       const fiteredData = ASSISTANTS.filter((item) => {
-        return item.persona.toLowerCase().includes(homeSearch.toLowerCase());
+        return item?.persona?.toLowerCase().includes(homeSearch.toLowerCase());
       });
       setFilterData(fiteredData);
       setHomeSearch(homeSearch);
