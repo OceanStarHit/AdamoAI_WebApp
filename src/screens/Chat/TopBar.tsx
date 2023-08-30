@@ -1,20 +1,11 @@
-import { BackArrow } from 'assets/svgs';
-import React, { FC } from 'react';
-import { CombineRoomType } from 'types/assistant';
+import React from 'react';
 import { Menu } from '@headlessui/react';
 import CustomDropdown from 'components/CustomDropdown';
-interface stateType {
-  uuid: string;
-  cardName: string;
-}
+import { BackArrow } from 'assets/svgs';
+import { AssistantTopBarPropType } from 'types/assistant';
 
-type PropType = {
-  selectedRoom: CombineRoomType;
-  setToInitialFunction: () => void;
-  states?: stateType;
-};
 
-const TopBar: FC<PropType> = ({
+const TopBar: React.FC<AssistantTopBarPropType> = ({
   selectedRoom,
   setToInitialFunction,
   states,
@@ -34,12 +25,20 @@ const TopBar: FC<PropType> = ({
             className='mr-1 sm:mr-4 w-7 sm:w-10 h-7 sm:h-10'
           />
 
-          {selectedRoom.persona !== '' ? (
+          {selectedRoom.persona && (
             <span className='text-lg sm:text-2xl font-medium font-helvetica'>
               {selectedRoom.persona}
             </span>
-          ) : (
-            <span className='text-2xl font-medium'>{states?.cardName}</span>
+          )}
+          {states?.cardName && (
+            <span className='text-lg sm:text-2xl font-medium font-helvetica'>
+              {states?.cardName}
+            </span>
+          )}
+          {states?.itemName && (
+            <span className='text-lg sm:text-2xl font-medium font-helvetica'>
+              {states?.itemName}
+            </span>
           )}
         </div>
         <Menu>
