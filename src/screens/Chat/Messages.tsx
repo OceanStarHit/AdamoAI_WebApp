@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatInput from 'components/ChatInput';
-import IMAGE_GIF from '../../assets/images/AdamoCircle.gif';
+import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
 import { Edit } from 'assets/svgs';
@@ -103,7 +103,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                 <>
                   <div className='flex justify-start -mt-2'>
                     <img
-                      src={IMAGE_GIF}
+                      src={ADAMO_GIF}
                       width={40}
                       height={40}
                       className='rounded-full'
@@ -125,7 +125,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
         ))
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
-          <img src={IMAGE_GIF} width={200} height={200} />
+          <img src={ADAMO_GIF} width={200} height={200} />
           <h1 className='sm:mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
             Please select an assistant to start talking
           </h1>
