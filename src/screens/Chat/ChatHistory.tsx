@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import ChatService from 'services/chat';
-import { DeleteIcon, Loader } from 'assets/svgs';
+import { Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
-import Checkbox from 'components/CheckBox';
+import AssistantSearch from './AssisstantSearch';
+import Users from 'assets/images/users.png';
+import YourTravelAdvisor from 'assets/images/YourTravelAdvisor.png';
 
 interface ChatHistoryType {
   allListAssistant: CombineRoomType[] | null;
@@ -13,6 +15,8 @@ interface ChatHistoryType {
   setPrevMessages: React.Dispatch<React.SetStateAction<PreviousChatType[]>>;
   setSelectedRoom: React.Dispatch<React.SetStateAction<CombineRoomType>>;
   uuid: string;
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 const ChatHistory: React.FC<ChatHistoryType> = ({
   allListAssistant,
@@ -20,8 +24,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   setPrevMessages,
   setSelectedRoom,
   uuid,
+  setIsOpen,
 }) => {
   const [loading, setLoading] = React.useState(false);
+  const [selectedAssist, setSelectedAssist] = useState('');
 
   const getAssistantHistory = async (uuid: string) => {
     const res = await ChatService.chatHistory(uuid);
@@ -68,51 +74,51 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uuid, allListAssistant]);
+
+  const setSelectedRoomAction = (item: CombineRoomType) => {
+    selectedAssistant(item);
+    setSelectedAssist(item.uuid);
+    setIsOpen(false);
+  };
   return (
     <>
       {!loading ? (
         <>
-          <div className='border-t border-gray-300 flex justify-between p-4'>
-            <div>
-              <p>Chat History</p>
-            </div>
-            <div className='cursor-pointer'>
-              <DeleteIcon />
-
-              {/* 
-              This code will work when delete chat api will be available
-              <Modal
-                isOpen={isOpen}
-                title='Delete Chat'
-                description='Are You To Delete Chats'
-                btnText='Delete'
-                setIsOpen={setIsOpen}
-                onClose={handleDelete}
-              /> */}
-            </div>
+          <div className={`flex py-4 mx-6 items-center sm:justify-normal `}>
+            <img src={Users} className='w-10 h-10' />
+            <span className=' text-2xl font-medium sm:ml-4'>Assistants</span>
           </div>
-          <div className='p-4 space-y-2 flex-grow overflow-y-scroll overflow-x-hidden font-medium'>
+          <div className='w-full border-y border-slate-300 mb-2'>
+            <AssistantSearch />
+          </div>
+          <div
+            className={`px-4 flex-grow overflow-y-scroll  rounded-br-3xl custom-scrollbar overflow-x-hidden font-medium`}
+          >
             {allListAssistant?.map((item) => {
               return (
-                <div
-                  className='rounded-md border border-slate-200 p-1 h-36 md:h-24 bg-gray-100 font-sans cursor-pointer w-full flex space-x-2'
-                  key={item._id}
-                >
-                  <div className='w-1/12 relative top-1'>
-                    <Checkbox />
+                <div key={item._id}>
+                  <div
+                    className={`flex items-center p-1 cursor-pointer
+                   ${
+                     item.uuid === selectedAssist
+                       ? 'bg-primary-gradient rounded-md '
+                       : ''
+                   }
+                      `}
+                    onClick={() => setSelectedRoomAction(item)}
+                  >
+                    <img
+                      src={YourTravelAdvisor}
+                      className='w-10 h-10 rounded-full'
+                    />
+                    <p className='font-sans text-base font-normal ml-3'>
+                      {`${item.persona} `}
+                    </p>
                   </div>
                   <div
-                    className='w-11/12 flex flex-col'
-                    onClick={() => selectedAssistant(item)}
-                  >
-                    <label className='text-sm md:text-base truncate w-20 md:w-auto relative top-1.5 md:top-1 cursor-pointer'>
-                      {`${item.persona} ${item.name}`}
-                    </label>
-                    <div className='text-xs md:text-sm text-gray-400 flex justify-center md:justify-start mt-2'>
-                      {item.discription ??
-                        'Best couple color gradient for FF5C00'}
-                    </div>
-                  </div>
+                    className='bg-gray-200 ml-10 my-1 w-full'
+                    style={{ height: '1px' }}
+                  />
                 </div>
               );
             })}
@@ -120,8 +126,8 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         </>
       ) : (
         <>
-          <div className='border-t border-gray-300 flex p-4 justify-center'>
-            <div className='flex justify-center mt-40'>
+          <div className='flex p-4 justify-center min-h-screen align-middle items-center'>
+            <div className='flex justify-center h-8'>
               <Loader color='#db2777' />
             </div>
           </div>

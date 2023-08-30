@@ -1,30 +1,21 @@
 import React from 'react';
 import ChatInput from 'components/ChatInput';
-import { IMAGE_GIF } from 'constants/common';
+import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
+import { Edit } from 'assets/svgs';
 
 interface MessagesType {
   messages: PreviousChatType[];
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
 }
+
 const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
   });
-  // const handleEdit = (selectedIndex: number, message: string) => {
-  //   const selectedMessage = messages.find(
-  //     (item, index) =>
-  //       item.text === message &&
-  //       index === selectedIndex &&
-  //       item.sender === SENDER_TYPE.USER,
-  //   );
-  //   if (selectedMessage) {
-  //     setEditMessage({ index: selectedIndex, message: selectedMessage?.text });
-  //   }
-  // };
 
   const handleSendMessage = () => {
     messages[editMessage.index].text = editMessage.message;
@@ -32,7 +23,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   };
 
   return (
-    <div className='flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] border-t border-gray-300 p-4'>
+    <div className='flex flex-col-reverse custom-scrollbar flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
@@ -102,20 +93,17 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                         )}
                       </p>
                     </span>
-                    {/* <span
-                      className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'
-                      // onClick={() => handleEdit(index, message.text)}
-                    >
+                    <span className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'>
                       <Edit />
                       <p className='text-gray-600 text-xs'>Edit</p>
-                    </span> */}
+                    </span>
                   </div>
                 </>
               ) : (
                 <>
                   <div className='flex justify-start -mt-2'>
                     <img
-                      src={IMAGE_GIF}
+                      src={ADAMO_GIF}
                       width={40}
                       height={40}
                       className='rounded-full'
@@ -129,12 +117,6 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                         />
                       </p>
                     </span>
-                    {/* <span className='flex space-x-1 rounded-md bg-gray-200 w-auto h-7 items-center justify-center relative bottom-7 cursor-pointer p-1'>
-                      <Reload />
-                      <p className='text-gray-600 text-xs'>
-                        Regenerate response
-                      </p>
-                    </span> */}
                   </div>
                 </>
               )}
@@ -142,11 +124,15 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
           </div>
         ))
       ) : (
-        <div className='flex justify-center mt-24 bg-transparent'>
-          <img src={IMAGE_GIF} width={200} height={200} />
+        <div className='flex justify-center items-center h-full flex-col bg-transparent'>
+          <img src={ADAMO_GIF} width={200} height={200} />
+          <h1 className='sm:mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
+            Please select an assistant to start talking
+          </h1>
         </div>
       )}
-      {aiResponding ? (
+
+      {aiResponding && messages.length > 0 ? (
         <p className='absolute bottom-24 text-gray-500 text-xs'>
           AI Responding, Please wait
         </p>

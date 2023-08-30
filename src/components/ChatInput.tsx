@@ -18,7 +18,7 @@ const ChatInput: React.FC<ChatInputType> = ({
       type={type}
       name={name}
       id={name}
-      className={`w-full border border-gray-300 rounded-lg px-4 py-2 h-12 ${className}`}
+      className={`w-full border border-gray-300 rounded-full focus:outline-none px-4 py-2 h-12 ${className}`}
       placeholder={placeholder}
       {...rest}
     />

@@ -6,4 +6,11 @@ export enum ROUTES {
   TOOLS = '/tools',
   SETTING = '/settings',
   CHECKOUT = '/checkout',
+  REALTIME_TRANSLATOR = '/realtime-translator',
+  IMAGE_GENERATOR = '/ImageCreator',
+  SOCIAL_CONNECTION = '/social-connection',
+  HELP = '/help',
+  ACCOUNT = '/account',
+  SUBSCRIPTION = '/subscription',
+  // CHECKOUT = '/checkout',
 }

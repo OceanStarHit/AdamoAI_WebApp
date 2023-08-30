@@ -1,13 +1,12 @@
 import Tabs from 'components/Tabs';
 import Tools from 'screens/home/Tools';
 import Heading from 'components/Heading';
-import { IMAGE_GIF } from 'constants/common';
 import CardList from 'screens/home/Assistant';
 import { ANIMATED_TEXT } from 'constants/auth';
 import WordEffect from 'components/WordEffect';
 import HomeSearch from 'screens/home/HomeSearch';
 import MainContainer from 'components/MainContainer';
-
+import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 const Home = () => {
   const tabs = [
     { label: 'All', component: <CardList />, tags: 23 },
@@ -22,11 +21,11 @@ const Home = () => {
       rounded-3xl'
       >
         <div className='flex justify-center bg-transparent'>
-          <img src={IMAGE_GIF} width={200} height={200} />
+          <img src={ADAMO_GIF} width={200} height={200} />
         </div>
 
         <div className='flex justify-center'>
-          <div className='w-1/2'>
+          <div className='w-1/2 md:w-1/3 mb-8 md:mb-6'>
             <div className='flex space-x-2'>
               <Heading
                 text={`Hi, I'm Adamo`}
@@ -39,24 +38,24 @@ const Home = () => {
           </div>
         </div>
         <div className='flex justify-center'>
-          <div className='w-11/12 md:w-2/3 lg:w-1/2'>
+          <div className='w-11/12 md:w-2/3 lg:w-3/5'>
             <HomeSearch />
           </div>
         </div>
-        <div className='mx-3'>
+        <div>
           <Tabs
             options={tabs}
             notSelectedClassName='!bg-gray-200'
             className='rounded-full'
-            tabWidth='w-11/12 md:w-2/3 lg:w-1/2'
+            tabWidth='w-11/12 md:w-2/3 lg:w-3/5'
             variant='home'
-            tabPanelClassName='w-full'
+            tabPanelClassName='w-3/4 md:w-11/12 '
           />
         </div>
-        <div className='flex justify-start mt-8 relative right-8 mx-3'>
+        <div className='flex justify-start mt-6 relative right-8 mx-3'>
           <Heading text='Tools' type='heading' className='ml-12 font-medium' />
         </div>
-        <div className=''>
+        <div>
           <Tools />
         </div>
       </div>

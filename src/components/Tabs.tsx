@@ -60,7 +60,7 @@ const Tabs: React.FC<TabsType> = ({
                 <span>{tab.label}</span>
                 <span
                   className={`w-5 h-5 rounded-full bg-gray-400 
-                flex items-center ml-2 justify-center text-white text-[.6rem] font-bold`}
+                flex items-center ml-1 md:ml-2 justify-center text-white text-[.6rem] font-bold`}
                 >
                   {tab.tags}
                 </span>

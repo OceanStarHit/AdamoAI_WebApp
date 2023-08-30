@@ -1,5 +1,4 @@
-import React from 'react';
-import Modal from 'components/Modal';
+import React, { useEffect } from 'react';
 import Button from 'components/Button';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
@@ -8,37 +7,30 @@ import ChatHistory from 'screens/Chat/ChatHistory';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import { useReactMediaRecorder } from 'react-media-recorder';
 import {
-  Bookmark,
-  Avatar,
-  Setting,
-  Star,
   StopRecording,
-  Send,
   MicroPhone,
   Image,
-  DropdownIcon,
   Camera,
-  BackArrow,
+  SendFast,
 } from 'assets/svgs/index';
 import ReactAudioPlayer from 'react-audio-player';
-
-import { fetchSpeechToText, handleCreateRoom } from 'services/chat/utils';
+import { fetchSpeechToText } from 'services/chat/utils';
 import { CombineRoomType } from 'types/assistant';
 import classNames from 'classnames';
 import { useLocation } from 'react-router-dom';
-
+import AssistantSideButton from 'screens/Chat/AssistantSideButton';
+import TopBar from './TopBar';
+import AssistantDrawer from './AssistantDrawer';
 const Chat = () => {
-  const [createRoom, setCreateRoom] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
-  const [currentAssistant] = React.useState('Chat');
   const [audioBlob, setAudioBlob] = React.useState<string>('');
   const { state } = useLocation();
   console.log({ state });
   const [allListAssistant, setAllListAssistants] = React.useState<
     CombineRoomType[] | null
   >([]);
-  const [aiResponding, setAIResponding] = React.useState(false);
+  const [aiResponding, setAIResponding] = React.useState(true);
   const [prevMessages, setPrevMessages] = React.useState<PreviousChatType[]>(
     [],
   );
@@ -58,7 +50,6 @@ const Chat = () => {
     stopRecording,
     mediaBlobUrl = '',
   } = useReactMediaRecorder({ audio: true });
-
   const sendMessage = async () => {
     setValue('');
     setAIResponding(true);
@@ -99,106 +90,122 @@ const Chat = () => {
     ]);
     setAIResponding(false);
   };
-
   const handleFetchSpeechToText = async (mediaBlobUrl: string) => {
     console.log(mediaBlobUrl);
     const response = await fetchSpeechToText(mediaBlobUrl);
     setValue(response);
   };
-
   React.useEffect(() => {
     if (mediaBlobUrl) {
       handleFetchSpeechToText(mediaBlobUrl);
     }
   }, [mediaBlobUrl]);
 
-  const handleRoomCreation = () => {
-    handleCreateRoom(createRoom);
+  const setToInitial = () => {
+    setSelectedRoom({
+      avatar: '',
+      discription: '',
+      name: '',
+      persona: '',
+      _id: '',
+      assistant_uuid: '',
+      user_uuid: '',
+      uuid: '',
+    });
+    setPrevMessages([]);
   };
-
+  useEffect(() => {
+    if (state === null || selectedRoom === null) {
+      setPrevMessages([]);
+    }
+  }, [state, selectedRoom]);
   return (
-    <div className='bg-white rounded-3xl w-full flex min-h-[calc(100vh-2rem)]'>
-      <div className='w-2/3 flex-col justify-between flex max-h-[calc(100vh-2rem)]'>
-        <div className='p-3.5 w-full items-center'>
-          <div className='flex justify-start'>
-            <span className='text-black text-xl font-semibold relative top-5 font-sans items-center flex'>
-              {currentAssistant !== 'Chat' ? (
-                <span className='cursor-pointer'>
-                  <BackArrow />
-                </span>
-              ) : null}
-              {currentAssistant}
-            </span>
-          </div>
-          <div className='flex justify-end space-x-2'>
-            <Star />
-            <Bookmark />
-            <Setting />
-          </div>
-        </div>
+    <div className=' bg-white rounded-3xl w-full flex flex-col sm:flex-row min-h-[calc(100vh-2rem)]'>
+      <div className='w-full md:w-2/3 flex-col order-2 sm:order-1 justify-between flex max-h-[calc(100vh-2rem)] '>
+        {!isOpen && (
+          <AssistantSideButton isOpen={isOpen} setIsOpen={setIsOpen} />
+        )}
+        {isOpen ? (
+          <AssistantDrawer
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            allListAssistant={allListAssistant}
+            setAllListAssistants={setAllListAssistants}
+            setPrevMessages={setPrevMessages}
+            setSelectedRoom={setSelectedRoom}
+            uuid={state?.uuid}
+          />
+        ) : null}
+        {selectedRoom._id !== '' || state !== null ? (
+          <TopBar
+            selectedRoom={selectedRoom}
+            setToInitialFunction={setToInitial}
+            states={state}
+          />
+        ) : null}
         <Messages
           messages={prevMessages}
           setMessages={setPrevMessages}
           aiResponding={aiResponding}
         />
-        <div className='p-4 flex space-x-2 items-center'>
-          <ChatInput
-            type='text'
-            placeholder='Message'
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyUp={(e) => {
-              if (e.key === 'Enter') {
-                sendMessage();
-              }
-            }}
-          />
-
-          {value.length === 0 && (
-            <div className='flex space-x-2'>
-              {(status === 'idle' || status === 'stopped') && (
-                <span className='cursor-pointer' onClick={startRecording}>
-                  <MicroPhone />
-                </span>
-              )}
-              {status === 'recording' && (
-                <span className='cursor-pointer' onClick={stopRecording}>
-                  <StopRecording />
-                </span>
-              )}
-              <span className='cursor-pointer'>
-                <Image />
-              </span>
-              <span className='cursor-pointer'>
-                <Camera />
-              </span>
-            </div>
-          )}
-
-          {value.length !== 0 && (
-            <Button
-              className='text-white px-4 rounded-full h-14 w-14'
-              onClick={() => sendMessage()}
-              icon={<Send small />}
-              gradient
+        {selectedRoom._id !== '' || state !== null ? (
+          <div className='p-4 flex space-x-2 items-center relative'>
+            <ChatInput
+              type='text'
+              placeholder='Message'
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  sendMessage();
+                }
+              }}
             />
-          )}
-        </div>
-      </div>
-      <div className='w-1/3 border-l border-slate-300 max-h-[calc(100vh-2rem)] flex-col justify-between flex'>
-        <div className='flex justify-end items-center space-x-6 h-20 mx-4'>
-          <div className='relative w-10 h-10 overflow-hidden bg-gray-600 rounded-full'>
-            <Avatar />
+            {value.length === 0 && (
+              <div className='flex space-x-2'>
+                {(status === 'idle' || status === 'stopped') && (
+                  <span
+                    className='cursor-pointer absolute right-28'
+                    onClick={startRecording}
+                  >
+                    <MicroPhone />
+                  </span>
+                )}
+                {status === 'recording' && (
+                  <span className='cursor-pointer' onClick={stopRecording}>
+                    <StopRecording />
+                  </span>
+                )}
+                <span className='cursor-pointer px-2'>
+                  <Image />
+                </span>
+                <span className='cursor-pointer'>
+                  <Camera />
+                </span>
+              </div>
+            )}
+            {value.length !== 0 && (
+              <Button
+                className='text-white px-4 rounded-full h-14 w-14'
+                onClick={() => sendMessage()}
+                icon={<SendFast />}
+                gradient
+              />
+            )}
           </div>
-          <DropdownIcon />
-        </div>
+        ) : null}
+      </div>
+      <div
+        className='sm:w-1/3 sm:border-l bg-slate-50 sm:rounded-r-3xl sm:border-slate-300 order-1
+       md:order-2 max-h-[calc(100vh-2rem)] flex flex-col '
+      >
         <div
           className={classNames(
-            'flex-col justify-between flex bg-gray-100 rounded-br-3xl ',
+            'flex-col justify-between hidden sm:flex pb-2 ',
             {
               'min-h-[calc(100%-5rem)]':
                 allListAssistant && allListAssistant?.length < 5,
-              'max-h-[calc(100%-5rem)]':
+              'max-h-[calc(100%)]':
                 allListAssistant && allListAssistant?.length > 5,
             },
           )}
@@ -209,37 +216,13 @@ const Chat = () => {
             setPrevMessages={setPrevMessages}
             setSelectedRoom={setSelectedRoom}
             uuid={state?.uuid}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
           />
-
-          <div className='p-4'>
-            <Button
-              btnText='New Chat'
-              gradient
-              className='rounded-md w-full font-semibold'
-              onClick={() => setIsOpen(true)}
-            />
-            <Modal
-              isOpen={isOpen}
-              title='Create Room'
-              description='Please Add Room UUID Here'
-              btnText='Create Room'
-              setIsOpen={setIsOpen}
-              onClose={handleRoomCreation}
-            >
-              <div>
-                <ChatInput
-                  type='text'
-                  placeholder='Please Input the room uuid'
-                  onChange={(e) => setCreateRoom(e.target.value)}
-                />
-              </div>
-            </Modal>
-          </div>
         </div>
       </div>
       <ReactAudioPlayer src={audioBlob} autoPlay />
     </div>
   );
 };
-
 export default Chat;
