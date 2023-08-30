@@ -19,6 +19,15 @@ const HomeSearch = () => {
     [homeSearch],
   );
 
+  const goToChat = (item: string) => {
+    navigate('/chat', {
+      state: {
+        itemName: item,
+      },
+    });
+    setHomeSearch('');
+  };
+
   return (
     <div className='relative'>
       <div className='absolute z-50 bottom-5 left-3 xl:bottom-8 xl:left-5'>
@@ -51,17 +60,11 @@ const HomeSearch = () => {
                 >
                   <div className='flex justify-start space-x-2 ml-4'>
                     <Search />
-                    <p onClick={() => setHomeSearch(item as string)}>{item}</p>
+                    <p onClick={() => setHomeSearch(item)}>{item}</p>
                   </div>
                   <div
                     className='mr-4 relative bottom-1'
-                    onClick={() =>
-                      navigate('/chat', {
-                        state: {
-                          itemName: item,
-                        },
-                      })
-                    }
+                    onClick={() => goToChat(item)}
                   >
                     <Link />
                   </div>
