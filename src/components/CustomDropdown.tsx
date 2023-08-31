@@ -4,7 +4,6 @@ import { FilterIcon } from 'assets/svgs';
 
 const CustomDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [isSpeakerAllowed, setIsSpeakerAllowed] = useState(false);
   const [isMicAllowed, setIsMicAllowed] = useState(false);
   const [isAudioDirectly, setIsAudioDirectly] = useState(false);

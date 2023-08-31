@@ -149,7 +149,7 @@ const Chat = () => {
           aiResponding={aiResponding}
         />
         {selectedRoom._id !== '' || state !== null ? (
-          <div className='p-4 flex space-x-2 items-center relative'>
+          <div className='p-4 flex space-x-2 items-center relative xm:mt-96 mt-40 xlm:mt-80 sm:mt-0 md:mt-0 lg:mt-0 '>
             <ChatInput
               type='text'
               placeholder='Message'
