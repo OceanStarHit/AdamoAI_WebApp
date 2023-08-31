@@ -4,25 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import ChatService from 'services/chat';
 import React from 'react';
 
-interface ICardList {
-  onClick?: () => void;
-  style?: object;
-  className?: string;
+interface ICard {
+  persona: string;
+  uuid: string;
+  avatar: string;
 }
 
 const CardList = () => {
   const navigate = useNavigate();
-  const [resData, setResData] = React.useState([]);
+  const [resData, setResData] = React.useState<ICard[]>([]);
 
   const getAllAssistants = async () => {
     try {
-      const data = (await ChatService.listAssistants())?.map((item) => {
-        const itemCopy = item;
-        itemCopy['avatar'] =
-          '../../assets/avatars/assistants/travel_advisor.jpg';
-        return itemCopy;
-      });
+      const data = (await ChatService.listAssistants())?.map((item) => ({
+        ...item,
+        avatar: '../..' + item.avatar,
+      })) as ICard[];
       setResData(data);
+      console.log(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -31,13 +30,15 @@ const CardList = () => {
   React.useEffect(() => {
     getAllAssistants();
   }, []);
-  const SampleNextArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+
+  const SampleNextArrow: React.FC<{
+    className?: string;
+    onClick?: () => void;
+  }> = ({ className, onClick }) => {
     return (
       <div
         className={className}
         style={{
-          ...style,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -46,11 +47,11 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           right: -42,
         }}
         onClick={onClick}
@@ -58,13 +59,14 @@ const CardList = () => {
     );
   };
 
-  const SamplePrevArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+  const SamplePrevArrow: React.FC<{
+    className?: string;
+    onClick?: () => void;
+  }> = ({ className, onClick }) => {
     return (
       <div
         className={className}
         style={{
-          ...style,
           zIndex: 20,
           display: 'flex',
           justifyContent: 'center',
@@ -74,17 +76,18 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           left: -40,
         }}
         onClick={onClick}
       />
     );
   };
+
   const settings = {
     // dots: true,
     infinite: true,
@@ -141,32 +144,34 @@ const CardList = () => {
   return (
     <div>
       <Slider {...settings}>
-        {resData.map((card) => {
-          return (
-            <div
-              key={card.persona}
-              className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl cursor-pointer`}
-              onClick={() =>
-                navigate('/chat', {
-                  state: {
-                    uuid: card.uuid,
-                    cardName: card.persona,
-                  },
-                })
-              }
-            >
-              <img src={require(card.avatar)} className='w-full p-2 h-32' />
-              <div className='flex justify-between'>
-                <div className='m-2 font-semibold text-sm'>
-                  <p>{card.persona}</p>
-                </div>
-                <div className='mt-3 mx-3'>
-                  <Heart />
-                </div>
+        {resData.map((card) => (
+          <div
+            key={card.persona}
+            className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl cursor-pointer`}
+            onClick={() =>
+              navigate('/chat', {
+                state: {
+                  uuid: card.uuid,
+                  cardName: card.persona,
+                },
+              })
+            }
+          >
+            <img
+              src={card.avatar}
+              className='w-full p-2 h-32'
+              alt={card.persona}
+            />
+            <div className='flex justify-between'>
+              <div className='m-2 font-semibold text-sm'>
+                <p>{card.persona}</p>
+              </div>
+              <div className='mt-3 mx-3'>
+                <Heart />
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </Slider>
     </div>
   );
