@@ -14,8 +14,8 @@ const UserAuth = () => {
   return (
     <AuthLayout>
       <MainContainer>
-        <div className='flex flex-col px-3 w-full max-h-[calc(100vh-2rem)] overflow-y-auto'>
-          <div className='flex items-center justify-center space-x-2 mt-20'>
+        <div className='flex flex-col mb-1'>
+          <div className='flex items-center justify-center mt-3'>
             <img
               src={require('assets/images/Logo.png')}
               height={50}

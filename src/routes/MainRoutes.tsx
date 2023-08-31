@@ -48,6 +48,7 @@ const GetAuthenticatedRoutes = () => {
 const GetUnAuthRoutes = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
   const AUTHENTICATED_ROUTES = [ROUTES.AUTH, ROUTES.FORGOT_PASSWORD];
   React.useEffect(() => {
     if (AUTHENTICATED_ROUTES.includes(location.pathname as ROUTES)) {
@@ -73,7 +74,7 @@ const MainRoutes = () => {
 
   return (
     <React.Fragment>
-      {accessToken ? GetAuthenticatedRoutes() : GetUnAuthRoutes()}
+      {accessToken ? <GetAuthenticatedRoutes /> : <GetUnAuthRoutes />}
     </React.Fragment>
   );
 };
