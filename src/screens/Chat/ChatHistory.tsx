@@ -40,12 +40,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     const res = await ChatService.getAssistantRoomHistory(assistant_uuid);
     if (res?.length) {
       const categorizedMessages = res?.map((message: PreviousChatType) => {
-        const isUser = allListAssistant?.some(
-          (assistant) => assistant.assistant_uuid === message.sender_uuid,
-        );
+        const isAIAgent = assistant_uuid == message.sender_uuid
         return {
           ...message,
-          senderType: isUser ? SENDER_TYPE.BOT : SENDER_TYPE.USER,
+          senderType: isAIAgent ? SENDER_TYPE.BOT : SENDER_TYPE.USER,
         };
       });
       setPrevMessages(categorizedMessages);
