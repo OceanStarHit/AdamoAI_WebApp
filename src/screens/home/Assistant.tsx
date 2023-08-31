@@ -166,11 +166,14 @@ const CardList = () => {
     <div>
       {resData.length && !homeSearch ? (
         <Slider {...settings}>
-          {resData?.map((card) => {
+          {resData?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
                 onClick={() => goToChat(card)}
               >
                 <img
@@ -191,11 +194,14 @@ const CardList = () => {
         </Slider>
       ) : homeSearch ? (
         <Slider {...settings}>
-          {filterData?.map((card) => {
+          {filterData?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
                 onClick={() => goToChat(card)}
               >
                 <img
