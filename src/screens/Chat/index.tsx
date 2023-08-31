@@ -27,7 +27,7 @@ const Chat = () => {
   const [allListAssistant, setAllListAssistants] = React.useState<
     CombineRoomType[] | null
   >([]);
-  const [aiResponding, setAIResponding] = React.useState(true);
+  const [aiResponding, setAIResponding] = React.useState(false);
   const [prevMessages, setPrevMessages] = React.useState<PreviousChatType[]>(
     [],
   );

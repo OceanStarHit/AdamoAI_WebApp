@@ -35,6 +35,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   >([]);
   const { assistantSearch } = useLayoutContext();
   const { selectedAssistantFromHome } = useLayoutContext();
+  const { setSelectedAssistantFromHome } = useLayoutContext();
   const getAssistantHistory = async (assistant_uuid: string) => {
     const res = await ChatService.getAssistantRoomHistory(assistant_uuid);
     if (res?.length) {
@@ -93,11 +94,22 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   }, [assistantSearch]);
 
   React.useEffect(() => {
-    if (uuid && allListAssistant) {
-      getAssistantHistory(uuid);
+    if(selectedAssistantFromHome && selectedAssistantFromHome.assistant_uuid){
+      const selectedAssistantUUID = selectedAssistantFromHome.assistant_uuid;
+      setSelectedAssistantFromHome({
+        avatar: '',
+        discription: '',
+        name: '',
+        persona: '',
+        _id: '',
+        assistant_uuid: '',
+        user_uuid: '',
+        uuid: '',
+      });
+      getAssistantHistory(selectedAssistantUUID);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uuid, allListAssistant]);
+  }, []);
 
   const setSelectedRoomAction = (item: CombineRoomType) => {
     selectedAssistant(item);
