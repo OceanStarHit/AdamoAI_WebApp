@@ -3,7 +3,24 @@ import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
 import ChatService from 'services/chat';
 import React from 'react';
-
+import img1 from '../../assets/avatars/assistants/nutritionist.jpg';
+import img2 from '../../assets/avatars/assistants/travel_advisor.jpg';
+import img3 from '../../assets/avatars/assistants/cryptocurrency_specialist.jpg';
+import img4 from '../../assets/avatars/assistants/doctor.jpg';
+import img5 from '../../assets/avatars/assistants/veterinarian.jpg';
+import img6 from '../../assets/avatars/assistants/pharmacist.jpg';
+import img7 from '../../assets/avatars/assistants/school_tutor.jpg';
+import img8 from '../../assets/avatars/assistants/language_teacher.jpg';
+import img9 from '../../assets/avatars/assistants/fitness_coach.jpg';
+import img10 from '../../assets/avatars/assistants/quiz_master.jpg';
+import img11 from '../../assets/avatars/assistants/therapist.jpg';
+import img12 from '../../assets/avatars/assistants/historian.jpg';
+import img13 from '../../assets/avatars/assistants/sommelier.jpg';
+import img14 from '../../assets/avatars/assistants/marketing_manager.jpg';
+import img15 from '../../assets/avatars/assistants/comedian.jpg';
+import img16 from '../../assets/avatars/assistants/chef.jpg';
+import img17 from '../../assets/avatars/assistants/lawyer.jpg';
+import img18 from '../../assets/avatars/assistants/business_adviser.jpg';
 interface ICard {
   persona: string;
   uuid: string;
@@ -14,6 +31,27 @@ const CardList = () => {
   const navigate = useNavigate();
   const [resData, setResData] = React.useState<ICard[]>([]);
 
+  const imageUrls = [
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    img7,
+    img8,
+    img9,
+    img10,
+    img11,
+    img12,
+    img13,
+    img14,
+    img15,
+    img16,
+    img17,
+    img18,
+  ];
+  console.log(imageUrls[0]);
   const getAllAssistants = async () => {
     try {
       const data = (await ChatService.listAssistants())?.map((item) => ({
@@ -144,7 +182,7 @@ const CardList = () => {
   return (
     <div>
       <Slider {...settings}>
-        {resData.map((card) => (
+        {resData.map((card, index) => (
           <div
             key={card.persona}
             className={`!w-[90%] relative !left-[5%]  h-44 rounded-xl cursor-pointer`}
@@ -158,7 +196,7 @@ const CardList = () => {
             }
           >
             <img
-              src={card.avatar}
+              src={imageUrls[index]}
               className='w-full p-2 h-32'
               alt={card.persona}
             />
