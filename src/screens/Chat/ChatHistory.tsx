@@ -68,6 +68,10 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   };
 
   React.useEffect(() => {
+    getAllAssistants();
+  }, []);
+
+  React.useEffect(() => {
     if (assistantSearch !== '') {
       const filteredItems = allListAssistant?.filter((item) =>
         item.persona.toLowerCase().includes(assistantSearch.toLowerCase()),
@@ -79,8 +83,6 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
         setSearchError('Not Found');
         setFilteredAssistant([]);
       }
-    } else {
-      getAllAssistants();
     }
   }, [assistantSearch]);
 
