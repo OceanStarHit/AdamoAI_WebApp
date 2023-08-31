@@ -178,7 +178,7 @@ const CardList = () => {
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
@@ -206,7 +206,7 @@ const CardList = () => {
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
