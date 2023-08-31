@@ -10,7 +10,7 @@ const AssistantSideButton: FC<ButtonProps> = ({ isOpen, setIsOpen }) => {
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className='absolute block sm:hidden bg-primary-gradient right-0 top-12 w-10 h-10 rounded-l-md '
+      className='absolute block sm:hidden bg-primary-gradient right-8 top-24  w-10 h-10 rounded-l-md '
     >
       <div className='flex justify-center h-full items-center'>
         <DrawerClose />
