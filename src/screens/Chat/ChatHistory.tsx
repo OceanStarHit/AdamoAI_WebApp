@@ -35,8 +35,8 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   >([]);
   const { assistantSearch } = useLayoutContext();
   const { selectedAssistantFromHome } = useLayoutContext();
-  const getAssistantHistory = async (uuid: string) => {
-    const res = await ChatService.chatHistory(uuid);
+  const getAssistantHistory = async (assistant_uuid: string) => {
+    const res = await ChatService.getAssistantRoomHistory(assistant_uuid);
     if (res?.length) {
       const categorizedMessages = res?.map((message: PreviousChatType) => {
         const isUser = allListAssistant?.some(
@@ -47,15 +47,15 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
           senderType: isUser ? SENDER_TYPE.BOT : SENDER_TYPE.USER,
         };
       });
-      console.log({ categorizedMessages });
       setPrevMessages(categorizedMessages);
     } else {
       setPrevMessages([]);
     }
   };
+
   const selectedAssistant = async (selectedRoom: CombineRoomType) => {
     setSelectedRoom(selectedRoom);
-    await getAssistantHistory(selectedRoom?.uuid);
+    await getAssistantHistory(selectedRoom.assistant_uuid);
   };
 
   const getAllAssistants = async () => {
@@ -101,7 +101,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
 
   const setSelectedRoomAction = (item: CombineRoomType) => {
     selectedAssistant(item);
-    setSelectedAssist(item.uuid);
+    setSelectedAssist(item.assistant_uuid);
     setIsOpen(false);
   };
   return (

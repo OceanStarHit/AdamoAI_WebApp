@@ -97,6 +97,19 @@ class ChatServices {
     }
   }
 
+  async getAssistantRoomHistory(assistant_uuid: string) {
+    try {
+      const prevChatHistory = await instance.post(
+        `/get-assistant-room`,
+        assistant_uuid,
+      );
+      return prevChatHistory?.data?.messages;
+    } catch (error) {
+      //@ts-ignore
+      toast.error(error?.response?.data?.detail);
+    }
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async convert_voice_to_text(messageBody: any) {
     try {

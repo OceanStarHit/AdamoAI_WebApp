@@ -58,6 +58,8 @@ export interface TabsType {
   tabWidth?: string;
   variant: string;
   tabPanelClassName?: string;
+  showTabs?: boolean;
+  onChangeTab?: (index: number) => void;
 }
 export interface AssistantSearchBoxType {
   item?: CombineRoomType;
