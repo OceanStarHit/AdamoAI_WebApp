@@ -66,11 +66,13 @@ const Tabs: React.FC<TabsType> = ({
           </Tab.List>
         </div>
         <div className='flex justify-start mt-2 relative right-8'>
-          <Heading
-            text='Assistants'
-            type='heading'
-            className='ml-12 font-medium font-helvetica'
-          />
+          {showTabs ? (
+            <Heading
+              text='Assistants'
+              type='heading'
+              className='ml-12 font-medium font-helvetica'
+            />
+          ) : null}
         </div>
         <div className='flex justify-center mx-3'>
           <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>
