@@ -8,6 +8,11 @@ import HomeSearch from 'screens/home/HomeSearch';
 import MainContainer from 'components/MainContainer';
 import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { WaveIcon } from 'assets/svgs';
+import useLayoutContext from 'hooks/useLayout';
+import React from 'react';
+import { CombineRoomType } from 'types/assistant';
+import ChatService from 'services/chat';
+
 const Home = () => {
   const tabs = [
     { label: 'All', component: <CardList />, tags: 23 },
@@ -15,6 +20,20 @@ const Home = () => {
     { label: 'Assistants', component: <CardList />, tags: 10 },
     { label: 'Tools', component: <CardList />, tags: 3 },
   ];
+  const { setAssistantApiData } = useLayoutContext();
+  const setData = async () => {
+    try {
+      const data: CombineRoomType[] =
+        (await ChatService.listAssistants()) || [];
+      setAssistantApiData(data);
+    } catch (error) {
+      console.log('Fetch Error', error);
+    }
+  };
+  React.useEffect(() => {
+    setData();
+  }, []);
+
   return (
     <MainContainer>
       <div

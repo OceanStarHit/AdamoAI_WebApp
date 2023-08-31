@@ -34,6 +34,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     CombineRoomType[]
   >([]);
   const { assistantSearch } = useLayoutContext();
+  const { selectedAssistantFromHome } = useLayoutContext();
   const getAssistantHistory = async (uuid: string) => {
     const res = await ChatService.chatHistory(uuid);
     if (res?.length) {
@@ -69,6 +70,11 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
 
   React.useEffect(() => {
     getAllAssistants();
+  }, []);
+  React.useEffect(() => {
+    if (selectedAssistantFromHome) {
+      setSelectedRoom(selectedAssistantFromHome);
+    }
   }, []);
 
   React.useEffect(() => {

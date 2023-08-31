@@ -7,7 +7,6 @@ import { AssistantTopBarPropType } from 'types/assistant';
 const TopBar: React.FC<AssistantTopBarPropType> = ({
   selectedRoom,
   setToInitialFunction,
-  states,
 }) => {
   return (
     <div className='p-4 w-full items-center border-b-2'>
@@ -27,16 +26,6 @@ const TopBar: React.FC<AssistantTopBarPropType> = ({
           {selectedRoom.persona && (
             <span className='text-lg sm:text-2xl font-medium font-helvetica'>
               {selectedRoom.persona}
-            </span>
-          )}
-          {states?.cardName && (
-            <span className='text-lg sm:text-2xl font-medium font-helvetica'>
-              {states?.cardName}
-            </span>
-          )}
-          {states?.itemName && (
-            <span className='text-lg sm:text-2xl font-medium font-helvetica'>
-              {states?.itemName}
             </span>
           )}
         </div>

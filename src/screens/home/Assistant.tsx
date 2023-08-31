@@ -18,6 +18,7 @@ const CardList = () => {
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
   const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
+  const { setSelectedAssistantFromHome } = useLayoutContext();
 
   const getAllAssistants = async () => {
     try {
@@ -25,7 +26,6 @@ const CardList = () => {
         (await ChatService.listAssistants()) || [];
       setIsloading(false);
       setResData(data);
-      console.log(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -157,6 +157,11 @@ const CardList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homeSearch]);
 
+  const goToChat = (item: CombineRoomType) => {
+    setSelectedAssistantFromHome(item);
+    navigate('/chat');
+  };
+
   return (
     <div>
       {resData.length && !homeSearch ? (
@@ -166,14 +171,7 @@ const CardList = () => {
               <div
                 key={card.persona}
                 className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
@@ -198,14 +196,7 @@ const CardList = () => {
               <div
                 key={card.persona}
                 className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
