@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import useAuthContext from 'hooks/useAuth';
 import useLayoutContext from 'hooks/useLayout';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ const SidebarList: React.FC<SidebarListType> = ({ lists, setOpenDrawer }) => {
   const navigate = useNavigate();
   const currentRoute = useLocation();
   const { setSidebarState } = useLayoutContext();
+  const { loggedOut } = useAuthContext();
 
   return (
     <div>
@@ -22,9 +24,13 @@ const SidebarList: React.FC<SidebarListType> = ({ lists, setOpenDrawer }) => {
                 className='px-6 '
                 key={item.label}
                 onClick={() => {
-                  setSidebarState(item.label);
-                  setOpenDrawer(false);
-                  item?.route ? navigate(item.route) : null;
+                  if (item.label !== 'Logout') {
+                    setSidebarState(item.label);
+                    setOpenDrawer(false);
+                    item?.route ? navigate(item.route) : null;
+                  } else {
+                    loggedOut();
+                  }
                 }}
               >
                 <a
