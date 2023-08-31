@@ -7,6 +7,8 @@ export const LayoutContext = React.createContext<{
   setSidebarState: React.Dispatch<React.SetStateAction<string>>;
   homeSearch: string;
   setHomeSearch: React.Dispatch<React.SetStateAction<string>>;
+  assistantSearch: string;
+  setAssistantSearch: React.Dispatch<React.SetStateAction<string>>;
 }>({
   sidebarState: '',
   settingState: 'Settings',
@@ -14,4 +16,6 @@ export const LayoutContext = React.createContext<{
   setSidebarState: () => {},
   homeSearch: '',
   setHomeSearch: () => {},
+  assistantSearch: '',
+  setAssistantSearch: () => {},
 });

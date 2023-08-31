@@ -3,11 +3,8 @@ import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
 import ChatService from 'services/chat';
-import {
-  CombineRoomType,
-} from 'types/assistant';
+import { CombineRoomType } from 'types/assistant';
 import useLayoutContext from 'hooks/useLayout';
-import { AssistantProps } from 'types/assistant';
 
 interface ICardList {
   onClick?: () => void;
@@ -19,14 +16,16 @@ const CardList = () => {
   const navigate = useNavigate();
   const [resData, setResData] = React.useState<CombineRoomType[]>([]);
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
-  const [isloading, setIsloading] = React.useState<boolean>(true)
+  const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
 
   const getAllAssistants = async () => {
     try {
-      const data : CombineRoomType[] = await ChatService.listAssistants() || [];
+      const data: CombineRoomType[] =
+        (await ChatService.listAssistants()) || [];
       setIsloading(false);
       setResData(data);
+      console.log(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -37,13 +36,12 @@ const CardList = () => {
   }, []);
 
   const SampleNextArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+    const { className, onClick } = props;
 
     return (
       <div
         className={className}
         style={{
-          ...style,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -52,11 +50,11 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           right: -42,
         }}
         onClick={onClick}
@@ -64,13 +62,14 @@ const CardList = () => {
     );
   };
 
-  const SamplePrevArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+  const SamplePrevArrow: React.FC<{
+    className?: string;
+    onClick?: () => void;
+  }> = ({ className, onClick }) => {
     return (
       <div
         className={className}
         style={{
-          ...style,
           zIndex: 20,
           display: 'flex',
           justifyContent: 'center',
@@ -80,17 +79,18 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           left: -40,
         }}
         onClick={onClick}
       />
     );
   };
+
   const settings = {
     // dots: true,
     infinite: filterData.length > 3,
@@ -225,7 +225,7 @@ const CardList = () => {
         </Slider>
       ) : (
         <div className='h-48 flex justify-center text-slate-'>
-          {isloading?'Loading...':`${homeSearch} not found.`}
+          {isloading ? 'Loading...' : `${homeSearch} not found.`}
         </div>
       )}
     </div>
