@@ -4,7 +4,6 @@ import CustomDropdown from 'components/CustomDropdown';
 import { BackArrow } from 'assets/svgs';
 import { AssistantTopBarPropType } from 'types/assistant';
 
-
 const TopBar: React.FC<AssistantTopBarPropType> = ({
   selectedRoom,
   setToInitialFunction,
