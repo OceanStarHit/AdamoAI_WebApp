@@ -18,6 +18,7 @@ const CardList = () => {
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
   const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
+  const { setSelectedAssistantFromHome } = useLayoutContext();
 
   const getAllAssistants = async () => {
     try {
@@ -25,7 +26,6 @@ const CardList = () => {
         (await ChatService.listAssistants()) || [];
       setIsloading(false);
       setResData(data);
-      console.log(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -94,8 +94,8 @@ const CardList = () => {
   const settings = {
     // dots: true,
     infinite: filterData.length > 3,
-    slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     swipeToSlide: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -157,27 +157,28 @@ const CardList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homeSearch]);
 
+  const goToChat = (item: CombineRoomType) => {
+    setSelectedAssistantFromHome(item);
+    navigate('/chat');
+  };
+
   return (
     <div>
       {resData.length && !homeSearch ? (
         <Slider {...settings}>
-          {resData?.map((card) => {
+          {resData?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
@@ -193,23 +194,19 @@ const CardList = () => {
         </Slider>
       ) : homeSearch ? (
         <Slider {...settings}>
-          {filterData?.map((card) => {
+          {filterData?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>

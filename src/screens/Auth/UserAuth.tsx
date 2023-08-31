@@ -33,6 +33,7 @@ const UserAuth = () => {
               selectedClassName='!bg-white'
               notSelectedClassName='!bg-gray-200'
               variant='login'
+              showTabs={false}
             />
           </div>
         </div>

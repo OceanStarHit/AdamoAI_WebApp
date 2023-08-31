@@ -38,16 +38,10 @@ export interface CombineRoomType {
   uuid: string;
   gradientColor?: string;
 }
-interface stateType {
-  uuid: string;
-  cardName: string;
-  itemName?: string;
-}
 
 export type AssistantTopBarPropType = {
   selectedRoom: CombineRoomType;
   setToInitialFunction: () => void;
-  states?: stateType;
 };
 
 export type optionsType = {
@@ -64,6 +58,8 @@ export interface TabsType {
   tabWidth?: string;
   variant: string;
   tabPanelClassName?: string;
+  showTabs?: boolean;
+  onChangeTab?: (index: number) => void;
 }
 export interface AssistantSearchBoxType {
   item?: CombineRoomType;

@@ -8,13 +8,38 @@ import HomeSearch from 'screens/home/HomeSearch';
 import MainContainer from 'components/MainContainer';
 import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { WaveIcon } from 'assets/svgs';
+import useLayoutContext from 'hooks/useLayout';
+import React from 'react';
+import { CombineRoomType } from 'types/assistant';
+import ChatService from 'services/chat';
+
 const Home = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
   const tabs = [
-    { label: 'All', component: <CardList />, tags: 23 },
-    { label: 'Favorite', component: <CardList />, tags: 4 },
-    { label: 'Assistants', component: <CardList />, tags: 10 },
-    { label: 'Tools', component: <CardList />, tags: 3 },
+    { label: 'All', component: <CardList />, tags: 24 },
+    { label: 'Favorite', component: <CardList />, tags: 0 },
+    { label: 'Assistants', component: <CardList />, tags: 20 },
+    { label: 'Tools', component: <CardList />, tags: 4 },
   ];
+  const { setAssistantApiData } = useLayoutContext();
+  const setData = async () => {
+    try {
+      const data: CombineRoomType[] =
+        (await ChatService.listAssistants()) || [];
+      setAssistantApiData(data);
+    } catch (error) {
+      console.log('Fetch Error', error);
+    }
+  };
+  React.useEffect(() => {
+    setData();
+  }, []);
+
+  const onChangeTab = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
     <MainContainer>
       <div
@@ -54,14 +79,23 @@ const Home = () => {
             tabWidth='w-11/12 md:w-2/3 xl:w-3/5'
             variant='home'
             tabPanelClassName='w-3/4 md:w-11/12 '
+            onChangeTab={onChangeTab}
           />
         </div>
-        <div className='flex justify-start mt-6 relative right-8 mx-3'>
-          <Heading text='Tools' type='heading' className='ml-12 font-medium' />
-        </div>
-        <div>
-          <Tools />
-        </div>
+        {activeIndex !== 2 ? (
+          <>
+            <div className='flex justify-start mt-6 relative right-8 mx-3'>
+              <Heading
+                text='Tools'
+                type='heading'
+                className='ml-12 font-medium'
+              />
+            </div>
+            <div>
+              <Tools />
+            </div>
+          </>
+        ) : null}
       </div>
     </MainContainer>
   );
