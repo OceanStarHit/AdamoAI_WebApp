@@ -1,11 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React from 'react';
 import ChatService from 'services/chat';
 import { Loader } from 'assets/svgs';
 import { CombineRoomType } from 'types/assistant';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import AssistantSearch from './AssisstantSearch';
 import Users from 'assets/images/users.png';
-import YourTravelAdvisor from 'assets/images/YourTravelAdvisor.png';
+import useLayoutContext from 'hooks/useLayout';
+import AssistantSearchBox from 'components/AssistantSearchBox';
 
 interface ChatHistoryType {
   allListAssistant: CombineRoomType[] | null;
@@ -16,7 +17,7 @@ interface ChatHistoryType {
   setSelectedRoom: React.Dispatch<React.SetStateAction<CombineRoomType>>;
   uuid: string;
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ChatHistory: React.FC<ChatHistoryType> = ({
   allListAssistant,
@@ -27,8 +28,12 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   setIsOpen,
 }) => {
   const [loading, setLoading] = React.useState(false);
-  const [selectedAssist, setSelectedAssist] = useState('');
-
+  const [searchError, setSearchError] = React.useState('');
+  const [selectedAssist, setSelectedAssist] = React.useState('');
+  const [filteredAssistant, setFilteredAssistant] = React.useState<
+    CombineRoomType[]
+  >([]);
+  const { assistantSearch } = useLayoutContext();
   const getAssistantHistory = async (uuid: string) => {
     const res = await ChatService.chatHistory(uuid);
     if (res?.length) {
@@ -63,10 +68,21 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   };
 
   React.useEffect(() => {
-    getAllAssistants();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (assistantSearch !== '') {
+      const filteredItems = allListAssistant?.filter((item) =>
+        item.persona.toLowerCase().includes(assistantSearch.toLowerCase()),
+      );
+      if (filteredItems?.length) {
+        setFilteredAssistant(filteredItems);
+        setSearchError('');
+      } else {
+        setSearchError('Not Found');
+        setFilteredAssistant([]);
+      }
+    } else {
+      getAllAssistants();
+    }
+  }, [assistantSearch]);
 
   React.useEffect(() => {
     if (uuid && allListAssistant) {
@@ -82,57 +98,55 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   };
   return (
     <>
-      {!loading ? (
-        <>
-          <div className={`flex py-4 mx-6 items-center sm:justify-normal `}>
-            <img src={Users} className='w-10 h-10' />
-            <span className=' text-2xl font-medium sm:ml-4'>Assistants</span>
-          </div>
-          <div className='w-full border-y border-slate-300 mb-2'>
-            <AssistantSearch />
-          </div>
-          <div
-            className={`px-4 flex-grow overflow-y-scroll  rounded-br-3xl custom-scrollbar overflow-x-hidden font-medium`}
-          >
-            {allListAssistant?.map((item) => {
-              return (
-                <div key={item._id}>
-                  <div
-                    className={`flex items-center p-1 cursor-pointer
-                   ${
-                     item.uuid === selectedAssist
-                       ? 'bg-primary-gradient rounded-md '
-                       : ''
-                   }
-                      `}
-                    onClick={() => setSelectedRoomAction(item)}
-                  >
-                    <img
-                      src={YourTravelAdvisor}
-                      className='w-10 h-10 rounded-full'
+      <>
+        <div className={`flex py-4 mx-6 items-center sm:justify-normal `}>
+          <img src={Users} className='w-10 h-10' />
+          <span className=' text-2xl font-medium sm:ml-4'>Assistants</span>
+        </div>
+        <div className='w-full border-y border-slate-300 mb-2'>
+          <AssistantSearch />
+        </div>
+        <div
+          className={`px-4 flex-grow overflow-y-scroll  rounded-br-3xl custom-scrollbar overflow-x-hidden font-medium`}
+        >
+          {searchError && assistantSearch ? (
+            <span className='text-red-400 flex justify-center '>
+              {searchError}
+            </span>
+          ) : null}
+          {!loading ? (
+            <>
+              {allListAssistant?.length && !assistantSearch ? (
+                <>
+                  {allListAssistant?.map((item, index) => (
+                    <AssistantSearchBox
+                      item={item}
+                      key={index}
+                      selectedAssist={selectedAssist}
+                      setSelectedRoomAction={setSelectedRoomAction}
                     />
-                    <p className='font-sans text-base font-normal ml-3'>
-                      {`${item.persona} `}
-                    </p>
-                  </div>
-                  <div
-                    className='bg-gray-200 ml-10 my-1 w-full'
-                    style={{ height: '1px' }}
+                  ))}
+                </>
+              ) : assistantSearch ? (
+                filteredAssistant?.map((item, index) => (
+                  <AssistantSearchBox
+                    item={item}
+                    key={index}
+                    selectedAssist={selectedAssist}
+                    setSelectedRoomAction={setSelectedRoomAction}
                   />
-                </div>
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className='flex p-4 justify-center min-h-screen align-middle items-center'>
-            <div className='flex justify-center h-8'>
-              <Loader color='#db2777' />
+                ))
+              ) : null}
+            </>
+          ) : (
+            <div className='flex p-4 justify-center max-h-screen align-middle items-center'>
+              <div className='flex justify-center h-8'>
+                <Loader color='#db2777' />
+              </div>
             </div>
-          </div>
-        </>
-      )}
+          )}
+        </div>
+      </>
     </>
   );
 };

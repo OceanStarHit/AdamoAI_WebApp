@@ -65,3 +65,8 @@ export interface TabsType {
   variant: string;
   tabPanelClassName?: string;
 }
+export interface AssistantSearchBoxType {
+  item?: CombineRoomType;
+  selectedAssist: string;
+  setSelectedRoomAction: (item: CombineRoomType) => void;
+}
