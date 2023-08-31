@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 const AuthLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className='gradient min-h-screen font-serif'>
+    <div className='gradient font-serif'>
       <aside
         id='logo-sidebar'
         className='fixed top-0 left-0 z-40 w-96 -translate-x-full transition-transform lg:translate-x-0'
@@ -38,11 +38,15 @@ const AuthLayout: React.FC<LayoutProps> = ({ children }) => {
 
         <img
           src={require('assets/images/sideLogo.png')}
-          className='w-[1200px] absolute top-0'
+          className='w-[350px] h-[450px] absolute top-0'
         />
       </aside>
-
-      <div className='p-4 lg:ml-80 max-h-screen'>{children}</div>
+      {/* xlm:py-[132px] xm:py-[160px] sm:py-14 lg:p-4 */}
+      {/* 'p-4 h-[100vh] pt-10 xm:pt-32 xlm:pt-32 lg:ml-80 lg:p-4 lg:h-full xl:h-[100vh] 2xl:h-[100vh]' */}
+      {/* 'p-4 lg:ml-80' */}
+      <div className='p-4 min-h-[100vh] pt-10 xm:pt-32 xlm:pt-32 lg:ml-80 lg:p-4 lg:h-full xl:h-[100vh] 2xl:h-[100vh]'>
+        {children}
+      </div>
     </div>
   );
 };

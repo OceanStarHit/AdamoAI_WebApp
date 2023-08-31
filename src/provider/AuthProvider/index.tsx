@@ -7,15 +7,21 @@ import { LoginResponse, ResponseType } from 'types';
 import { IAuthType, IRegisterType } from 'types/auth';
 import { TransformResponse } from 'utils/serializeResponse';
 import { AuthContext } from 'provider/AuthProvider/context';
-import { removeStorage, useLocalStorageState } from 'hooks/useLocalstorage';
+import { useLocalStorageState } from 'hooks/useLocalstorage';
 
 type PROPS = {
   children: null | boolean | React.ReactNode | React.ReactPortal;
 };
 
 const AuthProvider: React.FC<PROPS> = ({ children }) => {
-  const [storageUser, setStorageUser] = useLocalStorageState(null, '@user');
-  const [accessToken, setAccessToken] = useLocalStorageState(null, '@token');
+  const [storageUser, setStorageUser, clearUser] = useLocalStorageState(
+    null,
+    '@user',
+  );
+  const [accessToken, setAccessToken, clearToken] = useLocalStorageState(
+    null,
+    '@token',
+  );
   const [user, setUser] = React.useState<IAuthType | null>(storageUser);
   const navigate = useNavigate();
 
@@ -63,7 +69,8 @@ const AuthProvider: React.FC<PROPS> = ({ children }) => {
   };
 
   const loggedOut = () => {
-    removeStorage('@user');
+    clearUser();
+    clearToken();
     setUser(null);
   };
 

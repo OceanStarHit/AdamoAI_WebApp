@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div className='min-h-[calc(100vh-2rem)]'>
+    <div className=''>
       <form onSubmit={handleSubmit(onSubmit)}>
         {LOGIN.map((item: AuthFormType) => {
           return (

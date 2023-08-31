@@ -14,10 +14,14 @@ const Tabs: React.FC<TabsType> = ({
 }) => {
   return (
     <Tab.Group>
-      <div className={`flex flex-col ${variant === 'login' ? tabWidth : ''}`}>
+      <div
+        className={`flex flex-col h-full ${
+          variant === 'login' ? tabWidth : ''
+        }`}
+      >
         <div className='flex justify-center'>
           <Tab.List
-            className={`flex space-x-1 bg-gray-200 p-1 mt-6 ${className} ${tabWidth}`}
+            className={`flex space-x-1 bg-gray-200 p-1 mt-4 ${className} ${tabWidth}`}
           >
             {options.map((tab, index) => (
               <Tab
@@ -43,17 +47,11 @@ const Tabs: React.FC<TabsType> = ({
                 }
               >
                 <span>{tab.label}</span>
-                <span
-                  className={`w-3 sm:w-5 h-3 sm:h-5 xl:w-8 xl:h-8 rounded-full bg-gray-400 
-                flex items-center ml-1 md:ml-2 justify-center text-white text-[.5rem] sm:text-[.6rem] xl:text-xs font-bold`}
-                >
-                  {tab.tags}
-                </span>
               </Tab>
             ))}
           </Tab.List>
         </div>
-        <div className='flex justify-start mt-8 relative right-8'>
+        <div className='flex justify-start mt-2 relative right-8'>
           <Heading
             text='Assistants'
             type='heading'

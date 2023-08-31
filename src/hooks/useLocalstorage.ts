@@ -7,13 +7,18 @@ const useLocalStorageState = (defaultValue: null, key: string) => {
       try {
         return JSON.parse(localStorageValue);
       } catch (error) {
-        removeStorage(key);
+        removeStorage();
       }
     }
     return defaultValue;
   };
 
   const [value, setValue] = React.useState(getStorage());
+
+  const removeStorage = () => {
+    localStorage.removeItem(key);
+    setValue(null);
+  };
 
   React.useEffect(() => {
     if (value) {
@@ -22,11 +27,7 @@ const useLocalStorageState = (defaultValue: null, key: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  return [value, setValue];
+  return [value, setValue, removeStorage];
 };
 
-const removeStorage = (key: string) => {
-  localStorage.removeItem(key);
-};
-
-export { removeStorage, useLocalStorageState };
+export { useLocalStorageState };
