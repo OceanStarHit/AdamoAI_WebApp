@@ -24,7 +24,6 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   setAllListAssistants,
   setPrevMessages,
   setSelectedRoom,
-  uuid,
   setIsOpen,
 }) => {
   const [loading, setLoading] = React.useState(false);
@@ -40,7 +39,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
     const res = await ChatService.getAssistantRoomHistory(assistant_uuid);
     if (res?.length) {
       const categorizedMessages = res?.map((message: PreviousChatType) => {
-        const isAIAgent = assistant_uuid == message.sender_uuid
+        const isAIAgent = assistant_uuid == message.sender_uuid;
         return {
           ...message,
           senderType: isAIAgent ? SENDER_TYPE.BOT : SENDER_TYPE.USER,
@@ -92,7 +91,7 @@ const ChatHistory: React.FC<ChatHistoryType> = ({
   }, [assistantSearch]);
 
   React.useEffect(() => {
-    if(selectedAssistantFromHome && selectedAssistantFromHome.assistant_uuid){
+    if (selectedAssistantFromHome && selectedAssistantFromHome.assistant_uuid) {
       const selectedAssistantUUID = selectedAssistantFromHome.assistant_uuid;
       setSelectedAssistantFromHome({
         avatar: '',

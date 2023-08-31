@@ -75,7 +75,7 @@ const HomeSearch = () => {
                     </p>
                   </div>
                   <div
-                    className='mr-4 relative bottom-1'
+                    className='mr-4 relative bottom-3'
                     onClick={() => goToChatThroughLink(item)}
                   >
                     <Link />

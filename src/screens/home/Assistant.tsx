@@ -94,8 +94,8 @@ const CardList = () => {
   const settings = {
     // dots: true,
     infinite: filterData.length > 3,
-    slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     swipeToSlide: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
