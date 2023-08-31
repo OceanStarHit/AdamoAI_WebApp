@@ -53,7 +53,7 @@ const WordEffect: React.FC<WordEffectProps> = ({ text, delay, className }) => {
 
   return (
     <div
-      className={`text-sm md:text-lg font-medium ${className} text-gray-500`}
+      className={`text-sm md:text-lg xl:text-xl font-medium ${className} text-gray-500`}
     >
       {visibleText}
     </div>

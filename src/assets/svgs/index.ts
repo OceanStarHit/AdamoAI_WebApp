@@ -66,6 +66,7 @@ import Logout from './logout';
 import SendFast from './sendfast';
 import LeftArrow from './leftArrow';
 import FilterIcon from './filterIcon';
+import WaveIcon from './wavinghand';
 
 export {
   Avatar,
@@ -124,6 +125,7 @@ export {
   ChevronDown,
   ChevronUp,
   Loader,
+  WaveIcon,
   Assistants,
   RealtimeTranslator,
   ImageCreator,
