@@ -14,7 +14,10 @@ const AssistantSearchBox: React.FC<AssistantSearchBoxType> = ({
       `}
         onClick={item ? () => setSelectedRoomAction(item) : undefined}
       >
-        <img src={item?.avatar} className='w-10 h-10 rounded-full' />
+        <img
+          src={item?.avatar?.replace(new RegExp(' ', 'g'), '_')}
+          className='w-10 h-10 rounded-full'
+        />
         <p className='font-sans text-base font-normal ml-3'>
           {`${item?.persona} `}
         </p>
