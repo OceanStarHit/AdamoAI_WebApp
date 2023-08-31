@@ -23,7 +23,7 @@ const Tools = () => {
                     {card.persona}
                   </p>
                 </div>
-                <p className='text-gray-500 text-xs xl:text-base'>
+                <p className='text-gray-500 text-xs 2xl:text-xs text-clip line-clamp-2'>
                   {card.description}
                 </p>
               </div>

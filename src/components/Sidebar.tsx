@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className='bg-slate-950 min-h-screen font-serif'>
       {!openDrawer && (
         <div
-          className='absolute top-12 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer'
+          className='absolute top-24 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer'
           onClick={() => setOpenDrawer(!openDrawer)}
         >
           <MenuIcon />
