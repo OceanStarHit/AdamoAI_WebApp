@@ -3,11 +3,9 @@ import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
 import ChatService from 'services/chat';
-import {
-  CombineRoomType,
-} from 'types/assistant';
+import { CombineRoomType } from 'types/assistant';
 import useLayoutContext from 'hooks/useLayout';
-import { AssistantProps } from 'types/assistant';
+import { CardBgColor } from 'constants/tools';
 
 interface ICardList {
   onClick?: () => void;
@@ -15,16 +13,21 @@ interface ICardList {
   className?: string;
 }
 
+const getRandomColor = () => {
+  const randomIndex = Math.floor(Math.random() * CardBgColor.length);
+  return CardBgColor[randomIndex];
+};
+
 const CardList = () => {
   const navigate = useNavigate();
   const [resData, setResData] = React.useState<CombineRoomType[]>([]);
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
-  const [isloading, setIsloading] = React.useState<boolean>(true)
+  const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
-
   const getAllAssistants = async () => {
     try {
-      const data : CombineRoomType[] = await ChatService.listAssistants() || [];
+      const data: CombineRoomType[] =
+        (await ChatService.listAssistants()) || [];
       setIsloading(false);
       setResData(data);
     } catch (error) {
@@ -58,6 +61,7 @@ const CardList = () => {
           #f4a14c 97.92%
         )`,
           right: -42,
+          top: 90,
         }}
         onClick={onClick}
       />
@@ -86,6 +90,7 @@ const CardList = () => {
           #f4a14c 97.92%
         )`,
           left: -40,
+          top: 85,
         }}
         onClick={onClick}
       />
@@ -165,7 +170,7 @@ const CardList = () => {
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${getRandomColor()} cursor-pointer`}
                 onClick={() =>
                   navigate('/chat', {
                     state: {
@@ -225,7 +230,7 @@ const CardList = () => {
         </Slider>
       ) : (
         <div className='h-48 flex justify-center text-slate-'>
-          {isloading?'Loading...':`${homeSearch} not found.`}
+          {isloading ? 'Loading...' : `${homeSearch} not found.`}
         </div>
       )}
     </div>
