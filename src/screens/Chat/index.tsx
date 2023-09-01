@@ -154,7 +154,7 @@ const Chat = () => {
           aiResponding={aiResponding}
         />
         {selectedRoom._id !== '' ? (
-          <div className=' py-4 px-1 sm:p-4 bg-white rounded-b-3xl flex space-x-2 items-center absolute right-0 left-0 sm:relative bottom-1 w-full'>
+          <div className=' py-4 px-1 sm:p-4 bg-white rounded-b-3xl flex space-x-2 items-center absolute right-0 left-1 sm:left-0 sm:relative bottom-1 w-full'>
             <InputTextArea
               className='!text-base !px-2 !sm:px-4 '
               placeholder='Message'
