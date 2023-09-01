@@ -11,6 +11,7 @@ import Checkout from 'screens/Settings/Checkout';
 import LayoutProvider from 'provider/LayoutProvider';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import Account from 'screens/Account';
 
 const GetAuthenticatedRoutes = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const GetAuthenticatedRoutes = () => {
   const UNAUTHENTICATED_ROUTES = [
     ROUTES.HOME,
     ROUTES.CHAT,
+    ROUTES.ACCOUNT,
     ROUTES.SETTING,
     ROUTES.TOOLS,
     ROUTES.CHECKOUT,
@@ -36,6 +38,7 @@ const GetAuthenticatedRoutes = () => {
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.CHAT} element={<Chat />} />
+          <Route path={ROUTES.ACCOUNT} element={<Account />} />
           <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
           <Route path={ROUTES.SETTING} element={<Settings />} />
           <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
