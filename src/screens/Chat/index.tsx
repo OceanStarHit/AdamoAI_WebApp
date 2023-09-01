@@ -109,38 +109,22 @@ const Chat = () => {
     });
     setPrevMessages([]);
   };
-  const InputTextAreaChange = (
-    value: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    const currentCharacterCount = value.target.value.length;
-    setValue(value.target.value);
-    if (currentCharacterCount === 0) {
-      setNumRows(1);
-    } else {
-      const textareaWidth = value.target.clientWidth - 10;
-      const averageCharacterWidth =
-        currentCharacterCount > 0 ? textareaWidth / currentCharacterCount : 0;
-      const maxCharactersPerLine = Math.floor(
-        textareaWidth / averageCharacterWidth,
-      );
-      if (currentCharacterCount >= maxCharactersPerLine) {
-        setNumRows(2);
-      } else {
-        setNumRows(1);
-      }
-    }
-  };
   React.useEffect(() => {
-    if (prevMessages.length === 0 && selectedRoom.assistant_uuid !== '') {
+    const delay = 1000;
+    const timer = setTimeout(() => {
       setValue(
-        "Hi there! I'm so excited to finally meet my AI nutritionist. I've been struggling with my diet and really need some guidance.",
+        !aiResponding && selectedRoom.assistant_uuid && !prevMessages.length
+          ? "Hi there! I'm so excited to finally meet my AI nutritionist. I've been struggling with my diet and really need some guidance."
+          : '',
       );
-      setNumRows(2);
-    } else {
-      setValue('');
-      setNumRows(1);
-    }
-  }, [prevMessages, selectedRoom]);
+      setNumRows(
+        !aiResponding && selectedRoom.assistant_uuid && !prevMessages.length
+          ? 2
+          : 1,
+      );
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [aiResponding, selectedRoom.assistant_uuid, prevMessages]);
   return (
     <div className=' bg-white rounded-3xl w-full flex flex-col sm:flex-row min-h-[calc(100vh-2rem)]'>
       <div className='w-full md:w-2/3 flex-col order-2 sm:order-1 justify-between flex max-h-[calc(100vh-2rem)] '>
@@ -170,13 +154,15 @@ const Chat = () => {
           aiResponding={aiResponding}
         />
         {selectedRoom._id !== '' ? (
-          <div className=' py-4 px-1 sm:p-4 bg-white flex space-x-2 items-center absolute right-1 left-1 sm:relative bottom-1 w-full'>
+          <div className=' py-4 px-1 sm:p-4 bg-white rounded-b-3xl flex space-x-2 items-center absolute right-0 left-0 sm:relative bottom-1 w-full'>
             <InputTextArea
               className='!text-base !px-2 !sm:px-4 '
               placeholder='Message'
               value={value}
               numRows={numRows}
-              onChange={(e) => InputTextAreaChange(e)}
+              setValue={setValue}
+              setNumRows={setNumRows}
+              onChange={(e) => setValue(e.target.value)}
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
                   sendMessage();
@@ -184,10 +170,10 @@ const Chat = () => {
               }}
             />
             {value.length === 0 && (
-              <div className='flex space-x-2'>
+              <div className='flex space-x-2 '>
                 {(status === 'idle' || status === 'stopped') && (
                   <span
-                    className='cursor-pointer absolute right-24 sm:right-28'
+                    className='cursor-pointer absolute right-24 sm:right-32'
                     onClick={startRecording}
                   >
                     <MicroPhone />
