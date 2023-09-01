@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
-import Heading from './Heading';
+// import Heading from './Heading';
 import { TabsType } from 'types/assistant';
 
 const Tabs: React.FC<TabsType> = ({
@@ -66,13 +66,13 @@ const Tabs: React.FC<TabsType> = ({
           </Tab.List>
         </div>
         <div className='flex justify-start mt-2 relative right-8'>
-          {showTabs ? (
+          {/* {showTabs ? (
             <Heading
               text='Assistants'
               type='heading'
               className='ml-12 font-medium font-helvetica'
             />
-          ) : null}
+          ) : null} */}
         </div>
         <div className='flex justify-center mx-3'>
           <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>
