@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarMove, setSidebarMove] = React.useState(true);
 
   return (
-    <div className='bg-slate-950 min-h-screen font-serif'>
+    <div className='max-[639px]:bg-white bg-slate-950 min-h-screen font-serif'>
       {!openDrawer && (
         <div
           className='absolute top-24 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer'
@@ -128,9 +128,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Drawer setOpenDrawer={setOpenDrawer} openDrawer={openDrawer} />
       ) : null}
       <div
-        className={`p-4 ${sidebarMove ? 'lg:ml-72' : 'lg:ml-32'} max-h-screen ${
-          openDrawer ? 'hidden' : 'block'
-        }`}
+        className={`p-4  max-[639px]:p-2 ${
+          sidebarMove ? 'lg:ml-72' : 'lg:ml-32'
+        } max-h-screen ${openDrawer ? 'hidden' : 'block'} max-[639px]:bg-white`}
       >
         <div>{children}</div>
       </div>
