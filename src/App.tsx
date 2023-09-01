@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from 'provider/AuthProvider';
 import { BrowserRouter as Router } from 'react-router-dom';
+import HomeProvider from 'provider/HomeProvider';
 
 function App() {
   const bodyClassName = () =>
@@ -15,13 +16,15 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <ToastContainer
-          bodyClassName={bodyClassName}
-          autoClose={3000}
-          toastClassName={toastClassName}
-          position='top-right'
-        />
-        <MainRoutes />
+        <HomeProvider>
+          <ToastContainer
+            bodyClassName={bodyClassName}
+            autoClose={3000}
+            toastClassName={toastClassName}
+            position='top-right'
+          />
+          <MainRoutes />
+        </HomeProvider>
       </AuthProvider>
     </Router>
   );

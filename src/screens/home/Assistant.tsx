@@ -2,9 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
-import ChatService from 'services/chat';
 import { CombineRoomType } from 'types/assistant';
 import useLayoutContext from 'hooks/useLayout';
+import useHomeContext from 'hooks/useHome';
 
 interface ICardList {
   onClick?: () => void;
@@ -14,7 +14,7 @@ interface ICardList {
 
 const CardList = () => {
   const navigate = useNavigate();
-  const [resData, setResData] = React.useState<CombineRoomType[]>([]);
+  const { assistants, getAssistants } = useHomeContext();
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
   const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
@@ -22,10 +22,10 @@ const CardList = () => {
 
   const getAllAssistants = async () => {
     try {
-      const data: CombineRoomType[] =
-        (await ChatService.listAssistants()) || [];
+      if (!assistants.length) {
+        await getAssistants();
+      }
       setIsloading(false);
-      setResData(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -144,14 +144,14 @@ const CardList = () => {
     ),
   };
   React.useEffect(() => {
-    if (resData.length && homeSearch) {
-      const fiteredData = resData.filter((item) => {
+    if (assistants.length && homeSearch) {
+      const fiteredData = assistants.filter((item) => {
         return item?.persona?.toLowerCase().includes(homeSearch.toLowerCase());
       });
       setFilterData(fiteredData);
       setHomeSearch(homeSearch);
     } else {
-      setFilterData(resData);
+      setFilterData(assistants);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -164,9 +164,9 @@ const CardList = () => {
 
   return (
     <div>
-      {resData.length && !homeSearch ? (
+      {assistants.length && !homeSearch ? (
         <Slider {...settings}>
-          {resData?.map((card, index) => {
+          {assistants?.map((card, index) => {
             const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div

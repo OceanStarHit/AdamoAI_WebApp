@@ -12,15 +12,17 @@ import useLayoutContext from 'hooks/useLayout';
 import React from 'react';
 import { CombineRoomType } from 'types/assistant';
 import ChatService from 'services/chat';
+import useHomeContext from 'hooks/useHome';
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const { assistants } = useHomeContext();
 
   const tabs = [
-    { label: 'All', component: <CardList />, tags: 24 },
-    { label: 'Favorite', component: <CardList />, tags: 0 },
-    { label: 'Assistants', component: <CardList />, tags: 20 },
-    { label: 'Tools', component: <CardList />, tags: 4 },
+    { label: 'All', component: <></>, tags: 24 },
+    { label: 'Favorite', component: <></>, tags: 0 },
+    { label: 'Assistants', component: <></>, tags: assistants.length },
+    { label: 'Tools', component: <></>, tags: 4 },
   ];
   const { setAssistantApiData } = useLayoutContext();
   const setData = async () => {
@@ -82,6 +84,20 @@ const Home = () => {
             onChangeTab={onChangeTab}
           />
         </div>
+        {activeIndex !== 3 ? (
+          <>
+            <div className='flex justify-start mt-6 relative right-8 mx-3'>
+              <Heading
+                text='Assistants'
+                type='heading'
+                className='ml-12 font-medium'
+              />
+            </div>
+            <div className='mb-5 mx-[50px]'>
+              <CardList />
+            </div>
+          </>
+        ) : null}
         {activeIndex !== 2 ? (
           <>
             <div className='flex justify-start mt-6 relative right-8 mx-3'>
