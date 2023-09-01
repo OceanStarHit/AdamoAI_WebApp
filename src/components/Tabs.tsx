@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
-import Heading from './Heading';
+// import Heading from './Heading';
 import { TabsType } from 'types/assistant';
 
 const Tabs: React.FC<TabsType> = ({
@@ -11,9 +11,15 @@ const Tabs: React.FC<TabsType> = ({
   tabWidth = 'w-[300px] sm:w-full md:w-[550px]',
   variant,
   tabPanelClassName = 'w-full',
+  showTabs = true,
+  onChangeTab = () => {},
 }) => {
   return (
-    <Tab.Group>
+    <Tab.Group
+      onChange={(index) => {
+        onChangeTab(index);
+      }}
+    >
       <div
         className={`flex flex-col h-full ${
           variant === 'login' ? tabWidth : ''
@@ -47,16 +53,26 @@ const Tabs: React.FC<TabsType> = ({
                 }
               >
                 <span>{tab.label}</span>
+                {showTabs ? (
+                  <span
+                    className={`w-3 sm:w-5 h-3 sm:h-5 xl:w-8 xl:h-8 rounded-full bg-gray-400 
+                flex items-center ml-1 md:ml-2 justify-center text-white text-[.5rem] sm:text-[.6rem] xl:text-xs font-bold`}
+                  >
+                    {tab.tags}
+                  </span>
+                ) : null}
               </Tab>
             ))}
           </Tab.List>
         </div>
         <div className='flex justify-start mt-2 relative right-8'>
-          <Heading
-            text='Assistants'
-            type='heading'
-            className='ml-12 font-medium font-helvetica'
-          />
+          {/* {showTabs ? (
+            <Heading
+              text='Assistants'
+              type='heading'
+              className='ml-12 font-medium font-helvetica'
+            />
+          ) : null} */}
         </div>
         <div className='flex justify-center mx-3'>
           <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>

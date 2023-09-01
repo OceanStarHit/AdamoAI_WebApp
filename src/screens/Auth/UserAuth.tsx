@@ -14,8 +14,8 @@ const UserAuth = () => {
   return (
     <AuthLayout>
       <MainContainer>
-        <div className='flex flex-col mb-1'>
-          <div className='flex items-center justify-center mt-3'>
+        <div className='flex flex-col w-full min-h-[calc(100vh-2rem)] justify-center content-center'>
+          <div className='flex justify-center items-center'>
             <img
               src={require('assets/images/Logo.png')}
               height={50}
@@ -33,6 +33,7 @@ const UserAuth = () => {
               selectedClassName='!bg-white'
               notSelectedClassName='!bg-gray-200'
               variant='login'
+              showTabs={false}
             />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Button from 'components/Button';
 import ChatInput from 'components/ChatInput';
 import Messages from 'screens/Chat/Messages';
@@ -17,7 +17,6 @@ import ReactAudioPlayer from 'react-audio-player';
 import { fetchSpeechToText } from 'services/chat/utils';
 import { CombineRoomType } from 'types/assistant';
 import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
 import AssistantSideButton from 'screens/Chat/AssistantSideButton';
 import TopBar from './TopBar';
 import AssistantDrawer from './AssistantDrawer';
@@ -25,12 +24,10 @@ const Chat = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [value, setValue] = React.useState<string>('');
   const [audioBlob, setAudioBlob] = React.useState<string>('');
-  const { state } = useLocation();
-  console.log({ state });
   const [allListAssistant, setAllListAssistants] = React.useState<
     CombineRoomType[] | null
   >([]);
-  const [aiResponding, setAIResponding] = React.useState(true);
+  const [aiResponding, setAIResponding] = React.useState(false);
   const [prevMessages, setPrevMessages] = React.useState<PreviousChatType[]>(
     [],
   );
@@ -114,11 +111,6 @@ const Chat = () => {
     });
     setPrevMessages([]);
   };
-  useEffect(() => {
-    if (state === null || selectedRoom === null) {
-      setPrevMessages([]);
-    }
-  }, [state, selectedRoom]);
   return (
     <div className=' bg-white rounded-3xl w-full flex flex-col sm:flex-row min-h-[calc(100vh-2rem)]'>
       <div className='w-full md:w-2/3 flex-col order-2 sm:order-1 justify-between flex max-h-[calc(100vh-2rem)] '>
@@ -133,14 +125,13 @@ const Chat = () => {
             setAllListAssistants={setAllListAssistants}
             setPrevMessages={setPrevMessages}
             setSelectedRoom={setSelectedRoom}
-            uuid={state?.uuid}
+            uuid={selectedRoom?.uuid}
           />
         ) : null}
-        {selectedRoom._id !== '' || state !== null ? (
+        {selectedRoom._id !== '' ? (
           <TopBar
             selectedRoom={selectedRoom}
             setToInitialFunction={setToInitial}
-            states={state}
           />
         ) : null}
         <Messages
@@ -148,8 +139,8 @@ const Chat = () => {
           setMessages={setPrevMessages}
           aiResponding={aiResponding}
         />
-        {selectedRoom._id !== '' || state !== null ? (
-          <div className='p-4 flex space-x-2 items-center relative xm:mt-96 mt-40 xlm:mt-80 sm:mt-0 md:mt-0 lg:mt-0 '>
+        {selectedRoom._id !== '' ? (
+          <div className='p-4 flex space-x-2 items-center relative'>
             <ChatInput
               type='text'
               placeholder='Message'
@@ -215,7 +206,7 @@ const Chat = () => {
             setAllListAssistants={setAllListAssistants}
             setPrevMessages={setPrevMessages}
             setSelectedRoom={setSelectedRoom}
-            uuid={state?.uuid}
+            uuid={selectedRoom?.uuid}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
           />

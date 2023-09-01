@@ -72,7 +72,7 @@ const Login = () => {
         </div>
       </form>
       <div className='flex justify-center'>
-        <div className='w-full md:w-1/2'>
+        <div className='w-full'>
           <div className='relative flex py-5 items-center'>
             <div className='flex-grow border-t border-gray-400'></div>
             <span className='flex-shrink mx-4 text-gray-400'>
@@ -83,19 +83,19 @@ const Login = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-        <div className='w-full md:w-1/2 flex space-x-4 mb-6'>
+        <div className='w-full flex space-x-4 mb-6'>
           <Button
             icon={<Google />}
-            className='rounded-lg w-44 flex items-center justify-center'
+            className='rounded-lg w-44 flex items-center justify-center border-2 border-slate-300'
             onClick={googleLogin}
           />
           <Button
             icon={<Apple />}
-            className='rounded-lg w-44 flex items-center justify-center'
+            className='rounded-lg w-44 flex items-center justify-center border-2 border-slate-300'
           />
           <Button
             icon={<Facebook />}
-            className='rounded-lg w-44 flex items-center justify-center'
+            className='rounded-lg w-44 flex items-center justify-center border-2 border-slate-300'
             onClick={facebookLogin}
           />
         </div>

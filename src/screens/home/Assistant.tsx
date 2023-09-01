@@ -2,10 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Heart } from 'assets/svgs';
 import { useNavigate } from 'react-router-dom';
-import ChatService from 'services/chat';
 import { CombineRoomType } from 'types/assistant';
 import useLayoutContext from 'hooks/useLayout';
-import { CardBgColor } from 'constants/tools';
+import useHomeContext from 'hooks/useHome';
 
 interface ICardList {
   onClick?: () => void;
@@ -13,23 +12,20 @@ interface ICardList {
   className?: string;
 }
 
-const getRandomColor = () => {
-  const randomIndex = Math.floor(Math.random() * CardBgColor.length);
-  return CardBgColor[randomIndex];
-};
-
 const CardList = () => {
   const navigate = useNavigate();
-  const [resData, setResData] = React.useState<CombineRoomType[]>([]);
+  const { assistants, getAssistants } = useHomeContext();
   const [filterData, setFilterData] = React.useState<CombineRoomType[]>([]);
   const [isloading, setIsloading] = React.useState<boolean>(true);
   const { homeSearch, setHomeSearch } = useLayoutContext();
+  const { setSelectedAssistantFromHome } = useLayoutContext();
+
   const getAllAssistants = async () => {
     try {
-      const data: CombineRoomType[] =
-        (await ChatService.listAssistants()) || [];
+      if (!assistants.length) {
+        await getAssistants();
+      }
       setIsloading(false);
-      setResData(data);
     } catch (error) {
       console.log('Fetch Error', error);
     }
@@ -40,13 +36,12 @@ const CardList = () => {
   }, []);
 
   const SampleNextArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+    const { className, onClick } = props;
 
     return (
       <div
         className={className}
         style={{
-          ...style,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -55,11 +50,11 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           right: -42,
           top: 90,
         }}
@@ -68,13 +63,14 @@ const CardList = () => {
     );
   };
 
-  const SamplePrevArrow = (props: ICardList) => {
-    const { className, style, onClick } = props;
+  const SamplePrevArrow: React.FC<{
+    className?: string;
+    onClick?: () => void;
+  }> = ({ className, onClick }) => {
     return (
       <div
         className={className}
         style={{
-          ...style,
           zIndex: 20,
           display: 'flex',
           justifyContent: 'center',
@@ -84,11 +80,11 @@ const CardList = () => {
           width: '45px',
           borderRadius: '22.5px',
           background: `linear-gradient(
-          90deg,
-          #ae519d 0%,
-          #e54389 51.04%,
-          #f4a14c 97.92%
-        )`,
+            90deg,
+            #ae519d 0%,
+            #e54389 51.04%,
+            #f4a14c 97.92%
+          )`,
           left: -40,
           top: 85,
         }}
@@ -96,11 +92,12 @@ const CardList = () => {
       />
     );
   };
+
   const settings = {
     // dots: true,
     infinite: filterData.length > 3,
-    slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     swipeToSlide: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -149,40 +146,41 @@ const CardList = () => {
     ),
   };
   React.useEffect(() => {
-    if (resData.length && homeSearch) {
-      const fiteredData = resData.filter((item) => {
+    if (assistants.length && homeSearch) {
+      const fiteredData = assistants.filter((item) => {
         return item?.persona?.toLowerCase().includes(homeSearch.toLowerCase());
       });
       setFilterData(fiteredData);
       setHomeSearch(homeSearch);
     } else {
-      setFilterData(resData);
+      setFilterData(assistants);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [homeSearch]);
 
+  const goToChat = (item: CombineRoomType) => {
+    setSelectedAssistantFromHome(item);
+    navigate('/chat');
+  };
+
   return (
     <div>
-      {resData.length && !homeSearch ? (
+      {assistants.length && !homeSearch ? (
         <Slider {...settings}>
-          {resData?.map((card) => {
+          {assistants?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${getRandomColor()} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
@@ -198,23 +196,19 @@ const CardList = () => {
         </Slider>
       ) : homeSearch ? (
         <Slider {...settings}>
-          {filterData?.map((card) => {
+          {filterData?.map((card, index) => {
+            const gradientColor = index % 10 != 0 ? index % 10 : 4;
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${card.gradientColor} cursor-pointer`}
-                onClick={() =>
-                  navigate('/chat', {
-                    state: {
-                      uuid: card.uuid,
-                      cardName: card.persona,
-                    },
-                  })
-                }
+                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                  card.gradientColor || 'card-gradient' + gradientColor
+                } cursor-pointer`}
+                onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44'
+                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
