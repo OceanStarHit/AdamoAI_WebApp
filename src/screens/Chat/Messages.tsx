@@ -12,6 +12,7 @@ interface MessagesType {
 }
 
 const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
+  const lastMsg = React.useRef(null);
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
@@ -22,11 +23,17 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
     setEditMessage({ message: '', index: -1 });
   };
 
+  React.useEffect(() => {
+    //@ts-ignore
+    lastMsg?.current?.scrollIntoView({ behavior: 'instant' });
+  }, [messages.length]);
+
   return (
     <div className='flex flex-col custom-scrollbar flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
+            ref={index === messages?.length - 1 ? lastMsg : undefined}
             key={index}
             className={`${
               message.senderType === SENDER_TYPE.USER
