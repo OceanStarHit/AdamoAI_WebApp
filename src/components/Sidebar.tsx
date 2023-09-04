@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       {!openDrawer && (
         <div
-          className='absolute top-24 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer z-[999]'
+          className='absolute top-24 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer z-[999] min-[1023px]:hidden'
           onClick={() => setOpenDrawer(!openDrawer)}
         >
           <MenuIcon />
