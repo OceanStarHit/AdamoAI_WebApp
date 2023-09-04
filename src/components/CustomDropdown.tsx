@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect, useRef } from 'react';
 import { Transition, Menu } from '@headlessui/react';
 import { FilterIcon } from 'assets/svgs';
 import { Switch } from '@headlessui/react';
@@ -8,12 +8,44 @@ const CustomDropdown = () => {
   const [isSpeakerAllowed, setIsSpeakerAllowed] = useState(false);
   const [isMicAllowed, setIsMicAllowed] = useState(false);
   const [isAudioDirectly, setIsAudioDirectly] = useState(false);
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        closeDropdown();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleDocumentClick);
+    } else {
+      document.removeEventListener('click', handleDocumentClick);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [isOpen]);
+
   return (
-    <Menu as='div' className='relative inline-block text-left'>
+    <Menu
+      as='div'
+      className='relative inline-block text-left'
+      ref={dropdownRef}
+    >
       <div>
         <Menu.Button
           className='border rounded px-4 py-2 bg-white'
