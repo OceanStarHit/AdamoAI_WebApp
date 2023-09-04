@@ -135,6 +135,7 @@ const Chat = () => {
           />
         ) : null}
         <Messages
+          isMessage={Boolean(value.length)}
           messages={prevMessages}
           setMessages={setPrevMessages}
           aiResponding={aiResponding}
