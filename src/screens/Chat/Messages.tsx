@@ -68,7 +68,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
               {message.senderType === SENDER_TYPE.USER ? (
                 <>
                   <div className='flex justify-end -mt-2 mr-2'>
-                    <div className='flex justify-start items-center mr-16 space-x-2'>
+                    <div className='flex justify-start items-center mr-16 space-x-2 mt-3'>
                       <span>
                         <p className='text-gray-500 text-xs font-semibold right-0'>
                           {message?.time_stamp ? (
