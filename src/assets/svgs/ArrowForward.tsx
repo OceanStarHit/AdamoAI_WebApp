@@ -1,14 +1,14 @@
 const ArrowForward = () => {
   return (
     <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
+      width='14'
+      height='10'
+      viewBox='0 0 14 10'
       fill='none'
+      xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        d='M14 16L18 12M18 12L14 8M18 12L6 12'
+        d='M9 9L13 5M13 5L9 1M13 5L1 5'
         stroke='white'
         strokeWidth='1.5'
         strokeLinecap='round'

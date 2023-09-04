@@ -42,6 +42,7 @@ const CardList = () => {
       <div
         className={className}
         style={{
+          paddingTop: 3,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -70,6 +71,7 @@ const CardList = () => {
       <div
         className={className}
         style={{
+          paddingTop: 3,
           zIndex: 20,
           display: 'flex',
           justifyContent: 'center',
