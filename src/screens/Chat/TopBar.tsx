@@ -1,5 +1,4 @@
 import React from 'react';
-import { Menu } from '@headlessui/react';
 import CustomDropdown from 'components/CustomDropdown';
 import { BackArrow } from 'assets/svgs';
 import { AssistantTopBarPropType } from 'types/assistant';
@@ -29,13 +28,8 @@ const TopBar: React.FC<AssistantTopBarPropType> = ({
             </span>
           )}
         </div>
-        <Menu>
-          {/* <Menu.Button>
-            <FilterIcon />
-          </Menu.Button> */}
-          <CustomDropdown />
-        </Menu>
-        {/* <Button icon={<FilterIcon />} /> */}
+
+        <CustomDropdown />
       </div>
     </div>
   );
