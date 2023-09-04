@@ -1,6 +1,7 @@
 import React from 'react';
 import Chat from 'screens/Chat';
 import Home from 'screens/home';
+import Account from 'screens/Account';
 import ToolScreen from 'screens/Tools';
 import Settings from 'screens/Settings';
 import Layout from 'components/Sidebar';
@@ -18,6 +19,7 @@ const GetAuthenticatedRoutes = () => {
   const UNAUTHENTICATED_ROUTES = [
     ROUTES.HOME,
     ROUTES.CHAT,
+    ROUTES.ACCOUNT,
     ROUTES.SETTING,
     ROUTES.TOOLS,
     ROUTES.CHECKOUT,
@@ -36,6 +38,7 @@ const GetAuthenticatedRoutes = () => {
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.CHAT} element={<Chat />} />
+          <Route path={ROUTES.ACCOUNT} element={<Account />} />
           <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
           <Route path={ROUTES.SETTING} element={<Settings />} />
           <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
