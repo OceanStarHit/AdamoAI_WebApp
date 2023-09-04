@@ -4,6 +4,7 @@ import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
 import { Edit } from 'assets/svgs';
+import Typewriter from 'components/TypeWriter';
 
 interface MessagesType {
   messages: PreviousChatType[];
@@ -12,11 +13,7 @@ interface MessagesType {
   isMessage?: boolean;
 }
 
-const Messages: React.FC<MessagesType> = ({
-  messages,
-  aiResponding,
-  isMessage = false,
-}) => {
+const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
   const lastMsg = React.useRef(null);
   const [editMessage, setEditMessage] = React.useState({
     message: '',
@@ -139,11 +136,7 @@ const Messages: React.FC<MessagesType> = ({
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={ADAMO_GIF} width={200} height={200} />
-          <h1 className='sm:mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
-            {isMessage
-              ? 'ASK ME ANYTHING...'
-              : ' Please select an assistant to start talking'}
-          </h1>
+          <Typewriter text='Ask me anything...' />
         </div>
       )}
 

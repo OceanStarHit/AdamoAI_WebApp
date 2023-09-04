@@ -43,6 +43,7 @@ const Input: React.FC<InputType> = ({
           </div>
         ) : null}
         <input
+          autoComplete='off'
           type={type}
           id='input-group-1'
           className={`bg-gray-100 text-gray-900 text-sm rounded-lg focus:outline-none block w-full pl-10 p-2.5 ${className} placeholder:text-base`}
