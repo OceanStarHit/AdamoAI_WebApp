@@ -128,14 +128,7 @@ code {
     );
   }
   .card-gradient7 {
-    background: var(
-      --adamo-glass-blue,
-      radial-gradient(
-        51.7% 132.14% at 50% 100%,
-        rgba(0, 181, 255, 0.15) 0%,
-        rgba(0, 181, 255, 0) 74.03%
-      ),
-    );
+    background: var(--adamo-glass-blue, radial-gradient(#daebf5, #cdcdcd24));
   }
   .card-gradient8 {
     background: var(
