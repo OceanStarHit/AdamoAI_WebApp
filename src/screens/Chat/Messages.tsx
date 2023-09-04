@@ -30,7 +30,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
             key={index}
             className={`${
               message.senderType === SENDER_TYPE.USER
-                ? 'justify-end'
+                ? 'justify-end mb-3'
                 : 'justify-start mb-4'
             } flex`}
           >

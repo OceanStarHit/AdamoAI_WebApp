@@ -10,7 +10,6 @@ interface LayoutProps {
 }
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
-  // const [dropdown, setDropdown] = React.useState(true);
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [sidebarMove, setSidebarMove] = React.useState(true);
 

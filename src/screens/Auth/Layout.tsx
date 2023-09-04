@@ -41,9 +41,6 @@ const AuthLayout: React.FC<LayoutProps> = ({ children }) => {
           className='w-[350px] h-[450px] absolute top-0'
         />
       </aside>
-      {/* xlm:py-[132px] xm:py-[160px] sm:py-14 lg:p-4 */}
-      {/* 'p-4 h-[100vh] pt-10 xm:pt-32 xlm:pt-32 lg:ml-80 lg:p-4 lg:h-full xl:h-[100vh] 2xl:h-[100vh]' */}
-      {/* 'p-4 lg:ml-80' */}
 
       {window.innerWidth < 1024 ? (
         <div className='w-screen h-sceeen bg-white'>{children}</div>
