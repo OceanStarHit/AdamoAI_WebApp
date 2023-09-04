@@ -245,3 +245,11 @@ code {
 .custom-scrollbar::-webkit-scrollbar {
   display: none; /* Webkit (Safari, Chrome, etc.) */
 }
+
+
+.react-tel-input .flag-dropdown .selected-flag:hover {
+  background-color: #CACACA;
+ }
+ .react-tel-input .flag-dropdown .selected-flag:focus {
+  background-color: #CACACA;
+ }
