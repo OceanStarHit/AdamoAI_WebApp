@@ -4,7 +4,6 @@ import { Avatar, Edit } from 'assets/svgs';
 import Button from 'components/Button';
 import PhoneInput from 'react-phone-input-2';
 import { ISettingType } from 'types/settings';
-import useLayoutContext from 'hooks/useLayout';
 import { EDIT_PROFILE } from 'constants/settings';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import MainContainer from 'components/MainContainer';
@@ -13,12 +12,7 @@ import { Account as AccountImg } from 'assets/svgs';
 
 const Account = () => {
   const { control, handleSubmit } = useForm<ISettingType>();
-  const { setSettingState } = useLayoutContext();
   const [selectedFile, setSelectedFile] = React.useState<string | null>(null);
-  React.useEffect(() => {
-    setSettingState('Settings');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onSubmit: SubmitHandler<ISettingType> = async (data) => {
     console.log(data);
@@ -41,7 +35,7 @@ const Account = () => {
           icon={<AccountImg color='black' width='40' height='40' />}
         />
         <div className='min-h-[calc(92vh-2rem)] w-full flex justify-center'>
-          <div className='flex justify-center w-full flex-col items-center space-y-2 my-2'>
+          <div className='flex justify-center w-full flex-col items-center space-y-2 my-4 '>
             {!selectedFile ? (
               <div className='relative 2xl:w-36 2xl:h-36 w-28 h-28 overflow-hidden bg-gray-600 rounded-full'>
                 <Avatar
@@ -65,7 +59,7 @@ const Account = () => {
                 onChange={(e) => changeHandler(e)}
               />
             </label>
-            <p className='text-gray-600 text-center text-sm'>
+            <p className='text-gray-600 text-center text-sm w-1/2 md:w-1/4'>
               At least 800x800 px recommended. JPG or PNG and GIF is allowed
             </p>
 
@@ -123,9 +117,12 @@ const Account = () => {
                                 onChange={onChange}
                                 containerStyle={{ margin: '20px' }}
                                 inputProps={{
-                                  className: 'phone-input',
+                                  className: 'phone-input focus:outline-none',
                                 }}
                                 buttonClass='phone-button'
+                                buttonStyle={{
+                                  backgroundColor: '#CACACA',
+                                }}
                               />
                             </div>
                           )}
