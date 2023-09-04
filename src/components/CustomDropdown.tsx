@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { Transition, Menu } from '@headlessui/react';
 import { FilterIcon } from 'assets/svgs';
+import { Switch } from '@headlessui/react';
 
 const CustomDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,87 +36,92 @@ const CustomDropdown = () => {
           <div>
             <Menu.Item>
               {() => (
-                <div className='absolute bg-black py-10 px-6 rounded-lg border shadow-md right-0'>
-                  <div className='flex flex-col gap-8'>
+                <div className='absolute bg-black p-6 rounded-lg right-0'>
+                  <div className='flex flex-col gap-4'>
                     <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
-                        className='text-white/75 text-sm'
+                        className='text-white/75 text-base'
                         style={{ whiteSpace: 'nowrap' }}
                       >
                         Allow Speaker
                       </p>
                       <div className='relative'>
-                        <input
-                          type='checkbox'
+                        <Switch
                           checked={isSpeakerAllowed}
-                          onChange={() =>
-                            setIsSpeakerAllowed(!isSpeakerAllowed)
-                          }
-                          className='sr-only'
-                        />
-                        <div
-                          className={`box block h-6 w-14 rounded-full ${
+                          onChange={setIsSpeakerAllowed}
+                          className={`${
                             isSpeakerAllowed ? 'bg-blue-500' : 'bg-gray-500'
-                          }`}
-                        ></div>
-                        <div
-                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
-                            isSpeakerAllowed ? 'translate-x-full' : ''
-                          }`}
-                        ></div>
+                          }
+          relative inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                        >
+                          <span className='sr-only'>Use setting</span>
+                          <span
+                            aria-hidden='true'
+                            className={`${
+                              isSpeakerAllowed
+                                ? 'translate-x-6'
+                                : 'translate-x-0'
+                            }
+            pointer-events-none inline-block h-[27px] w-[27px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                          />
+                        </Switch>
                       </div>
                     </label>
                     <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
-                        className='text-white/75 text-sm'
+                        className='text-white/75 text-base'
                         style={{ whiteSpace: 'nowrap' }}
                       >
                         Allow Mic
                       </p>
                       <div className='relative ml-[30px]'>
-                        <input
-                          type='checkbox'
+                        <Switch
                           checked={isMicAllowed}
-                          onChange={() => setIsMicAllowed(!isMicAllowed)}
-                          className='sr-only'
-                        />
-                        <div
-                          className={`box block h-6 w-14 rounded-full ${
+                          onChange={setIsMicAllowed}
+                          className={`${
                             isMicAllowed ? 'bg-blue-500' : 'bg-gray-500'
-                          }`}
-                        ></div>
-                        <div
-                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
-                            isMicAllowed ? 'translate-x-full' : ''
-                          }`}
-                        ></div>
+                          }
+          relative inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                        >
+                          <span className='sr-only'>Use setting</span>
+                          <span
+                            aria-hidden='true'
+                            className={`${
+                              isMicAllowed ? 'translate-x-6' : 'translate-x-0'
+                            }
+            pointer-events-none inline-block h-[27px] w-[27px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                          />
+                        </Switch>
                       </div>
                     </label>
 
                     <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
-                        className='text-white/75 text-sm'
+                        className='text-white/75 text-base'
                         style={{ whiteSpace: 'nowrap' }}
                       >
                         Audio Directly
                       </p>
                       <div className='relative'>
-                        <input
-                          type='checkbox'
+                        <Switch
                           checked={isAudioDirectly}
-                          onChange={() => setIsAudioDirectly(!isAudioDirectly)}
-                          className='sr-only'
-                        />
-                        <div
-                          className={`box block h-6 w-14 rounded-full ${
+                          onChange={setIsAudioDirectly}
+                          className={`${
                             isAudioDirectly ? 'bg-blue-500' : 'bg-gray-500'
-                          }`}
-                        ></div>
-                        <div
-                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
-                            isAudioDirectly ? 'translate-x-full' : ''
-                          }`}
-                        ></div>
+                          }
+          relative inline-flex h-[31px] w-[51px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                        >
+                          <span className='sr-only'>Use setting</span>
+                          <span
+                            aria-hidden='true'
+                            className={`${
+                              isAudioDirectly
+                                ? 'translate-x-6'
+                                : 'translate-x-0'
+                            }
+            pointer-events-none inline-block h-[27px] w-[27px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                          />
+                        </Switch>
                       </div>
                     </label>
                   </div>
