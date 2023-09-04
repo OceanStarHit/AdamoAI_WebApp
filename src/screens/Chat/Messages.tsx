@@ -68,6 +68,23 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
               {message.senderType === SENDER_TYPE.USER ? (
                 <>
                   <div className='flex justify-end -mt-2 mr-2'>
+                    <div className='flex justify-start items-center mr-16 space-x-2'>
+                      <span>
+                        <p className='text-gray-500 text-xs font-semibold right-0'>
+                          {message?.time_stamp ? (
+                            <TimeDifferenceComponent
+                              timestamp={message.time_stamp}
+                            />
+                          ) : (
+                            'Just Now'
+                          )}
+                        </p>
+                      </span>
+                      <span className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center cursor-pointer'>
+                        <Edit />
+                        <p className='text-gray-600 text-xs'>Edit</p>
+                      </span>
+                    </div>
                     <svg
                       className='w-10 h-10 text-white bg-gray-600 rounded-full'
                       fill='currentColor'
@@ -81,42 +98,26 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
                       ></path>
                     </svg>
                   </div>
-                  <div className='flex justify-start items-center mr-16 space-x-2'>
-                    <span>
-                      <p className='text-gray-500 text-xs font-semibold relative bottom-7 right-0'>
-                        {message?.time_stamp ? (
-                          <TimeDifferenceComponent
-                            timestamp={message.time_stamp}
-                          />
-                        ) : (
-                          'Just Now'
-                        )}
-                      </p>
-                    </span>
-                    <span className='flex space-x-2 rounded-md bg-gray-200 w-16 h-7 items-center justify-center relative bottom-7 cursor-pointer'>
-                      <Edit />
-                      <p className='text-gray-600 text-xs'>Edit</p>
-                    </span>
-                  </div>
                 </>
               ) : (
                 <>
-                  <div className='flex justify-start -mt-2'>
-                    <img
-                      src={ADAMO_GIF}
-                      width={40}
-                      height={40}
-                      className='rounded-full'
-                    />
-                  </div>
-                  <div className='flex justify-end mr-2 space-x-2 items-center'>
-                    <span>
-                      <p className='text-gray-500 text-xs font-semibold relative bottom-7 right-0'>
+                  <div className='flex justify-between -mt-2'>
+                    <div className='flex items-start'>
+                      <img
+                        src={ADAMO_GIF}
+                        width={40}
+                        height={40}
+                        className='rounded-full'
+                      />
+                    </div>
+
+                    <div className='flex items-end space-x-2 mb-2'>
+                      <p className='text-gray-500 text-xs font-semibold'>
                         <TimeDifferenceComponent
                           timestamp={message.time_stamp}
                         />
                       </p>
-                    </span>
+                    </div>
                   </div>
                 </>
               )}

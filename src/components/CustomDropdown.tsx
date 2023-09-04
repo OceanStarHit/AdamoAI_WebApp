@@ -7,19 +7,20 @@ const CustomDropdown = () => {
   const [isSpeakerAllowed, setIsSpeakerAllowed] = useState(false);
   const [isMicAllowed, setIsMicAllowed] = useState(false);
   const [isAudioDirectly, setIsAudioDirectly] = useState(false);
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className='relative'>
-      <Menu.Button
-        onClick={toggleDropdown}
-        className='border rounded px-4 py-2 bg-white'
-      >
-        <FilterIcon />
-      </Menu.Button>
+    <Menu as='div' className='relative inline-block text-left'>
+      <div>
+        <Menu.Button
+          className='border rounded px-4 py-2 bg-white'
+          onClick={toggleDropdown}
+        >
+          <FilterIcon />
+        </Menu.Button>
+      </div>
       <Transition
         show={isOpen}
         as={Fragment}
@@ -31,12 +32,12 @@ const CustomDropdown = () => {
         leaveTo='transform opacity-0 scale-95'
       >
         <Menu.Items className='absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-          <div className='px-1 py-1'>
+          <div>
             <Menu.Item>
               {() => (
-                <div className='absolute mt-2 bg-white border rounded shadow-md'>
-                  <div className='bg-black/75 py-10 px-12 rounded-lg'>
-                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4 mb-8'>
+                <div className='absolute bg-black py-10 px-6 rounded-lg border shadow-md right-0'>
+                  <div className='flex flex-col gap-8'>
+                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
                         className='text-white/75 text-sm'
                         style={{ whiteSpace: 'nowrap' }}
@@ -53,18 +54,18 @@ const CustomDropdown = () => {
                           className='sr-only'
                         />
                         <div
-                          className={`box block h-8 w-14 rounded-full ${
+                          className={`box block h-6 w-14 rounded-full ${
                             isSpeakerAllowed ? 'bg-blue-500' : 'bg-gray-500'
                           }`}
                         ></div>
                         <div
-                          className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
+                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
                             isSpeakerAllowed ? 'translate-x-full' : ''
                           }`}
                         ></div>
                       </div>
                     </label>
-                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4 mb-8'>
+                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
                         className='text-white/75 text-sm'
                         style={{ whiteSpace: 'nowrap' }}
@@ -79,19 +80,19 @@ const CustomDropdown = () => {
                           className='sr-only'
                         />
                         <div
-                          className={`box block h-8 w-14 rounded-full ${
+                          className={`box block h-6 w-14 rounded-full ${
                             isMicAllowed ? 'bg-blue-500' : 'bg-gray-500'
                           }`}
                         ></div>
                         <div
-                          className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
+                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
                             isMicAllowed ? 'translate-x-full' : ''
                           }`}
                         ></div>
                       </div>
                     </label>
 
-                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4 mb-8'>
+                    <label className='w-full flex cursor-pointer items-center justify-evenly gap-4'>
                       <p
                         className='text-white/75 text-sm'
                         style={{ whiteSpace: 'nowrap' }}
@@ -106,12 +107,12 @@ const CustomDropdown = () => {
                           className='sr-only'
                         />
                         <div
-                          className={`box block h-8 w-14 rounded-full ${
+                          className={`box block h-6 w-14 rounded-full ${
                             isAudioDirectly ? 'bg-blue-500' : 'bg-gray-500'
                           }`}
                         ></div>
                         <div
-                          className={`absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
+                          className={`absolute left-1 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white transition ${
                             isAudioDirectly ? 'translate-x-full' : ''
                           }`}
                         ></div>
@@ -124,7 +125,7 @@ const CustomDropdown = () => {
           </div>
         </Menu.Items>
       </Transition>
-    </div>
+    </Menu>
   );
 };
 
