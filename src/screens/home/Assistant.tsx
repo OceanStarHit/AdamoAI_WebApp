@@ -56,6 +56,7 @@ const CardList = () => {
             #f4a14c 97.92%
           )`,
           right: -42,
+          top: 90,
         }}
         onClick={onClick}
       />
@@ -85,6 +86,7 @@ const CardList = () => {
             #f4a14c 97.92%
           )`,
           left: -40,
+          top: 85,
         }}
         onClick={onClick}
       />

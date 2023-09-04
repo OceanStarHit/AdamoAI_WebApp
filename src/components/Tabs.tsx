@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
-// import Heading from './Heading';
 import { TabsType } from 'types/assistant';
 
 const Tabs: React.FC<TabsType> = ({
