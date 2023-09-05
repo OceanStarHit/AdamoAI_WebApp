@@ -144,8 +144,8 @@ const Messages: React.FC<MessagesType> = ({
           {isOpen !== '' && !messages.length ? (
             <Typewriter text='Ask me anything...' />
           ) : (
-            <div className='max-w-md'>
-              <p className='text-2xl text-center'>
+            <div className='max-w-xl mx-4'>
+              <p className='text-4xl font-bold text-center'>
                 Please select an assistant to start talking
               </p>
             </div>
