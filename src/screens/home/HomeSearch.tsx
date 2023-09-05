@@ -49,7 +49,11 @@ const HomeSearch = () => {
       />
       <div>
         <Button
-          icon={<ArrowForward />}
+          icon={
+            <div className='flex justify-center'>
+              <ArrowForward />
+            </div>
+          }
           gradient
           onClick={() => goToChat(homeSearch)}
           className='w-12 xl:w-14 xl:h-14 absolute right-0.5 bottom-2 xl:bottom-3.5 xl:right-1'

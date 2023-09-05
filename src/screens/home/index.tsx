@@ -54,10 +54,10 @@ const Home = () => {
 
         <div className='flex justify-center'>
           <div className='w-2/3 md:w-1/3 p-6 '>
-            <div className='flex space-x-2 items-center'>
+            <div className='flex space-x-2 items-center whitespace-nowrap'>
               <Heading
                 text={`Hi, I'm Adamo`}
-                className='font-helvetica font-extrabold ml-6 text-base md:text-xl lg:text-4xl'
+                className='font-helvetica font-extrabold ml-6 text-base md:text-xl lg:text-4xl '
               />
               <div className='w-5 h-5 md:w-8 sm:h-8 relative bottom-1 md:bottom-0'>
                 <WaveIcon />

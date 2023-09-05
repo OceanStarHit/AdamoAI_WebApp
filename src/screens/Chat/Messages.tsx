@@ -4,14 +4,17 @@ import ADAMO_GIF from 'assets/images/AdamoCircle.gif';
 import { PreviousChatType, SENDER_TYPE } from 'types/chat';
 import TimeDifferenceComponent from 'components/TimeDifference';
 import { Edit } from 'assets/svgs';
+import Typewriter from 'components/TypeWriter';
 
 interface MessagesType {
   messages: PreviousChatType[];
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
+  isMessage?: boolean;
 }
 
 const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
+  const lastMsg = React.useRef(null);
   const [editMessage, setEditMessage] = React.useState({
     message: '',
     index: -1,
@@ -22,11 +25,17 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
     setEditMessage({ message: '', index: -1 });
   };
 
+  React.useEffect(() => {
+    //@ts-ignore
+    lastMsg?.current?.scrollIntoView({ behavior: 'instant' });
+  }, [messages.length]);
+
   return (
     <div className='flex flex-col custom-scrollbar flex-grow overflow-y-scroll max-h-[calc(100%-5rem)] p-4'>
       {messages?.length !== 0 ? (
         messages.map((message, index) => (
           <div
+            ref={index === messages?.length - 1 ? lastMsg : undefined}
             key={index}
             className={`${
               message.senderType === SENDER_TYPE.USER
@@ -127,9 +136,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={ADAMO_GIF} width={200} height={200} />
-          <h1 className='sm:mx-24 font-Helvetica text-2xl sm:text-4xl font-medium text-center'>
-            Please select an assistant to start talking
-          </h1>
+          <Typewriter text='Ask me anything...' />
         </div>
       )}
 

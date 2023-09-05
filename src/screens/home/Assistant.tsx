@@ -42,6 +42,7 @@ const CardList = () => {
       <div
         className={className}
         style={{
+          paddingTop: 3,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -70,6 +71,7 @@ const CardList = () => {
       <div
         className={className}
         style={{
+          paddingTop: 3,
           zIndex: 20,
           display: 'flex',
           justifyContent: 'center',
@@ -167,7 +169,7 @@ const CardList = () => {
       {assistants.length && !homeSearch ? (
         <Slider {...settings}>
           {assistants?.map((card, index) => {
-            const gradientColor = index % 10 != 0 ? index % 10 : 4;
+            const gradientColor = index % 6 != 0 ? index % 6 : 1;
             return (
               <div
                 key={card.persona}
