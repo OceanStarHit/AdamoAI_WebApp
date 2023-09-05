@@ -52,7 +52,8 @@ export type optionsType = {
 
 export interface TabsType {
   options: optionsType[];
-  className?: string;
+  wrapperClassName?: string;
+  tabClassName?: string;
   selectedClassName?: string;
   notSelectedClassName?: string;
   tabWidth?: string;

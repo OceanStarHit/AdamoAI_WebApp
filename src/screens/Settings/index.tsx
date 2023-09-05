@@ -19,12 +19,13 @@ const Settings = () => {
   return (
     <MainContainer>
       <div className='w-full max-h-[calc(100vh-2rem)] overflow-y-auto'>
-        <Navbar>
+        <Navbar title='Settings'>
           <div className='mt-2'>
             <Tabs
               options={tabs}
               notSelectedClassName='!bg-input-gradient'
-              className='rounded-full'
+              wrapperClassName='rounded-full p-1 mt-4'
+              tabClassName='rounded-full py-3 xl:py-4'
               tabWidth='w-11/12 md:w-2/3 lg:w-2/3'
               variant='home'
               tabPanelClassName='w-3/4 lg:w-11/12'

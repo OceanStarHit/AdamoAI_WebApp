@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     >
       {!openDrawer && (
         <div
-          className='absolute top-24 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer'
+          className='absolute top-24 z-10 left-5 bg-primary-gradient md:lg h-10 w-10 rounded-r-md flex justify-center items-center cursor-pointer'
           onClick={() => setOpenDrawer(!openDrawer)}
         >
           <MenuIcon />
@@ -134,7 +134,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div
         className={`p-4  max-[639px]:p-2 ${
           sidebarMove ? 'lg:ml-72' : 'lg:ml-32'
-        } max-h-screen ${openDrawer ? 'hidden' : 'block'} max-[639px]:bg-white`}
+        } max-h-screen h-screen ${
+          openDrawer ? 'hidden' : 'block'
+        } max-[639px]:bg-white`}
       >
         <div>{children}</div>
       </div>

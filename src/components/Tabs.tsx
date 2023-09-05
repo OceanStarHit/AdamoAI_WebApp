@@ -5,7 +5,8 @@ import { TabsType } from 'types/assistant';
 
 const Tabs: React.FC<TabsType> = ({
   options,
-  className = 'rounded-lg',
+  wrapperClassName = 'rounded-lg p-1 mt-4',
+  tabClassName = 'rounded-lg py-3 xl:py-4',
   selectedClassName = 'primary-gradient',
   notSelectedClassName = '',
   tabWidth = 'w-[300px] sm:w-full md:w-[550px]',
@@ -27,14 +28,14 @@ const Tabs: React.FC<TabsType> = ({
       >
         <div className='flex justify-center'>
           <Tab.List
-            className={`flex space-x-1 bg-gray-200 p-1 mt-4 ${className} ${tabWidth}`}
+            className={`flex space-x-1 bg-gray-200 ${wrapperClassName} ${tabWidth}`}
           >
             {options.map((tab, index) => (
               <Tab
                 key={`${tab.label} ${index}`}
                 className={({ selected }) =>
                   classNames(
-                    `w-full py-3 xl:py-4 text-xs items-center sm:text-sm flex justify-center ${className}`,
+                    `w-full text-xs items-center sm:text-sm flex justify-center ${tabClassName}`,
                     'focus:outline-none',
                     {
                       [`shadow-lg ${
@@ -65,24 +66,26 @@ const Tabs: React.FC<TabsType> = ({
             ))}
           </Tab.List>
         </div>
-        <div className='flex justify-start mt-2 relative right-8'>
-          {/* {showTabs ? (
+        {/* <div className='flex justify-start mt-2 relative right-8'>
+          {showTabs ? (
             <Heading
               text='Assistants'
               type='heading'
               className='ml-12 font-medium font-helvetica'
             />
-          ) : null} */}
-        </div>
-        <div className='flex justify-center mx-3'>
-          <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>
-            {options?.map((item) => (
-              <Tab.Panel key={item.label}>
-                <div>{item.component}</div>
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-        </div>
+          ) : null}
+        </div> */}
+        {options?.length ? (
+          <div className='flex justify-center mx-3'>
+            <Tab.Panels className={`mt-2 ${tabPanelClassName}`}>
+              {options?.map((item) => (
+                <Tab.Panel key={item.label}>
+                  <div>{item.component}</div>
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
+          </div>
+        ) : null}
       </div>
     </Tab.Group>
   );

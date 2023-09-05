@@ -77,7 +77,8 @@ const Home = () => {
           <Tabs
             options={tabs}
             notSelectedClassName='!bg-gray-200'
-            className='rounded-full'
+            wrapperClassName='rounded-full p-1 mt-4'
+            tabClassName='rounded-full py-3 xl:py-4'
             tabWidth='w-11/12 md:w-2/3 xl:w-3/5'
             variant='home'
             tabPanelClassName='w-3/4 md:w-11/12 '
