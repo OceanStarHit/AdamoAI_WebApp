@@ -136,7 +136,7 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={ADAMO_GIF} width={200} height={200} />
-          <Typewriter text='Ask me anything...' />
+          <Typewriter text='Please select an assistant to start talking' />
         </div>
       )}
 
