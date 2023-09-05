@@ -139,6 +139,7 @@ const Chat = () => {
           messages={prevMessages}
           setMessages={setPrevMessages}
           aiResponding={aiResponding}
+          isOpen={selectedRoom._id}
         />
         {selectedRoom._id !== '' ? (
           <div className='p-4 flex space-x-2 items-center relative'>

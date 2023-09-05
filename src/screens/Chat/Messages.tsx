@@ -11,9 +11,14 @@ interface MessagesType {
   setMessages: (message: PreviousChatType[]) => void;
   aiResponding: boolean;
   isMessage?: boolean;
+  isOpen?: string;
 }
 
-const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
+const Messages: React.FC<MessagesType> = ({
+  messages,
+  aiResponding,
+  isOpen,
+}) => {
   const lastMsg = React.useRef(null);
   const [editMessage, setEditMessage] = React.useState({
     message: '',
@@ -136,7 +141,15 @@ const Messages: React.FC<MessagesType> = ({ messages, aiResponding }) => {
       ) : (
         <div className='flex justify-center items-center h-full flex-col bg-transparent'>
           <img src={ADAMO_GIF} width={200} height={200} />
-          <Typewriter text='Please select an assistant to start talking' />
+          {isOpen !== '' && !messages.length ? (
+            <Typewriter text='Ask me anything...' />
+          ) : (
+            <div className='max-w-md'>
+              <p className='text-2xl text-center'>
+                Please select an assistant to start talking
+              </p>
+            </div>
+          )}
         </div>
       )}
 
