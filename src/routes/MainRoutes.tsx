@@ -11,6 +11,7 @@ import Checkout from 'screens/Settings/Checkout';
 import LayoutProvider from 'provider/LayoutProvider';
 import ForgotPassword from 'screens/Auth/ForgotPassword';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import Subscription from 'screens/Subscription';
 
 const GetAuthenticatedRoutes = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const GetAuthenticatedRoutes = () => {
     ROUTES.SETTING,
     ROUTES.TOOLS,
     ROUTES.CHECKOUT,
+    ROUTES.SUBSCRIPTION,
   ];
   React.useEffect(() => {
     if (UNAUTHENTICATED_ROUTES.includes(location.pathname as ROUTES)) {
@@ -39,6 +41,7 @@ const GetAuthenticatedRoutes = () => {
           <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
           <Route path={ROUTES.SETTING} element={<Settings />} />
           <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+          <Route path={ROUTES.SUBSCRIPTION} element={<Subscription />} />
         </Routes>
       </Layout>
     </LayoutProvider>

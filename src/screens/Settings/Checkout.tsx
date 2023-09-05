@@ -8,7 +8,7 @@ const Checkout = () => {
   return (
     <MainContainer>
       <div className='w-full min-h-[calc(100vh-2rem)] overflow-y-auto'>
-        <Navbar>
+        <Navbar title='Payment'>
           <div className='flex flex-col lg:flex-row w-full space-x-0 lg:space-x-2 font-helvetica overflow-y-auto max-h-[calc(100vh-8rem)] md:max-h-[calc(100vh-2rem)]'>
             <div className='w-full lg:w-1/2 mx-0 lg:mx-4'>
               <div className='flex space-x-2 mt-12 ml-4'>

@@ -67,6 +67,7 @@ import SendFast from './sendfast';
 import LeftArrow from './leftArrow';
 import FilterIcon from './filterIcon';
 import WaveIcon from './wavinghand';
+import Crown from './crown';
 
 export {
   Avatar,
@@ -83,6 +84,7 @@ export {
   BackArrow,
   Image,
   Reload,
+  Crown,
   MenuIcon,
   TickIcon,
   Email,

@@ -134,7 +134,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div
         className={`p-4  max-[639px]:p-2 ${
           sidebarMove ? 'lg:ml-72' : 'lg:ml-32'
-        } max-h-screen ${openDrawer ? 'hidden' : 'block'} max-[639px]:bg-white`}
+        } max-h-screen h-screen ${
+          openDrawer ? 'hidden' : 'block'
+        } max-[639px]:bg-white`}
       >
         <div>{children}</div>
       </div>
