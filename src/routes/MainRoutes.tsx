@@ -24,6 +24,15 @@ const GetAuthenticatedRoutes = () => {
     ROUTES.TOOLS,
     ROUTES.CHECKOUT,
   ];
+  const routes = [
+    { path: ROUTES.HOME, element: <Home /> },
+    { path: ROUTES.CHAT, element: <Chat /> },
+    { path: ROUTES.ACCOUNT, element: <Account /> },
+    { path: ROUTES.TOOLS, element: <ToolScreen /> },
+    { path: ROUTES.SETTING, element: <Settings /> },
+    { path: ROUTES.CHECKOUT, element: <Checkout /> },
+  ];
+
   React.useEffect(() => {
     if (UNAUTHENTICATED_ROUTES.includes(location.pathname as ROUTES)) {
       navigate(location.pathname);
@@ -36,12 +45,11 @@ const GetAuthenticatedRoutes = () => {
     <LayoutProvider>
       <Layout>
         <Routes>
-          <Route path={ROUTES.HOME} element={<Home />} />
-          <Route path={ROUTES.CHAT} element={<Chat />} />
-          <Route path={ROUTES.ACCOUNT} element={<Account />} />
-          <Route path={ROUTES.TOOLS} element={<ToolScreen />} />
-          <Route path={ROUTES.SETTING} element={<Settings />} />
-          <Route path={ROUTES.CHECKOUT} element={<Checkout />} />
+          {routes.map((items, index) => {
+            return (
+              <Route key={index} path={items.path} element={items.element} />
+            );
+          })}
         </Routes>
       </Layout>
     </LayoutProvider>
