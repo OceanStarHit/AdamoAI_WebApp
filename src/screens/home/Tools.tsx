@@ -8,7 +8,7 @@ const Tools = () => {
           return (
             <div
               key={card.persona}
-              className={`flex-shrink-0 pb-1 w-full h-auto shadow-md rounded-xl ${card.gradientColor}`}
+              className={`flex-shrink-0 pb-1 w-full h-auto min-h-[200px] flex flex-col justify-between shadow-md rounded-xl ${card.gradientColor}`}
             >
               <img
                 src={card.avatar}
@@ -19,7 +19,7 @@ const Tools = () => {
               <div className='m-2 font-medium'>
                 <div className='flex space-x-2 items-center'>
                   <span>{card.icon}</span>
-                  <p className='text-xs md:text-sm font-semibold xl:text-xl md:font-medium'>
+                  <p className='text-xs  font-semibold xl:text-lg md:font-medium'>
                     {card.persona}
                   </p>
                 </div>

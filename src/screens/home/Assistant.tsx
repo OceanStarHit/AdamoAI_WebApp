@@ -173,14 +173,14 @@ const CardList = () => {
             return (
               <div
                 key={card.persona}
-                className={`!w-[90%] relative !left-[5%]  h-48 xl:h-60 rounded-xl ${
+                className={`!w-[90%]  relative !left-[5%]  rounded-xl ${
                   card.gradientColor || 'card-gradient' + gradientColor
                 } cursor-pointer`}
                 onClick={() => goToChat(card)}
               >
                 <img
                   src={card?.avatar?.replace(new RegExp(' ', 'g'), '_')}
-                  className='w-full p-2 h-32 xl:h-44 rounded-xl'
+                  className='w-full p-2 rounded-xl'
                 />
                 <div className='flex justify-between'>
                   <div className='m-2 font-semibold text-sm'>
