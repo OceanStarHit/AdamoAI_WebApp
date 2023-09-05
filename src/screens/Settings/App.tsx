@@ -11,12 +11,12 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className='w-full h-[520px] overflow-y-auto'>
+    <div className='w-full h-1/2 overflow-y-auto mb-5'>
       <div className='flex flex-col justify-center items-center'>
         <div className='w-full max-w-[595px] bg-card px-[15px] md:px-[24px] mt-5 rounded-xl shadow-md mx-5 h-32'>
           <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
             <div className='flex items-center'>
-              <p className='ml-3 md:ml-5 text-sm md:text-lg font-light'>
+              <p className='ml-3 md:ml-5 text-sm md:text-lg font-normal '>
                 Haptic Feedback
               </p>
             </div>
