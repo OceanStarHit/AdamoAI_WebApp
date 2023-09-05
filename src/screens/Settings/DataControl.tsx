@@ -10,7 +10,7 @@ const DataCOntrol = () => {
   }, []);
 
   return (
-    <div className='w-full h-[520px] overflow-y-auto'>
+    <div className='w-full h-1/2 overflow-y-auto'>
       <div className='flex flex-col justify-center items-center'>
         <div className='w-full max-w-[595px] bg-card px-[15px] md:px-[24px] mt-5 rounded-xl shadow-md mx-5 h-56 md:h-40'>
           <div className='py-[15px] md:py-[16px] px-1 md:px-3 flex items-center justify-between hover:cursor-pointer'>
@@ -29,7 +29,7 @@ const DataCOntrol = () => {
               Save new chats on this device to your history and allow them to be
               used to improve our models. Unsaved chat will be deleted from our
               systems within 30 days. This setting does not sync across device.
-              Learn more
+              <span className=' text-black'> Learn more</span>
             </p>
           </div>
         </div>
